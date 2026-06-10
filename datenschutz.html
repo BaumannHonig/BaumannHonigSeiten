@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datenschutz | Baumann Honig Seiten</title>
+    <meta name="description" content="Datenschutzerklärung der Baumann Honig Seiten – Informationen zur Verarbeitung Ihrer Daten, Ihre Rechte und Kontakt.">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== GRUNDSTIL (identisch mit index.html) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fef9e6;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .top-header {
+            background-color: #fff8e7;
+            border-bottom: 2px solid #f5a623;
+            padding: 15px 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            width: 80px;
+            height: auto;
+        }
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: #d48f1b;
+            margin-bottom: 5px;
+        }
+        .logo-text p {
+            font-size: 0.85rem;
+            color: #6b4c1a;
+        }
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #5a3e0e;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover, .main-nav .active {
+            color: #f5a623;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #d48f1b;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .main-nav {
+                display: none;
+                width: 100%;
+                background: #fff8e7;
+                padding: 15px 0;
+            }
+            .main-nav.open {
+                display: block;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+        /* Hauptinhalt – Datenschutz */
+        main {
+            padding: 50px 0;
+        }
+        .dsgvo-section {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .dsgvo-section h2 {
+            background: #f5a623;
+            color: white;
+            padding: 18px 25px;
+            font-size: 1.6rem;
+            margin: 0;
+        }
+        .dsgvo-section h3 {
+            color: #d48f1b;
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
+        }
+        .dsgvo-content {
+            padding: 25px;
+        }
+        .dsgvo-content p, .dsgvo-content ul, .dsgvo-content ol {
+            margin-bottom: 15px;
+        }
+        .dsgvo-content a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        .dsgvo-content a:hover {
+            text-decoration: underline;
+        }
+        .dsgvo-content ul, .dsgvo-content ol {
+            padding-left: 30px;
+        }
+        /* Footer */
+        footer {
+            background-color: #2c2c2c;
+            color: #ddd;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        /* Cookie-Popup (wie in index.html) */
+        #cookie-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .cookie-container {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .cookie-header {
+            background: #f5a623;
+            padding: 25px;
+            text-align: center;
+        }
+        .cookie-header .cookie-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .cookie-header h2 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+        }
+        .cookie-body {
+            padding: 25px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .cookie-btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-accept {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-decline {
+            background: #888;
+            color: white;
+        }
+        .cookie-footer {
+            background: #f9f9f9;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+        }
+        .cookie-footer a {
+            color: #f5a623;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        #main-site {
+            display: none;
+        }
+        .cookie-settings-top-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 10000;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: #f5a623;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        @media (max-width: 768px) {
+            .cookie-settings-top-btn {
+                top: 8px;
+                right: 10px;
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cookie-Popup -->
+<div id="cookie-popup">
+    <div class="cookie-container">
+        <div class="cookie-header">
+            <div class="cookie-icon">🍪</div>
+            <h2>Cookie Hinweis (DSGVO)</h2>
+        </div>
+        <div class="cookie-body">
+            <p>Diese Website verwendet notwendige Cookies für den Betrieb. Mit Ihrer Einwilligung werden zusätzlich folgende Tracking-Dienste aktiviert:</p>
+            <ul>
+                <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
+                <li><strong>Plausible Analytics</strong> – datensparsame Analyse ohne personenbezogene Daten</li>
+            </ul>
+            <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
+                <button id="decline-cookies" class="cookie-btn btn-decline">❌ Nur notwendige</button>
+            </div>
+        </div>
+        <div class="cookie-footer">
+            <a href="datenschutz.html">Mehr zum Datenschutz</a> | 
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </div>
+</div>
+
+<!-- Button zum Ändern der Cookie-Einstellungen -->
+<div id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</div>
+
+<!-- Hauptseite (Datenschutz) -->
+<div id="main-site">
+    <header class="top-header">
+        <div class="container header-inner">
+            <div class="logo-area">
+                <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
+                <div class="logo-text">
+                    <h1>Baumann Honig Seiten</h1>
+                    <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produkte.html">Produkte</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html" class="active">Datenschutz</a></li>
+                    <li><a href="bienenstock.html">Bienenstöcke Verkauf</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Einleitung -->
+            <div class="dsgvo-section">
+                <h2>Datenschutzerklärung</h2>
+                <div class="dsgvo-content">
+                    <p>Informationen zum Datenschutz bei Baumann Honig Seiten, Ihrem Imker aus dem Eferdinger Hügelland. Hier finden Sie alle Details zur Erfassung, Speicherung und Nutzung Ihrer Daten.</p>
+                </div>
+            </div>
+
+            <!-- Datenschutz auf einen Blick -->
+            <div class="dsgvo-section">
+                <h2>Datenschutz auf einen Blick</h2>
+                <div class="dsgvo-content">
+                    <p>Ein einfacher Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie unsere Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen entnehmen Sie der Datenschutzerklärung.</p>
+                    <p><a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/europe-fit-digital-age/digital-services-act_de" target="_blank" rel="noopener">→ Das Gesetz über digitale Dienste im Überblick</a></p>
+                </div>
+            </div>
+
+            <!-- Datenerfassung auf dieser Website -->
+            <div class="dsgvo-section">
+                <h2>Datenerfassung auf dieser Website</h2>
+                <div class="dsgvo-content">
+                    <p>Die Datenverarbeitung erfolgt durch den Websitebetreiber, dessen Kontaktdaten Sie dem Abschnitt „Hinweis zur Verantwortlichen Stelle“ entnehmen können. Ihre Daten werden erhoben, wenn Sie uns diese mitteilen, z.B. über ein Kontaktformular. Andere Daten werden automatisch erfasst, z.B. technische Daten wie Browser, Betriebssystem oder Uhrzeit des Seitenaufrufs. Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden. Sofern über die Website Verträge geschlossen oder angebahnt werden können, werden die übermittelten Daten auch für Vertragsangebote, Bestellungen oder sonstige Auftragsanfragen verarbeitet.</p>
+                </div>
+            </div>
+
+            <!-- Ihre Rechte -->
+            <div class="dsgvo-section">
+                <h2>Ihre Rechte</h2>
+                <div class="dsgvo-content">
+                    <p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu. Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.</p>
+                </div>
+            </div>
+
+            <!-- Analyse-Tools und Tools von Drittanbietern -->
+            <div class="dsgvo-section">
+                <h2>Analyse-Tools und Tools von Drittanbietern</h2>
+                <div class="dsgvo-content">
+                    <p>Beim Besuch dieser Website kann Ihr Surf-Verhalten statistisch ausgewertet werden. Das geschieht vor allem mit sogenannten Analyseprogrammen.</p>
+                </div>
+            </div>
+
+            <!-- Hosting -->
+            <div class="dsgvo-section">
+                <h2>Hosting</h2>
+                <div class="dsgvo-content">
+                    <p>Wir hosten die Inhalte unserer Website bei folgendem Anbieter: InfinityFree, Kwikstaartlaan 42, Unit G1517, 3704 GS Zeist, The Netherlands. Die personenbezogenen Daten, die auf dieser Website erfasst werden, werden auf den Servern des Hosters gespeichert. Das externe Hosting erfolgt zum Zwecke der Vertragserfüllung gegenüber unseren potenziellen und bestehenden Kunden und im Interesse einer sicheren, schnellen und effizienten Bereitstellung unseres Online-Angebots durch einen professionellen Anbieter. Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des Dienstes geschlossen, der gewährleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.</p>
+                </div>
+            </div>
+
+            <!-- Ausführliche Datenerfassung (Cookies, Kontaktformular, etc.) -->
+            <div class="dsgvo-section">
+                <h2>Datenerfassung im Detail</h2>
+                <div class="dsgvo-content">
+                    <h3>Cookies</h3>
+                    <p>Unsere Internetseiten verwenden so genannte „Cookies“. Cookies sind kleine Datenpakete und richten auf Ihrem Endgerät keinen Schaden an. Sie werden entweder vorübergehend für die Dauer einer Sitzung (Session-Cookies) oder dauerhaft (permanente Cookies) auf Ihrem Endgerät gespeichert. Session-Cookies werden nach Ende Ihres Besuchs automatisch gelöscht. Permanente Cookies bleiben auf Ihrem Endgerät gespeichert, bis Sie diese selbst löschen oder eine automatische Löschung durch Ihren Webbrowser erfolgt.<br>
+                    Cookies können von uns (First-Party-Cookies) oder von Drittunternehmen stammen (sog. Third-Party-Cookies). Third-Party-Cookies ermöglichen die Einbindung bestimmter Dienstleistungen von Drittunternehmen innerhalb von Webseiten (z. B. Cookies zur Abwicklung von Zahlungsdienstleistungen).<br>
+                    Cookies haben verschiedene Funktionen. Zahlreiche Cookies sind technisch notwendig, da bestimmte Webseitenfunktionen ohne diese nicht funktionieren würden (z. B. die Warenkorbfunktion oder die Anzeige von Videos). Andere Cookies können zur Auswertung des Nutzerverhaltens oder zu Werbezwecken verwendet werden.<br>
+                    Cookies, die zur Durchführung des elektronischen Kommunikationsvorgangs, zur Bereitstellung bestimmter, von Ihnen erwünschter Funktionen (z. B. für die Warenkorbfunktion) oder zur Optimierung der Website (z. B. Cookies zur Messung des Webpublikums) erforderlich sind (notwendige Cookies), werden auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO gespeichert, sofern keine andere Rechtsgrundlage angegeben wird. Der Websitebetreiber hat ein berechtigtes Interesse an der Speicherung von notwendigen Cookies zur technisch fehlerfreien und optimierten Bereitstellung seiner Dienste. Sofern eine Einwilligung zur Speicherung von Cookies und vergleichbaren Wiedererkennungstechnologien abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage dieser Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG); die Einwilligung ist jederzeit widerrufbar.<br>
+                    Sie können Ihren Browser so einstellen, dass Sie über das Setzen von Cookies informiert werden und Cookies nur im Einzelfall erlauben, die Annahme von Cookies für bestimmte Fälle oder generell ausschließen sowie das automatische Löschen der Cookies beim Schließen des Browsers aktivieren. Bei der Deaktivierung von Cookies kann die Funktionalität dieser Website eingeschränkt sein.<br>
+                    Welche Cookies und Dienste auf dieser Website eingesetzt werden, können Sie dieser Datenschutzerklärung entnehmen.</p>
+
+                    <h3>Kontaktformular</h3>
+                    <p>Wenn Sie uns per Kontaktformular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular inklusive der von Ihnen dort angegebenen Kontaktdaten zwecks Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.<br>
+                    Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.<br>
+                    Die von Ihnen im Kontaktformular eingegebenen Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihrer Anfrage). Zwingende gesetzliche Bestimmungen – insbesondere Aufbewahrungsfristen – bleiben unberührt.</p>
+
+                    <h3>Anfrage per E-Mail, Telefon oder Telefax</h3>
+                    <p>Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.<br>
+                    Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO) sofern diese abgefragt wurde; die Einwilligung ist jederzeit widerrufbar.<br>
+                    Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.</p>
+
+                    <h2>Plugins und Tools</h2>
+                    <h3>Google Fonts (lokales Hosting)</h3>
+                    <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert. Eine Verbindung zu Servern von Google findet dabei nicht statt.<br>
+                    Weitere Informationen zu Google Fonts finden Sie unter <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">https://policies.google.com/privacy?hl=de</a>.</p>
+
+                    <h3>Google Maps</h3>
+                    <p>Diese Seite nutzt den Kartendienst Google Maps. Anbieter ist die Google Ireland Limited („Google“), Gordon House, Barrow Street, Dublin 4, Irland. Mit Hilfe dieses Dienstes können wir Kartenmaterial auf unserer Website einbinden.<br>
+                    Zur Nutzung der Funktionen von Google Maps ist es notwendig, Ihre IP-Adresse zu speichern. Diese Informationen werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert. Der Anbieter dieser Seite hat keinen Einfluss auf diese Datenübertragung. Wenn Google Maps aktiviert ist, kann Google zum Zwecke der einheitlichen Darstellung der Schriftarten Google Fonts verwenden. Beim Aufruf von Google Maps lädt Ihr Browser die benötigten Web Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.<br>
+                    Die Nutzung von Google Maps erfolgt im Interesse einer ansprechenden Darstellung unserer Online-Angebote und an einer leichten Auffindbarkeit der von uns auf der Website angegebenen Orte. Dies stellt ein berechtigtes Interesse im Sinne von Art. 6 Abs. 1 lit. f DSGVO dar. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG, soweit die Einwilligung die Speicherung von Cookies oder den Zugriff auf Informationen im Endgerät des Nutzers (z. B. Device-Fingerprinting) im Sinne des TDDDG umfasst. Die Einwilligung ist jederzeit widerrufbar.<br>
+                    Die Datenübertragung in die USA wird auf die Standardvertragsklauseln der EU-Kommission gestützt. Details finden Sie hier: <a href="https://privacy.google.com/businesses/gdprcontrollerterms/" target="_blank" rel="noopener">https://privacy.google.com/businesses/gdprcontrollerterms/</a> und <a href="https://privacy.google.com/businesses/gdprcontrollerterms/sccs/" target="_blank" rel="noopener">https://privacy.google.com/businesses/gdprcontrollerterms/sccs/</a>.<br>
+                    Mehr Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy?hl=de" target="_blank" rel="noopener">https://policies.google.com/privacy?hl=de</a>.<br>
+                    Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework“ (DPF). Der DPF ist ein Übereinkommen zwischen der Europäischen Union und den USA, der die Einhaltung europäischer Datenschutzstandards bei Datenverarbeitungen in den USA gewährleisten soll. Jedes nach dem DPF zertifizierte Unternehmen verpflichtet sich, diese Datenschutzstandards einzuhalten. Weitere Informationen hierzu erhalten Sie vom Anbieter unter folgendem Link: <a href="https://www.dataprivacyframework.gov/participant/5780" target="_blank" rel="noopener">https://www.dataprivacyframework.gov/participant/5780</a>.</p>
+
+                    <h2>Maßgebliche Rechtsgrundlagen</h2>
+                    <p>Nach Maßgabe des Art. 13 DSGVO teilen wir Ihnen die Rechtsgrundlagen unserer Datenverarbeitungen mit. Sofern die Rechtsgrundlage in der Datenschutzerklärung nicht genannt wird, gilt Folgendes: Die Rechtsgrundlage für die Einholung von Einwilligungen ist Art. 6 Abs. 1 lit. a und Art. 7 DSGVO, die Rechtsgrundlage für die Verarbeitung zur Erfüllung unserer Leistungen und Durchführung vertraglicher Maßnahmen sowie Beantwortung von Anfragen ist Art. 6 Abs. 1 lit. b DSGVO, die Rechtsgrundlage für die Verarbeitung zur Erfüllung unserer rechtlichen Verpflichtungen ist Art. 6 Abs. 1 lit. c DSGVO, und die Rechtsgrundlage für die Verarbeitung zur Wahrung unserer berechtigten Interessen ist Art. 6 Abs. 1 lit. f DSGVO. Für den Fall, dass lebenswichtige Interessen der betroffenen Person oder einer anderen natürlichen Person eine Verarbeitung personenbezogener Daten erforderlich machen, dient Art. 6 Abs. 1 lit. d DSGVO als Rechtsgrundlage.</p>
+
+                    <h3>1. Information über die Erhebung personenbezogener Daten</h3>
+                    <p>Im Folgenden informieren wir über die Erhebung personenbezogener Daten bei Nutzung unserer Webseite. Personenbezogene Daten sind alle Daten, die auf Sie persönlich beziehbar sind, z.B. Name, Adresse, E-Mail-Adressen sowie (ggf.) das Nutzerverhalten.<br><br>
+                    Verantwortlicher gemäß Art. 4 Ziffer 7 EU-Datenschutz-Grundverordnung (nachfolgend "DS-GVO") ist der<br><br>
+                    Imkerei Baumann<br>
+                    vertreten durch<br>
+                    Bernhard Baumann<br>
+                    Staudachstraße 1<br>
+                    4081 Hartkirchen<br><br>
+                    (siehe unser <a href="impressum.html">Impressum</a>).<br><br>
+                    Die Nutzung unserer Webseite ist in der Regel ohne Angabe personenbezogener Daten möglich. Soweit auf unseren Seiten personenbezogene Daten (z.B. Name, Anschrift oder E-Mail-Adressen) erhoben werden, erfolgt dies – soweit möglich – stets auf freiwilliger Basis. Diese Daten werden ohne Ihre ausdrückliche Zustimmung nicht an Dritte weitergegeben.</p>
+                    <p>Bei Kontaktaufnahme mit uns per E-Mail werden die uns mitgeteilten Daten von uns verarbeitet und gespeichert, um Ihre Fragen zu beantworten. Die in diesem Zusammenhang anfallenden Daten löschen wir, nachdem die Speicherung nicht mehr erforderlich ist, oder schränken die Verarbeitung ein, falls (z.B. steuer-) gesetzliche Aufbewahrungspflichten oder sonstige Rechtfertigungsgründe zur weitergehenden Speicherung bestehen. Im letzteren Falle nehmen wir jedoch spätestens nach einem Jahr der Speicherung eine Trennung und Zugangsbeschränkung hinsichtlich der auf Grund gesetzlicher Bestimmung gespeicherten Daten vor, soweit nachstehend nicht etwas anderes angegeben ist. Rechtsgrundlage der erstmaligen Erhebung ist insoweit Artikel 6 Abs. 1 S. 1 lit. a DS-GVO, diejenige für die weitere Verarbeitung im Rahmen einer Vertragserfüllung Artikel 6 Abs. 1 S. 1 lit. b DS-GVO sowie (ggf.) weitere Speicherung aus sonstigen rechtlichen Gründen Artikel 6 Abs. 1 S. 1 lit. c DS-GVO.</p>
+                    <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (wie etwa bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
+                    <p>Der Nutzung von im Rahmen der Impressumspflicht veröffentlichten Kontaktdaten durch Dritte zur Übersendung von nicht ausdrücklich angeforderter Werbung und Informationsmaterialien wird hiermit ausdrücklich widersprochen. Wir behalten uns ausdrücklich rechtliche Schritte im Falle der unverlangten Zusendung von Werbeinformationen, etwa durch Spam-Mails, vor.</p>
+
+                    <p><a href="https://datenschutz-grundverordnung.eu/datenschutzgesetz-oesterreich/" target="_blank" rel="noopener">→ Datenschutz Österreich (extern)</a></p>
+                </div>
+            </div>
+
+            <!-- Kontaktieren Sie uns -->
+            <div class="dsgvo-section">
+                <h2>Kontaktieren Sie uns</h2>
+                <div class="dsgvo-content">
+                    <p>Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte, kontaktieren Sie uns gerne!</p>
+                    <p><a href="kontakt.html" class="btn">→ Kontaktiere uns</a></p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von <a href="mailto:gguentherdd@gmx.at">Günther Danninger</a></p>
+            <p>Besuchen Sie auch unsere Partnerseite: <a href="https://baumannbiohonig.unaux.com/" target="_blank" rel="noopener">BIO Honig Baumann</a></p>
+        </div>
+    </footer>
+</div>
+
+<!-- Cookie-JavaScript (identisch mit index.html, DSGVO-konform) -->
+<script>
+(function() {
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
+    }
+    function getCookie(name) {
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name + "=") === 0) return c.substring(name.length + 1);
+        }
+        return null;
+    }
+    function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+    function logDecision(decision) {
+        try {
+            var logs = localStorage.getItem('cookie_decision_logs') || '';
+            logs += new Date().toISOString() + " | " + decision + " | UA: " + navigator.userAgent + "\n";
+            localStorage.setItem('cookie_decision_logs', logs);
+        } catch(e) {}
+    }
+
+    function loadGoogleTracking() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B1DQK9Q2DW';
+        document.head.appendChild(gtagScript);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-B1DQK9Q2DW');
+        var noscript = document.createElement('noscript');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-W9PCCBJC';
+        iframe.height = '0'; iframe.width = '0'; iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
+        noscript.appendChild(iframe);
+        document.body.insertBefore(noscript, document.body.firstChild);
+    }
+    function loadPlausible() {
+        var s = document.createElement('script');
+        s.src = 'https://plausible.io/js/script.manual.js';
+        s.setAttribute('data-domain', 'shard21.jouwweb.nl');
+        s.defer = true;
+        document.head.appendChild(s);
+        window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
+    }
+
+    var popup = document.getElementById('cookie-popup');
+    var mainSite = document.getElementById('main-site');
+    var acceptBtn = document.getElementById('accept-cookies');
+    var declineBtn = document.getElementById('decline-cookies');
+    var topBtn = document.getElementById('cookie-settings-top');
+
+    function showMainSite() {
+        if(popup) popup.style.display = 'none';
+        if(mainSite) mainSite.style.display = 'block';
+    }
+    function handleAccept() {
+        setCookie('cookie_consent', 'accepted', 365);
+        deleteCookie('cookie_consent_declined');
+        logDecision('accepted');
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+    }
+    function handleDecline() {
+        setCookie('cookie_consent_declined', 'true', 365);
+        deleteCookie('cookie_consent');
+        logDecision('declined');
+        showMainSite();
+    }
+    function resetAndReload() {
+        deleteCookie('cookie_consent');
+        deleteCookie('cookie_consent_declined');
+        location.reload();
+    }
+
+    var accepted = getCookie('cookie_consent');
+    var declined = getCookie('cookie_consent_declined');
+    if(accepted === 'accepted') {
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+    } else if(declined === 'true') {
+        showMainSite();
+    } else {
+        if(popup) popup.style.display = 'flex';
+        if(mainSite) mainSite.style.display = 'none';
+    }
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(e) { e.preventDefault(); handleAccept(); });
+    if(declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
+    if(topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
+
+    // Mobiles Menü
+    var toggleBtn = document.getElementById('mobileMenuToggle');
+    var nav = document.getElementById('mainNav');
+    if(toggleBtn && nav) {
+        toggleBtn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+        });
+    }
+})();
+</script>
+</body>
+</html>
