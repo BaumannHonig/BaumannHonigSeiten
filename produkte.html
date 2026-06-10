@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produkte | Baumann's Honig Seiten</title>
+    <meta name="description" content="Entdecken Sie unsere Premium-Honigprodukte: Blütenhonig, Waldhonig, Propolis, Oxymel und Met. 100% naturreine Bienenprodukte aus dem Eferdinger Hügelland.">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== GRUNDSTIL (identisch mit index.html) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fef9e6;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .top-header {
+            background-color: #fff8e7;
+            border-bottom: 2px solid #f5a623;
+            padding: 15px 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            width: 80px;
+            height: auto;
+        }
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: #d48f1b;
+            margin-bottom: 5px;
+        }
+        .logo-text p {
+            font-size: 0.85rem;
+            color: #6b4c1a;
+        }
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #5a3e0e;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover, .main-nav .active {
+            color: #f5a623;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #d48f1b;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .main-nav {
+                display: none;
+                width: 100%;
+                background: #fff8e7;
+                padding: 15px 0;
+            }
+            .main-nav.open {
+                display: block;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+        /* Hauptinhalt */
+        main {
+            padding: 50px 0;
+        }
+        /* Einleitungsbereich */
+        .intro-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .intro-box h1 {
+            font-size: 2.2rem;
+            color: #d48f1b;
+            margin-bottom: 15px;
+        }
+        .intro-box p {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+        /* Produktblöcke (abwechselnd Bild links/rechts) */
+        .product-block {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .product-image {
+            flex: 1;
+            min-width: 250px;
+        }
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .product-text {
+            flex: 1;
+            padding: 30px;
+        }
+        .product-text h2 {
+            color: #d48f1b;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+        .product-text p, .product-text ul {
+            margin-bottom: 15px;
+        }
+        .product-text ul {
+            padding-left: 25px;
+        }
+        /* Abwechselnde Bildpositionen: Klasse image-left -> Bild links, image-right -> Bild rechts */
+        .product-block.image-left {
+            flex-direction: row;
+        }
+        .product-block.image-right {
+            flex-direction: row-reverse;
+        }
+        @media (max-width: 768px) {
+            .product-block, .product-block.image-left, .product-block.image-right {
+                flex-direction: column;
+            }
+            .product-text {
+                order: 2;
+            }
+            .product-image {
+                order: 1;
+                max-height: 300px;
+            }
+        }
+        /* Sonderfall: Bienengift Salbe mit zwei Spalten */
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+        .two-columns .col {
+            flex: 1;
+        }
+        /* Kundenbewertung */
+        .testimonial {
+            background-color: #fff0db;
+            text-align: center;
+            padding: 50px 20px;
+            border-radius: 20px;
+            margin: 40px 0;
+            font-style: italic;
+        }
+        .testimonial p {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        /* Footer */
+        footer {
+            background-color: #2c2c2c;
+            color: #ddd;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        /* Cookie-Popup (wie in index.html) */
+        #cookie-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .cookie-container {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .cookie-header {
+            background: #f5a623;
+            padding: 25px;
+            text-align: center;
+        }
+        .cookie-header .cookie-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .cookie-header h2 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+        }
+        .cookie-body {
+            padding: 25px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .cookie-btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-accept {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-decline {
+            background: #888;
+            color: white;
+        }
+        .cookie-footer {
+            background: #f9f9f9;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+        }
+        .cookie-footer a {
+            color: #f5a623;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        #main-site {
+            display: none;
+        }
+        .cookie-settings-top-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 10000;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: #f5a623;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        @media (max-width: 768px) {
+            .cookie-settings-top-btn {
+                top: 8px;
+                right: 10px;
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cookie-Popup -->
+<div id="cookie-popup">
+    <div class="cookie-container">
+        <div class="cookie-header">
+            <div class="cookie-icon">🍪</div>
+            <h2>Cookie Hinweis (DSGVO)</h2>
+        </div>
+        <div class="cookie-body">
+            <p>Diese Website verwendet notwendige Cookies für den Betrieb. Mit Ihrer Einwilligung werden zusätzlich folgende Tracking-Dienste aktiviert:</p>
+            <ul>
+                <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
+                <li><strong>Plausible Analytics</strong> – datensparsame Analyse ohne personenbezogene Daten</li>
+            </ul>
+            <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
+                <button id="decline-cookies" class="cookie-btn btn-decline">❌ Nur notwendige</button>
+            </div>
+        </div>
+        <div class="cookie-footer">
+            <a href="datenschutz.html">Mehr zum Datenschutz</a> | 
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </div>
+</div>
+
+<!-- Button zum Ändern der Cookie-Einstellungen -->
+<div id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</div>
+
+<!-- Hauptseite (Produkte) -->
+<div id="main-site">
+    <header class="top-header">
+        <div class="container header-inner">
+            <div class="logo-area">
+                <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
+                <div class="logo-text">
+                    <h1>Baumann Honig Seiten</h1>
+                    <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produkte.html" class="active">Produkte</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="bienenstock.html">Bienenstöcke Verkauf</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Einleitung -->
+            <div class="intro-box">
+                <h1>Unsere beliebte Produktpalette</h1>
+                <p>Willkommen in unserem Honigsortiment! Hier präsentieren wir Ihnen die erlesene Auswahl an Honigvariationen von Baumann's Honig Seiten. Jeder Honig spiegelt die Reinheit und Natürlichkeit des Eferdinger Hügellandes wider. Tauchen Sie ein in die Welt des echten, handgemachten Honigs.</p>
+            </div>
+
+            <!-- Produkt: Blütenhonig (Bild rechts) -->
+            <div class="product-block image-right">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-3-standard-kpo5ex.jpg" alt="Blütenhonig Glas">
+                </div>
+                <div class="product-text">
+                    <h2>Blütenhonig – Der Liebling unserer Kunden</h2>
+                    <p>Unser Blütenhonig ist besonders beliebt, weil er die Essenz der blühenden Wiesen und Gärten des Eferdinger Hügellandes einfängt. Er zeichnet sich durch seinen milden, blumigen Geschmack und seine helle Farbe aus. Ein wahrer Genuss, der die Süße der Natur direkt zu Ihnen bringt.</p>
+                </div>
+            </div>
+
+            <!-- Produkt: Oxymel (Bild links) -->
+            <div class="product-block image-left">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-standard-bhtoee.jpg" alt="Oxymel Flasche">
+                </div>
+                <div class="product-text">
+                    <h2>Oxymel – Das gesunde Erfrischungsgetränk</h2>
+                    <p>Oxymel ist schon seit der Antike bekannt. Seit jeher wird Oxymel vielseitig verwendet: Es stärkt das Immunsystem und beugt Krankheiten vor, als Fiebersenker und zur Unterstützung bei Erkältungs-Krankheiten ist es lange bekannt. Es schmeckt auch als Sportgetränk – einen Esslöffel Oxymel in einem Glas Wasser auflösen oder pur. Oxymel ist ohne Alkohol und rein natürlich, eignet sich also auch für Kinder. Und so gilt: "Täglich ein Löffel Oxymel".</p>
+                </div>
+            </div>
+
+            <!-- Produkt: Waldhonig (Bild rechts) -->
+            <div class="product-block image-right">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_145843-2-standard.jpg" alt="Waldhonig Glas">
+                </div>
+                <div class="product-text">
+                    <h2>Waldhonig – Die Kraft der Natur</h2>
+                    <p>Anders als Blütenhonig entsteht unser Waldhonig aus Honigtau, den Bienen von Laub- und Nadelbäumen sammeln. Er zeichnet sich durch einen besonders hohen Gehalt an Mineralstoffen und Enzymen aus. Unser Wald-Honig enthält zudem ätherische Öle, die traditionell bei Bronchialerkrankungen eingesetzt werden. Ein Produkt von Baumann's Honig Seiten, das die Kraft der Natur in sich trägt.</p>
+                </div>
+            </div>
+
+            <!-- Produkt: Propolis (Bild links) -->
+            <div class="product-block image-left">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/pexels/69/6915067.jpeg" alt="Propolis Tropfen">
+                </div>
+                <div class="product-text">
+                    <h2>Propolis</h2>
+                    <p>Propolis ist auch ein natürliches Antibiotikum und setzt sich aus über 300 pflanzenchemischen Verbindungen zusammen. Es dient zum Abdichten von Öffnungen und Ritzen des Bienenstocks. Propolis sorgt aufgrund seiner Eigenschaften, dass Bakterien, Pilze und Mikroorganismen in deren Entwicklung gehemmt werden. Propolis ist unter anderem auch für folgende Wirkungen bekannt: antibiotisch, entzündungshemmend, antioxidativ, fungizid und antiviral.</p>
+                </div>
+            </div>
+
+            <!-- Produkt: Blütenpollen (Bild rechts) -->
+            <div class="product-block image-right">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150454-standard-10pe9e.jpg" alt="Blütenpollen">
+                </div>
+                <div class="product-text">
+                    <h2>Blütenpollen</h2>
+                    <p>Blütenpollen, auch als Blütenstaub bezeichnet, sind die männlichen Samenzellen der Blütenpflanzen. Sie werden von den Bienen während des Nektarsammelns auf ihren Körper übertragen und dort zu „Pollenhöschen“ verarbeitet.</p>
+                    <p>Blütenpollen sind besonders reich an:</p>
+                    <ul>
+                        <li><strong>Proteinen:</strong> Sie enthalten alle essentiellen Aminosäuren.</li>
+                        <li><strong>Vitaminen:</strong> B-Vitamine, Vitamin C und Vitamin E.</li>
+                        <li><strong>Mineralstoffen:</strong> Kalzium, Magnesium, Eisen, Zink und viele weitere Spurenelemente.</li>
+                        <li><strong>Enzymen:</strong> unterstützen Verdauung und Stoffwechsel.</li>
+                        <li><strong>Sekundären Pflanzenstoffen:</strong> antioxidative und entzündungshemmende Eigenschaften.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Produkt: Cremehonig (Bild links) -->
+            <div class="product-block image-left">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/cremehonig-standard.jpg" alt="Cremehonig Glas">
+                </div>
+                <div class="product-text">
+                    <h2>Cremehonig – Zartschmelzend und Fein</h2>
+                    <p>Unser Cremehonig wird durch ein spezielles Verfahren besonders fein und cremig gerührt. Dadurch erhält er seine zartschmelzende Konsistenz und ist besonders leicht zu verarbeiten. Ideal als Brotaufstrich oder zum Süßen von Getränken – ein Genuss für jeden Tag.</p>
+                </div>
+            </div>
+
+            <!-- Produkt: Met (Bild rechts) -->
+            <div class="product-block image-right">
+                <div class="product-image">
+                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150230-2-standard.jpg" alt="Met (Honigwein)">
+                </div>
+                <div class="product-text">
+                    <h2>Honigwein – Met</h2>
+                    <p>Met, auch bekannt als Honigwein, ist eines der ältesten alkoholischen Getränke der Welt und wird in Österreich als köstlicher Klassiker geschätzt. Dieses faszinierende Getränk entsteht durch die Fermentation von Honig, Wasser und Hefe und überzeugt mit seiner natürlichen Süße und dem unverwechselbaren Geschmack. Ob pur, leicht gekühlt oder heiß serviert – Met ist vielseitig einsetzbar und eignet sich perfekt für gemütliche Abende, besondere Anlässe oder historische Märkte. Seine lange Tradition und sein einzigartiger Charakter machen Honigwein zu einem echten Highlight für Liebhaber feinster Genussmomente.</p>
+                    <p>Mit Kirschsaft vermischter Met wird häufig als Wikingerblut oder Odinsblut bezeichnet, Met mit einer scharfen Gewürzmischung wird Drachenblut genannt.</p>
+                </div>
+            </div>
+
+            <!-- Produkt: Bienengift Salbe (Spezial – zwei Spalten) -->
+            <div class="product-block image-left" style="flex-direction: column; padding: 30px;">
+                <h2 style="text-align: center; color: #d48f1b;">Bienengift Salbe</h2>
+                <div class="two-columns">
+                    <div class="col">
+                        <h3>Was ist die Bienengift Salbe?</h3>
+                        <p>Die fein abgestimmte Komposition aus traditionellen, böhmischen Kräuter-Ölen und echtem, natürlichem Bienengift macht API-REGENT® so besonders. Alle Öle sind rein natürlich und schonend verarbeitet. Das verwendete Bienengift, stets erster Güte, entspricht mit seinem Melittin-Anteil von 60-70% höchsten Labor-Standards.</p>
+                        <p>API-REGENT® verzichtet darüber hinaus auf Haut reizende und Hitze bildende Zusatzstoffe, die lediglich eine vermeintlich positive Wirkung suggerieren sollen. Denn eine gute Bienengift-Salbe kommt ohne ein unangenehmes „heißes Gefühl“ oder einem „Kühlungseffekt“ auf der Haut aus.</p>
+                        <p><strong>Wichtigste Bestandteile:</strong> Mandelöl, Lanolin, Bienenwachs, ätherische Öle (von Wacholderbeeren, Pfefferminze, Rosmarin, Cajeput, Thymian, Zirbelkiefer, Menthol, Eukalyptus, Kampfer, Nelke) und echtes naturreines Bienengift.</p>
+                    </div>
+                    <div class="col">
+                        <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/bienengiftsalbe-high-ces6v2.jpg" alt="Bienengift Salbe" style="width:100%; border-radius: 16px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kundenbewertung -->
+            <div class="testimonial">
+                <p>„Die Reinheit und der unvergleichliche Geschmack des Honigs von Baumann's Honig sind einfach unübertroffen. Ich bin ein treuer Kunde geworden!“</p>
+                <strong>– Anna-Lena Schmidt</strong>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von <a href="mailto:gguentherdd@gmx.at">Günther Danninger</a></p>
+            <p>Besuchen Sie auch unsere Partnerseite: <a href="https://baumannhonig.github.io/BaumannBIOHonig/" target="_blank" rel="noopener">BIO Honig Baumann</a></p>
+        </div>
+    </footer>
+</div>
+
+<!-- Cookie-JavaScript (identisch mit index.html, DSGVO-konform) -->
+<script>
+(function() {
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
+    }
+    function getCookie(name) {
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name + "=") === 0) return c.substring(name.length + 1);
+        }
+        return null;
+    }
+    function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+    function logDecision(decision) {
+        try {
+            var logs = localStorage.getItem('cookie_decision_logs') || '';
+            logs += new Date().toISOString() + " | " + decision + " | UA: " + navigator.userAgent + "\n";
+            localStorage.setItem('cookie_decision_logs', logs);
+        } catch(e) {}
+    }
+
+    function loadGoogleTracking() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B1DQK9Q2DW';
+        document.head.appendChild(gtagScript);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-B1DQK9Q2DW');
+        var noscript = document.createElement('noscript');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-W9PCCBJC';
+        iframe.height = '0'; iframe.width = '0'; iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
+        noscript.appendChild(iframe);
+        document.body.insertBefore(noscript, document.body.firstChild);
+    }
+    function loadPlausible() {
+        var s = document.createElement('script');
+        s.src = 'https://plausible.io/js/script.manual.js';
+        s.setAttribute('data-domain', 'shard21.jouwweb.nl');
+        s.defer = true;
+        document.head.appendChild(s);
+        window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
+    }
+
+    var popup = document.getElementById('cookie-popup');
+    var mainSite = document.getElementById('main-site');
+    var acceptBtn = document.getElementById('accept-cookies');
+    var declineBtn = document.getElementById('decline-cookies');
+    var topBtn = document.getElementById('cookie-settings-top');
+
+    function showMainSite() {
+        if(popup) popup.style.display = 'none';
+        if(mainSite) mainSite.style.display = 'block';
+    }
+    function handleAccept() {
+        setCookie('cookie_consent', 'accepted', 365);
+        deleteCookie('cookie_consent_declined');
+        logDecision('accepted');
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+    }
+    function handleDecline() {
+        setCookie('cookie_consent_declined', 'true', 365);
+        deleteCookie('cookie_consent');
+        logDecision('declined');
+        showMainSite();
+    }
+    function resetAndReload() {
+        deleteCookie('cookie_consent');
+        deleteCookie('cookie_consent_declined');
+        location.reload();
+    }
+
+    var accepted = getCookie('cookie_consent');
+    var declined = getCookie('cookie_consent_declined');
+    if(accepted === 'accepted') {
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+    } else if(declined === 'true') {
+        showMainSite();
+    } else {
+        if(popup) popup.style.display = 'flex';
+        if(mainSite) mainSite.style.display = 'none';
+    }
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(e) { e.preventDefault(); handleAccept(); });
+    if(declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
+    if(topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
+
+    // Mobiles Menü Toggle
+    var toggleBtn = document.getElementById('mobileMenuToggle');
+    var nav = document.getElementById('mainNav');
+    if(toggleBtn && nav) {
+        toggleBtn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+        });
+    }
+})();
+</script>
+</body>
+</html>
