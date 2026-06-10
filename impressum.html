@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum | Baumann Honig Seiten</title>
+    <meta name="description" content="Impressum der Baumann Honig Seiten – Angaben nach §5 TMG, Kontakt, Verantwortliche und rechtliche Hinweise.">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== GRUNDSTIL (identisch mit index.html) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fef9e6;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .top-header {
+            background-color: #fff8e7;
+            border-bottom: 2px solid #f5a623;
+            padding: 15px 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            width: 80px;
+            height: auto;
+        }
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: #d48f1b;
+            margin-bottom: 5px;
+        }
+        .logo-text p {
+            font-size: 0.85rem;
+            color: #6b4c1a;
+        }
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #5a3e0e;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover, .main-nav .active {
+            color: #f5a623;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #d48f1b;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .main-nav {
+                display: none;
+                width: 100%;
+                background: #fff8e7;
+                padding: 15px 0;
+            }
+            .main-nav.open {
+                display: block;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+        /* Hauptinhalt */
+        main {
+            padding: 50px 0;
+        }
+        .impressum-section {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .impressum-section h2 {
+            background: #f5a623;
+            color: white;
+            padding: 18px 25px;
+            font-size: 1.6rem;
+            margin: 0;
+        }
+        .impressum-content {
+            padding: 25px;
+        }
+        .impressum-content p, .impressum-content ul {
+            margin-bottom: 15px;
+        }
+        .impressum-content a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        .impressum-content a:hover {
+            text-decoration: underline;
+        }
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+        }
+        /* Footer */
+        footer {
+            background-color: #2c2c2c;
+            color: #ddd;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        /* Cookie-Popup (wie in index.html) */
+        #cookie-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .cookie-container {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .cookie-header {
+            background: #f5a623;
+            padding: 25px;
+            text-align: center;
+        }
+        .cookie-header .cookie-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .cookie-header h2 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+        }
+        .cookie-body {
+            padding: 25px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .cookie-btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-accept {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-decline {
+            background: #888;
+            color: white;
+        }
+        .cookie-footer {
+            background: #f9f9f9;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+        }
+        .cookie-footer a {
+            color: #f5a623;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        #main-site {
+            display: none;
+        }
+        .cookie-settings-top-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 10000;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: #f5a623;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        @media (max-width: 768px) {
+            .cookie-settings-top-btn {
+                top: 8px;
+                right: 10px;
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cookie-Popup -->
+<div id="cookie-popup">
+    <div class="cookie-container">
+        <div class="cookie-header">
+            <div class="cookie-icon">🍪</div>
+            <h2>Cookie Hinweis (DSGVO)</h2>
+        </div>
+        <div class="cookie-body">
+            <p>Diese Website verwendet notwendige Cookies für den Betrieb. Mit Ihrer Einwilligung werden zusätzlich folgende Tracking-Dienste aktiviert:</p>
+            <ul>
+                <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
+                <li><strong>Plausible Analytics</strong> – datensparsame Analyse ohne personenbezogene Daten</li>
+            </ul>
+            <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
+                <button id="decline-cookies" class="cookie-btn btn-decline">❌ Nur notwendige</button>
+            </div>
+        </div>
+        <div class="cookie-footer">
+            <a href="datenschutz.html">Mehr zum Datenschutz</a> | 
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </div>
+</div>
+
+<!-- Button zum Ändern der Cookie-Einstellungen -->
+<div id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</div>
+
+<!-- Hauptseite (Impressum) -->
+<div id="main-site">
+    <header class="top-header">
+        <div class="container header-inner">
+            <div class="logo-area">
+                <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
+                <div class="logo-text">
+                    <h1>Baumann Honig Seiten</h1>
+                    <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produkte.html">Produkte</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="impressum.html" class="active">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="bienenstock.html">Bienenstöcke Verkauf</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="impressum-section">
+                <h2>Impressum</h2>
+                <div class="impressum-content">
+                    <p>Hier finden Sie alle notwendigen Informationen zu Baumann Honig Seiten, inklusive Kontaktdaten und rechtliche Hinweise.</p>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <div class="impressum-section" style="flex:1;">
+                    <h2>Betreiber der Website</h2>
+                    <div class="impressum-content">
+                        <p><strong>Bernhard Baumann</strong><br>
+                        Imkerei Baumann<br>
+                        Staudachstrasse 1<br>
+                        4081 Hartkirchen OÖ</p>
+                    </div>
+                </div>
+                <div class="impressum-section" style="flex:1;">
+                    <h2>Kontakt</h2>
+                    <div class="impressum-content">
+                        <p>Telefon: +43 660 7579524<br>
+                        E-Mail: <a href="mailto:baumann.bernhard@gmx.net">baumann.bernhard@gmx.net</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="two-columns">
+                <div class="impressum-section" style="flex:1;">
+                    <h2>Bezirksverwaltungsbehörde</h2>
+                    <div class="impressum-content">
+                        <p>BH-Eferding<br>
+                        <a href="https://www.land-oberoesterreich.gv.at/bh_eferding.htm" target="_blank" rel="noopener">https://www.land-oberoesterreich.gv.at/bh_eferding.htm</a></p>
+                    </div>
+                </div>
+                <div class="impressum-section" style="flex:1;">
+                    <h2>Redaktionell Verantwortlich</h2>
+                    <div class="impressum-content">
+                        <p>Günther Danninger<br>
+                        E-Mail: <a href="mailto:gguentherdd@gmx.at">gguentherdd@gmx.at</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="impressum-section">
+                <h2>EU-Streitschlichtung</h2>
+                <div class="impressum-content">
+                    <p>Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:<br>
+                    <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.<br>
+                    Unsere E-Mail-Adresse finden Sie oben im Impressum.</p>
+                </div>
+            </div>
+
+            <div class="impressum-section">
+                <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+                <div class="impressum-content">
+                    <p>Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.</p>
+                </div>
+            </div>
+
+            <div class="impressum-section">
+                <h2>Das Gesetz über digitale Dienste (DSA) im Überblick</h2>
+                <div class="impressum-content">
+                    <p>Unsere zentrale Kontaktstelle für Nutzer und Behörden nach Art. 11, 12 DSA erreichen Sie wie folgt:</p>
+                    <p>E-Mail: <a href="mailto:baumann.bernhard@gmx.net">baumann.bernhard@gmx.net</a><br>
+                    Telefon: +43 660 7579524<br>
+                    Die für den Kontakt zur Verfügung stehenden Sprachen sind: Deutsch</p>
+                    <p><a href="https://commission.europa.eu/strategy-and-policy/priorities-2019-2024/europe-fit-digital-age/digital-services-act_de" target="_blank" rel="noopener" class="btn-small">→ Gesetz über digitale Dienste (extern)</a></p>
+                    <p>Quelle: Rechtsnormen der DSGVO</p>
+                </div>
+            </div>
+
+            <div class="impressum-section">
+                <h2>Verantwortlicher i.S.d. § 18 Abs. 2 MStV</h2>
+                <div class="impressum-content">
+                    <p>Günther Danninger<br>
+                    Fadingerstrasse 9<br>
+                    4082 Aschach / Donau<br>
+                    E-Mail: <a href="mailto:gguentherdd@gmx.at">gguentherdd@gmx.at</a></p>
+                </div>
+            </div>
+
+            <div class="impressum-section">
+                <h2>Noch Fragen?</h2>
+                <div class="impressum-content">
+                    <p>Bei weiteren Fragen können Sie uns gerne kontaktieren. Wir helfen Ihnen gerne weiter!</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von <a href="mailto:gguentherdd@gmx.at">Günther Danninger</a></p>
+            <p>Besuchen Sie auch unsere Partnerseite: <a href="https://baumannbiohonig.unaux.com/" target="_blank" rel="noopener">BIO Honig Baumann</a></p>
+        </div>
+    </footer>
+</div>
+
+<!-- Cookie-JavaScript (identisch mit index.html, DSGVO-konform) -->
+<script>
+(function() {
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
+    }
+    function getCookie(name) {
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name + "=") === 0) return c.substring(name.length + 1);
+        }
+        return null;
+    }
+    function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+    function logDecision(decision) {
+        try {
+            var logs = localStorage.getItem('cookie_decision_logs') || '';
+            logs += new Date().toISOString() + " | " + decision + " | UA: " + navigator.userAgent + "\n";
+            localStorage.setItem('cookie_decision_logs', logs);
+        } catch(e) {}
+    }
+
+    function loadGoogleTracking() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B1DQK9Q2DW';
+        document.head.appendChild(gtagScript);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-B1DQK9Q2DW');
+        var noscript = document.createElement('noscript');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-W9PCCBJC';
+        iframe.height = '0'; iframe.width = '0'; iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
+        noscript.appendChild(iframe);
+        document.body.insertBefore(noscript, document.body.firstChild);
+    }
+    function loadPlausible() {
+        var s = document.createElement('script');
+        s.src = 'https://plausible.io/js/script.manual.js';
+        s.setAttribute('data-domain', 'shard21.jouwweb.nl');
+        s.defer = true;
+        document.head.appendChild(s);
+        window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
+    }
+
+    var popup = document.getElementById('cookie-popup');
+    var mainSite = document.getElementById('main-site');
+    var acceptBtn = document.getElementById('accept-cookies');
+    var declineBtn = document.getElementById('decline-cookies');
+    var topBtn = document.getElementById('cookie-settings-top');
+
+    function showMainSite() {
+        if(popup) popup.style.display = 'none';
+        if(mainSite) mainSite.style.display = 'block';
+    }
+    function handleAccept() {
+        setCookie('cookie_consent', 'accepted', 365);
+        deleteCookie('cookie_consent_declined');
+        logDecision('accepted');
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+    }
+    function handleDecline() {
+        setCookie('cookie_consent_declined', 'true', 365);
+        deleteCookie('cookie_consent');
+        logDecision('declined');
+        showMainSite();
+    }
+    function resetAndReload() {
+        deleteCookie('cookie_consent');
+        deleteCookie('cookie_consent_declined');
+        location.reload();
+    }
+
+    var accepted = getCookie('cookie_consent');
+    var declined = getCookie('cookie_consent_declined');
+    if(accepted === 'accepted') {
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+    } else if(declined === 'true') {
+        showMainSite();
+    } else {
+        if(popup) popup.style.display = 'flex';
+        if(mainSite) mainSite.style.display = 'none';
+    }
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(e) { e.preventDefault(); handleAccept(); });
+    if(declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
+    if(topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
+
+    // Mobiles Menü
+    var toggleBtn = document.getElementById('mobileMenuToggle');
+    var nav = document.getElementById('mainNav');
+    if(toggleBtn && nav) {
+        toggleBtn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+        });
+    }
+})();
+</script>
+</body>
+</html>
