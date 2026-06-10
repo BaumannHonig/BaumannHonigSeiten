@@ -1,0 +1,26 @@
+/* TEAM */
+    Imker & Inhaber: Bernhard Baumann
+    Standort: Staudachstraße 1, 4081 Hartkirchen, Österreich
+    Kontakt: baumann.bernhard@gmx.net
+    Telefon: +43 660 7579524
+
+    Technische Umsetzung & Unterstützung: Günther Danninger
+    E-Mail: gguentherdd@gmx.at
+
+/* SITE */
+    Letzte Aktualisierung: 2025-01
+    Sprachen: Deutsch (de-AT)
+    Zweck: Präsentation von Honigprodukten und Bienenprodukten aus dem Eferdinger Hügelland
+    DSGVO-konform: Ja (Cookie-Popup, Einwilligungsspeicherung, lokale Schriftarten)
+
+/* TECHNOLOGIES */
+    Framework / Basis: Eigenentwicklung (HTML5, CSS3, JavaScript)
+    Hosting: GitHub Pages
+    Schriftarten: Google Fonts (Open Sans, lokal gehostet via CSS)
+    Icons: Font Awesome
+    Kartendienst: Google Maps (nur nach Einwilligung)
+    Video: YouTube (nur nach Einwilligung, via youtube-nocookie.com)
+
+/* THANKS */
+    Danke an alle Kunden und Unterstützer, die unsere Imkerei schätzen.
+    Besuchen Sie auch unsere Partnerseite: https://baumannbiohonig.unaux.com/
