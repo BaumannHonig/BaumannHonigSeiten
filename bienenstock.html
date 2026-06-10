@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienenstöcke Verkauf | Baumann Honig Seiten</title>
+    <meta name="description" content="Informieren Sie sich über den Kauf von Bienenvölkern, Ablegern und Königinnen. Tipps für Anfänger und wichtige Hinweise zur Aufstellung.">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ========== GRUNDSTIL (identisch mit allen Seiten) ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #fef9e6;
+            color: #2c2c2c;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        /* Header */
+        .top-header {
+            background-color: #fff8e7;
+            border-bottom: 2px solid #f5a623;
+            padding: 15px 0;
+        }
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .logo-img {
+            width: 80px;
+            height: auto;
+        }
+        .logo-text h1 {
+            font-size: 1.6rem;
+            color: #d48f1b;
+            margin-bottom: 5px;
+        }
+        .logo-text p {
+            font-size: 0.85rem;
+            color: #6b4c1a;
+        }
+        /* Navigation */
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #5a3e0e;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        .main-nav a:hover, .main-nav .active {
+            color: #f5a623;
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 28px;
+            color: #d48f1b;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            .main-nav {
+                display: none;
+                width: 100%;
+                background: #fff8e7;
+                padding: 15px 0;
+            }
+            .main-nav.open {
+                display: block;
+            }
+            .main-nav ul {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+        /* Banner (Slideshow-Ersatz) */
+        .banner {
+            background-image: url('https://primary.jwwb.nl/pexels/96/9608590.jpeg?enable-io=true&enable=upscale&crop=1920%2C480%2Cx0%2Cy560%2Csafe&width=1200&height=300');
+            background-size: cover;
+            background-position: center 70%;
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.4);
+        }
+        .banner h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 2rem;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+        /* Hauptinhalt */
+        main {
+            padding: 50px 0;
+        }
+        .content-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .content-box h2 {
+            color: #d48f1b;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            border-left: 5px solid #f5a623;
+            padding-left: 15px;
+        }
+        .content-box h3 {
+            color: #d48f1b;
+            margin: 25px 0 10px;
+            font-size: 1.3rem;
+        }
+        .content-box p, .content-box ul {
+            margin-bottom: 15px;
+        }
+        .content-box ul {
+            padding-left: 25px;
+        }
+        .content-box li {
+            margin-bottom: 8px;
+        }
+        .content-box a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        .content-box a:hover {
+            text-decoration: underline;
+        }
+        /* Video-Bereich DSGVO-konform */
+        .video-container {
+            margin: 30px 0;
+            text-align: center;
+        }
+        .video-placeholder {
+            background-color: #f0f0f0;
+            border-radius: 12px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .video-placeholder:hover {
+            background-color: #e0e0e0;
+        }
+        .video-placeholder i {
+            font-size: 48px;
+            color: #d48f1b;
+            margin-bottom: 15px;
+        }
+        .video-placeholder button {
+            background-color: #f5a623;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+        .video-iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 450px;
+            border: 0;
+            border-radius: 12px;
+            margin: 0 auto;
+            display: block;
+        }
+        .hidden {
+            display: none;
+        }
+        /* Button am Ende */
+        .btn {
+            display: inline-block;
+            background-color: #f5a623;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #d48f1b;
+        }
+        /* Footer */
+        footer {
+            background-color: #2c2c2c;
+            color: #ddd;
+            text-align: center;
+            padding: 30px 0;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #f5a623;
+            text-decoration: none;
+        }
+        /* Cookie-Popup (einheitlich) */
+        #cookie-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        .cookie-container {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            animation: slideIn 0.3s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .cookie-header {
+            background: #f5a623;
+            padding: 25px;
+            text-align: center;
+        }
+        .cookie-header .cookie-icon {
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        .cookie-header h2 {
+            color: white;
+            font-size: 24px;
+            margin: 0;
+        }
+        .cookie-body {
+            padding: 25px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .cookie-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+        .cookie-btn {
+            flex: 1;
+            padding: 12px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        .btn-accept {
+            background: #4CAF50;
+            color: white;
+        }
+        .btn-decline {
+            background: #888;
+            color: white;
+        }
+        .cookie-footer {
+            background: #f9f9f9;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            border-top: 1px solid #eee;
+        }
+        .cookie-footer a {
+            color: #f5a623;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        #main-site {
+            display: none;
+        }
+        .cookie-settings-top-btn {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 10000;
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: #f5a623;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        @media (max-width: 768px) {
+            .cookie-settings-top-btn {
+                top: 8px;
+                right: 10px;
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Cookie-Popup -->
+<div id="cookie-popup">
+    <div class="cookie-container">
+        <div class="cookie-header">
+            <div class="cookie-icon">🍪</div>
+            <h2>Cookie Hinweis (DSGVO)</h2>
+        </div>
+        <div class="cookie-body">
+            <p>Diese Website verwendet notwendige Cookies für den Betrieb. Mit Ihrer Einwilligung werden zusätzlich folgende Dienste aktiviert:</p>
+            <ul>
+                <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
+                <li><strong>Plausible Analytics</strong> – datensparsame Analyse</li>
+                <li><strong>YouTube-Video</strong> – erst nach Ihrer Zustimmung geladen</li>
+            </ul>
+            <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
+            <div class="cookie-buttons">
+                <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
+                <button id="decline-cookies" class="cookie-btn btn-decline">❌ Nur notwendige</button>
+            </div>
+        </div>
+        <div class="cookie-footer">
+            <a href="datenschutz.html">Mehr zum Datenschutz</a> | 
+            <a href="impressum.html">Impressum</a>
+        </div>
+    </div>
+</div>
+
+<!-- Button zum Ändern der Cookie-Einstellungen -->
+<div id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</div>
+
+<!-- Hauptseite (Bienenstöcke) -->
+<div id="main-site">
+    <header class="top-header">
+        <div class="container header-inner">
+            <div class="logo-area">
+                <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
+                <div class="logo-text">
+                    <h1>Baumann Honig Seiten</h1>
+                    <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+            <nav class="main-nav" id="mainNav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="produkte.html">Produkte</a></li>
+                    <li><a href="ueber-uns.html">Über uns</a></li>
+                    <li><a href="preise.html">Preise</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                    <li><a href="impressum.html">Impressum</a></li>
+                    <li><a href="datenschutz.html">Datenschutz</a></li>
+                    <li><a href="bienenstock.html" class="active">Bienenstöcke Verkauf</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner (Slideshow-Ersatz) -->
+    <div class="banner">
+        <h2>Ihr eigenes Bienenvolk</h2>
+    </div>
+
+    <main>
+        <div class="container">
+            <div class="content-box">
+                <p><strong>Wer anfangen will zu imkern, muss sich zuerst Bienen kaufen.</strong></p>
+                
+                <!-- DSGVO-konformes YouTube-Video (Platzhalter) -->
+                <div class="video-container" id="youtube-container">
+                    <div id="video-placeholder" class="video-placeholder">
+                        <i class="fab fa-youtube"></i>
+                        <p>YouTube-Video wird erst nach Ihrer Einwilligung geladen.<br>Durch das Abspielen werden Daten an YouTube (Google) übermittelt.</p>
+                        <button id="load-video-btn">Video jetzt laden</button>
+                    </div>
+                    <div id="video-iframe-container" class="hidden"></div>
+                </div>
+
+                <h2>Häufig gestellte Fragen</h2>
+                <p style="font-weight: bold;">Bienen halten:</p>
+                <p>Die Bienenhaltung ist im Trend. Viele Menschen, die der Natur etwas Gutes tun wollen, beginnen deshalb zu imkern. Doch Bienen brauchen viel Pflege, deshalb sollte man einen Kurs besuchen oder bei einem Imker hineinschnuppern, bevor man Bienen kauft. Denn: Wenn man sich nicht um die Bienen kümmert, sterben sie. Das kostet nicht nur Geld, sondern auch Nerven. Bienenfreundliche Bepflanzungen oder Wildbienenhotels sind für Naturinteressierte oft die bessere Alternative.</p>
+                
+                <p><strong>Es gibt verschiedene Arten von Bienenvölkern zu kaufen. Das verwirrt Anfänger oft, denn jede Form hat seine Eigenheiten:</strong></p>
+                <ul>
+                    <li><strong>Wirtschaftsvolk</strong>: Dieses Volk wurde bereits überwintert und ist im Frühjahr so stark, dass die Bienen direkt nach Blühbeginn Nektar eintragen. Wirtschaftsvölker werden deshalb meist im April vor dem Aufsetzen des Honigraums verkauft. Der Käufer kann dann die Honigräume aufsetzen, bereits im ersten Jahr Honig ernten und aus dem Volk schon Ableger bilden. Wer mit der Imkerei starten möchte, fängt am besten mit mindestens drei Völkern an. So sieht man Unterschiede besser und verliert nicht alle Völker, falls es mal Komplikationen gibt.</li>
+                    <li><strong>Ableger</strong>: Imker bilden diese Jungvölker, indem sie Wirtschaftsvölkern Brutwaben entnehmen und damit ein neues Bienenvolk aufbauen. Ein Ableger enthält daher zwei bis fünf Brutwaben plus eine Königin und entwickelt sich über den Sommer zu einem vollwertigen Volk. In Ausnahmefällen können starke Ableger im ersten Jahr schon Honig bringen. Ansonsten sind sie im ersten Jahr pflegeleicht und deshalb gut für Anfänger: Sie wollen mit ihrer jungen Königin nicht schwärmen und müssen im ersten Jahr „nur“ erweitert, gefüttert und behandelt werden.</li>
+                    <li><strong>Einzelne Königin</strong>: Züchter verkaufen auch einzelne Königinnen. Diese können aber nicht allein überleben und brauchen andere Bienen. Mit einer Königin oder einer Weiselzelle kann man einen Ableger mit verdeckelter Brut oder einen Kunstschwarm bilden. Alternativ kann man im Wirtschaftsvolk die Königin auswechseln, wenn man mit der alten nicht mehr zufrieden ist. Diesen Prozess nennt man <a href="https://de.wikipedia.org/wiki/Weiselzelle" target="_blank" rel="noopener">Umweiseln</a>.</li>
+                    <li><strong>Kunstschwarm</strong>: Ein Kunstschwarm wird von einem Imker gebildet, indem er Bienen abfegt und diesen eine Königin gibt. Der Vorteil: Die Bienen sind „nackt“, sitzen also nicht auf Waben. Kunstschwärme sind also ideal, wenn man ein anderes Beutensystem hat. Man sollte Kunstschwärme gleich nach der Bildung flüssig füttern, da sie keine Vorräte haben und sonst verhungern. Zudem sollte der Kunstschwarm nicht zu klein sein – Mitte Juli sollte er etwa 2,5 Kilogramm (ca. 25.000 Bienen) haben.</li>
+                </ul>
+
+                <h3>Wo soll ich meine Bienen aufstellen?</h3>
+                <p>Wer überlegt, Bienen zu kaufen, sollte davor schon mal schauen, <a href="https://de.wikipedia.org/wiki/Bienenstock" target="_blank" rel="noopener">wo er sie aufstellen kann</a>. Wichtig ist, dass der Platz gut vier Kilometer vom letzten entfernt ist, sonst fliegen die Bienen zurück. Wenn noch keine Bienen vorhanden sind, muss man den Standort beim Veterinäramt anmelden. So können die Behörden Seuchen wie die amerikanische Faulbrut effektiv bekämpfen, wenn sie ausbrechen.</p>
+                <p>Ansonsten sollte man die Beuten <a href="https://de.wikipedia.org/wiki/Bienenstock" target="_blank" rel="noopener">nicht direkt auf den Boden stellen</a>. Paletten oder mobile Ständer schützen vor Nässe und schonen den Rücken, wenn wir Imker uns nicht so sehr bücken müssen. Wenn man die Bienenvölker an ihren Platz bringt, einfach abgurten und das Flugloch aufmachen. Die Bienen fliegen sich dann am neuen Standort ein und sammeln bald fleißig Pollen und Nektar.</p>
+
+                <div style="text-align: center; margin-top: 40px;">
+                    <p><strong>Interesse geweckt?</strong></p>
+                    <a href="kontakt.html" class="btn">Kontaktiere uns</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von <a href="mailto:gguentherdd@gmx.at">Günther Danninger</a></p>
+            <p>Besuchen Sie auch unsere Partnerseite: <a href="https://baumannhonig.github.io/BaumannBIOHonig/" target="_blank" rel="noopener">BIO Honig Baumann</a></p>
+        </div>
+    </footer>
+</div>
+
+<!-- Cookie- & Video-JavaScript (DSGVO-konform) -->
+<script>
+(function() {
+    // ---------- Cookie-Funktionen ----------
+    function setCookie(name, value, days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
+    }
+    function getCookie(name) {
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+            var c = ca[i].trim();
+            if (c.indexOf(name + "=") === 0) return c.substring(name.length + 1);
+        }
+        return null;
+    }
+    function deleteCookie(name) {
+        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    }
+    function logDecision(decision) {
+        try {
+            var logs = localStorage.getItem('cookie_decision_logs') || '';
+            logs += new Date().toISOString() + " | " + decision + " | UA: " + navigator.userAgent + "\n";
+            localStorage.setItem('cookie_decision_logs', logs);
+        } catch(e) {}
+    }
+
+    // ---------- Tracking-Dienste (nur bei Zustimmung) ----------
+    function loadGoogleTracking() {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B1DQK9Q2DW';
+        document.head.appendChild(gtagScript);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){dataLayer.push(arguments);};
+        window.gtag('js', new Date());
+        window.gtag('config', 'G-B1DQK9Q2DW');
+        var noscript = document.createElement('noscript');
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-W9PCCBJC';
+        iframe.height = '0'; iframe.width = '0'; iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
+        noscript.appendChild(iframe);
+        document.body.insertBefore(noscript, document.body.firstChild);
+    }
+    function loadPlausible() {
+        var s = document.createElement('script');
+        s.src = 'https://plausible.io/js/script.manual.js';
+        s.setAttribute('data-domain', 'shard21.jouwweb.nl');
+        s.defer = true;
+        document.head.appendChild(s);
+        window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
+    }
+
+    // ---------- YouTube-Video DSGVO-konform laden ----------
+    function loadYouTubeVideo() {
+        var container = document.getElementById('video-iframe-container');
+        var placeholder = document.getElementById('video-placeholder');
+        if (!container) return;
+        var iframe = document.createElement('iframe');
+        iframe.className = 'video-iframe';
+        // Verwendung von youtube-nocookie.com (datenschutzfreundlich)
+        iframe.src = 'https://www.youtube-nocookie.com/embed/BYy_185VVgA?modestbranding=1&rel=0';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowfullscreen = true;
+        container.appendChild(iframe);
+        container.classList.remove('hidden');
+        if (placeholder) placeholder.classList.add('hidden');
+        // Logging optional
+        try {
+            var videoLog = localStorage.getItem('youtube_video_loaded') || '';
+            localStorage.setItem('youtube_video_loaded', videoLog + new Date().toISOString() + "\n");
+        } catch(e) {}
+    }
+
+    // ---------- UI/Cookie-Popup ----------
+    var popup = document.getElementById('cookie-popup');
+    var mainSite = document.getElementById('main-site');
+    var acceptBtn = document.getElementById('accept-cookies');
+    var declineBtn = document.getElementById('decline-cookies');
+    var topBtn = document.getElementById('cookie-settings-top');
+    var loadVideoBtn = document.getElementById('load-video-btn');
+
+    function showMainSite() {
+        if(popup) popup.style.display = 'none';
+        if(mainSite) mainSite.style.display = 'block';
+    }
+    function handleAccept() {
+        setCookie('cookie_consent', 'accepted', 365);
+        deleteCookie('cookie_consent_declined');
+        logDecision('accepted');
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+        // Bei "Alle akzeptieren" auch das Video automatisch laden (optional)
+        // loadYouTubeVideo(); // auskommentiert: Video nur auf manuellen Klick
+    }
+    function handleDecline() {
+        setCookie('cookie_consent_declined', 'true', 365);
+        deleteCookie('cookie_consent');
+        logDecision('declined');
+        showMainSite();
+        // Kein Tracking
+    }
+    function resetAndReload() {
+        deleteCookie('cookie_consent');
+        deleteCookie('cookie_consent_declined');
+        location.reload();
+    }
+
+    var accepted = getCookie('cookie_consent');
+    var declined = getCookie('cookie_consent_declined');
+    if(accepted === 'accepted') {
+        showMainSite();
+        loadGoogleTracking();
+        loadPlausible();
+        // Video nicht automatisch, bleibt manuell
+    } else if(declined === 'true') {
+        showMainSite();
+    } else {
+        if(popup) popup.style.display = 'flex';
+        if(mainSite) mainSite.style.display = 'none';
+    }
+
+    if(acceptBtn) acceptBtn.addEventListener('click', function(e) { e.preventDefault(); handleAccept(); });
+    if(declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
+    if(topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
+
+    // Manueller Button für YouTube-Video (auch ohne Zustimmung möglich – ist explizite Handlung)
+    if(loadVideoBtn) {
+        loadVideoBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            var container = document.getElementById('video-iframe-container');
+            if(container && container.children.length === 0) {
+                loadYouTubeVideo();
+            }
+        });
+    }
+
+    // Mobiles Menü
+    var toggleBtn = document.getElementById('mobileMenuToggle');
+    var nav = document.getElementById('mainNav');
+    if(toggleBtn && nav) {
+        toggleBtn.addEventListener('click', function() {
+            nav.classList.toggle('open');
+        });
+    }
+})();
+</script>
+</body>
+</html>
