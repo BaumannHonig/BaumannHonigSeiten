@@ -1,0 +1,11 @@
+# robots.txt für Baumann Honig Seiten
+# Alle Crawler erlaubt
+User-agent: *
+Allow: /
+
+# Sitemap-Referenz für Google & Co.
+Sitemap: https://BaumannHonig.github.io/BaumannHonigSeiten/sitemap.xml
+
+# Verbotene Verzeichnisse (falls vorhanden)
+Disallow: /private/
+Disallow: /admin/
