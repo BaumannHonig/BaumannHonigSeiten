@@ -319,7 +319,7 @@
                 <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
                 <li><strong>Plausible Analytics</strong> – datensparsame Analyse ohne personenbezogene Daten</li>
             </ul>
-            <p>Außerdem wird die Karte von Google Maps erst nach Ihrer Einwilligung geladen.</p>
+            <p>Die Karte von Google Maps wird <strong>nur nach Ihrem aktiven Klick auf den entsprechenden Button</strong> geladen – unabhängig von dieser Einwilligung.</p>
             <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
             <div class="cookie-buttons">
                 <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
@@ -384,13 +384,13 @@
                     </div>
                 </div>
 
-                <!-- Rechte Spalte: Google Maps (DSGVO-konform) -->
+                <!-- Rechte Spalte: Google Maps (nur manuell ladbar) -->
                 <div class="map-container">
                     <div id="google-maps-wrapper">
-                        <!-- Platzhalter, bis Einwilligung erfolgt oder Button geklickt -->
+                        <!-- Platzhalter, immer sichtbar bis zum Klick -->
                         <div id="map-placeholder" class="map-placeholder">
                             <i class="fas fa-map-marked-alt"></i>
-                            <p>Karte von Google Maps wird erst nach Ihrer Einwilligung geladen.<br>Google Maps kann personenbezogene Daten (IP-Adresse) an Server in den USA übertragen.</p>
+                            <p>Karte von Google Maps wird erst nach Ihrem aktiven Klick geladen.<br>Google Maps kann personenbezogene Daten (IP-Adresse) an Server in den USA übertragen.</p>
                             <button id="load-map-btn">Karte jetzt laden</button>
                         </div>
                         <div id="map-iframe-container" class="hidden"></div>
@@ -463,11 +463,13 @@
         window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
     }
 
-    // ---------- Google Maps laden (DSGVO-konform) ----------
+    // ---------- Google Maps laden (NUR MANUELL) ----------
     function loadGoogleMap() {
         var container = document.getElementById('map-iframe-container');
         var placeholder = document.getElementById('map-placeholder');
         if (!container) return;
+        // Bereits geladen?
+        if (container.children.length > 0) return;
         // iframe mit korrekter Google Maps Embed URL (Koordinaten Staudachstraße 1, 4081 Hartkirchen)
         var iframe = document.createElement('iframe');
         iframe.className = 'map-iframe';
@@ -477,7 +479,7 @@
         container.appendChild(iframe);
         container.classList.remove('hidden');
         if (placeholder) placeholder.classList.add('hidden');
-        // In einer Logdatei festhalten, dass Maps geladen wurde (freiwillige Einwilligung)
+        // Optionale Logging (freiwillige Einwilligung)
         try {
             var mapLog = localStorage.getItem('google_maps_loaded') || '';
             localStorage.setItem('google_maps_loaded', mapLog + new Date().toISOString() + "\n");
@@ -503,8 +505,7 @@
         showMainSite();
         loadGoogleTracking();
         loadPlausible();
-        // Bei "Alle akzeptieren" auch die Karte automatisch laden
-        loadGoogleMap();
+        // ACHTUNG: Google Maps wird NICHT automatisch geladen – nur manuell per Button
     }
     function handleDecline() {
         setCookie('cookie_consent_declined', 'true', 365);
@@ -512,7 +513,6 @@
         logDecision('declined');
         showMainSite();
         // Kein Tracking, keine automatische Karte
-        // Manuelles Laden per Button ist aber weiterhin möglich
     }
     function resetAndReload() {
         deleteCookie('cookie_consent');
@@ -527,11 +527,9 @@
         showMainSite();
         loadGoogleTracking();
         loadPlausible();
-        // Karte automatisch laden (weil Einwilligung für Tracking auch Maps umfasst)
-        loadGoogleMap();
+        // Maps NICHT automatisch laden
     } else if(declined === 'true') {
         showMainSite();
-        // Karte nicht automatisch, aber Platzhalter bleibt mit manuellem Button
     } else {
         if(popup) popup.style.display = 'flex';
         if(mainSite) mainSite.style.display = 'none';
@@ -542,15 +540,11 @@
     if(declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
     if(topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
 
-    // Manueller Button zum Laden der Karte (auch bei abgelehnter Einwilligung möglich – dann nur Karte, kein Tracking)
+    // Manueller Button zum Laden der Karte (immer möglich, unabhängig von Zustimmung)
     if(loadMapBtn) {
         loadMapBtn.addEventListener('click', function(e) {
             e.preventDefault();
-            // Prüfen, ob Karte bereits geladen ist
-            var container = document.getElementById('map-iframe-container');
-            if(container && container.children.length === 0) {
-                loadGoogleMap();
-            }
+            loadGoogleMap();
         });
     }
 
