@@ -219,6 +219,52 @@
             color: #f5a623;
             text-decoration: none;
         }
+        /* ===== NEUE BUTTON-LEISTE OBEN RECHTS ===== */
+        .top-buttons-container {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        /* Stil für beide Buttons (Cookie & Partnerseite) – ohne eigene Positionierung */
+        .cookie-settings-top-btn {
+            background-color: rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
+            color: #f5a623;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 40px;
+            padding: 5px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .cookie-settings-top-btn:hover {
+            background-color: rgba(0,0,0,0.8);
+            color: #ffbc5e;
+            border-color: rgba(255,255,255,0.5);
+            text-decoration: none;
+        }
+        /* Anpassung für sehr schmale Geräte */
+        @media (max-width: 768px) {
+            .top-buttons-container {
+                top: 8px;
+                right: 10px;
+                gap: 8px;
+            }
+            .cookie-settings-top-btn {
+                padding: 3px 8px;
+                font-size: 10px;
+            }
+        }
         /* Cookie Popup (gleiches Design wie zuvor) */
         #cookie-popup {
             position: fixed;
@@ -304,35 +350,15 @@
         #main-site {
             display: none;
         }
-        .cookie-settings-top-btn {
-            position: fixed;
-            top: 15px;
-            right: 20px;
-            z-index: 10000;
-            background-color: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            color: #f5a623;
-            border: 1px solid rgba(255,255,255,0.3);
-            border-radius: 40px;
-            padding: 5px 12px;
-            font-size: 12px;
-            cursor: pointer;
-            font-family: 'Segoe UI', Arial, sans-serif;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-        }
-        @media (max-width: 768px) {
-            .cookie-settings-top-btn {
-                top: 8px;
-                right: 10px;
-                padding: 3px 8px;
-                font-size: 10px;
-            }
-        }
     </style>
 </head>
 <body>
+
+<!-- Button-Leiste oben rechts: Cookie-Einstellungen + Partnerseite -->
+<div class="top-buttons-container">
+    <button id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</button>
+    <a href="https://baumannhonig.github.io/BaumannBIOHonig/" target="_blank" rel="noopener" class="cookie-settings-top-btn">🌐 Partnerseite</a>
+</div>
 
 <!-- Cookie-Popup (zuerst sichtbar, falls keine Einwilligung) -->
 <div id="cookie-popup">
@@ -360,11 +386,6 @@
     </div>
 </div>
 
-<!-- Button zum Ändern der Cookie-Einstellungen (immer oben rechts) -->
-<div id="cookie-settings-top" class="cookie-settings-top-btn">
-    🍪 Cookie-Einstellungen
-</div>
-
 <!-- Hauptinhalt der Seite -->
 <div id="main-site">
     <header class="top-header">
@@ -372,7 +393,7 @@
             <div class="logo-area">
                 <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
                 <div class="logo-text">
-                    <h1><h1>Baumann Honig Hartkirchen – Ihr Imker im Eferdinger Hügelland</h1></h1>
+                    <h1>Baumann Honig Hartkirchen – Ihr Imker im Eferdinger Hügelland</h1>
                     <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
                 </div>
             </div>
