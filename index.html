@@ -20,11 +20,10 @@
         }
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #fef9e6; /* warmer Hintergrund */
+            background-color: #fef9e6;
             color: #2c2c2c;
             line-height: 1.5;
         }
-        /* Container für max. Breite */
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -61,7 +60,7 @@
             font-size: 0.85rem;
             color: #6b4c1a;
         }
-        /* Navigation Desktop */
+        /* Navigation */
         .main-nav ul {
             display: flex;
             list-style: none;
@@ -77,7 +76,6 @@
         .main-nav a:hover {
             color: #f5a623;
         }
-        /* Mobile Menu Button (Hamburger) – nur auf kleinen Geräten sichtbar */
         .mobile-menu-btn {
             display: none;
             background: none;
@@ -219,7 +217,8 @@
             color: #f5a623;
             text-decoration: none;
         }
-        /* ===== NEUE BUTTON-LEISTE OBEN RECHTS ===== */
+
+        /* ===== BUTTON-LEISTE OBEN RECHTS ===== */
         .top-buttons-container {
             position: fixed;
             top: 15px;
@@ -230,7 +229,6 @@
             flex-wrap: wrap;
             justify-content: flex-end;
         }
-        /* Stil für beide Buttons (Cookie & Partnerseite) – ohne eigene Positionierung */
         .cookie-settings-top-btn {
             background-color: rgba(0,0,0,0.6);
             backdrop-filter: blur(4px);
@@ -253,7 +251,6 @@
             border-color: rgba(255,255,255,0.5);
             text-decoration: none;
         }
-        /* Anpassung für sehr schmale Geräte (oben rechts) */
         @media (max-width: 768px) {
             .top-buttons-container {
                 top: 8px;
@@ -265,7 +262,76 @@
                 font-size: 10px;
             }
         }
-        /* ===== COOKIE POPUP (DSGVO) ===== */
+
+        /* ================================================================
+           GEWÄHRLEISTUNGS-POPUP (BILD + OK) – immer sichtbar beim Besuch
+           ================================================================ */
+        #guarantee-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000001;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        #guarantee-popup.open {
+            display: flex;
+        }
+        .guarantee-container {
+            background: white;
+            max-width: 800px;
+            width: 100%;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            animation: slideUp 0.4s ease;
+            text-align: center;
+        }
+        .guarantee-container img {
+            width: 100%;
+            height: auto;
+            max-height: 70vh;
+            object-fit: contain;
+            border-radius: 12px;
+            display: block;
+            margin: 0 auto;
+        }
+        .guarantee-container .btn-ok {
+            display: inline-block;
+            margin: 25px auto 10px;
+            background: #f5a623;
+            color: #fff;
+            border: none;
+            padding: 14px 40px;
+            border-radius: 40px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .guarantee-container .btn-ok:hover {
+            background: #d48f1b;
+        }
+        .guarantee-container .btn-ok:active {
+            transform: scale(0.96);
+        }
+        @media (max-width: 768px) {
+            .guarantee-container {
+                padding: 20px;
+            }
+            .guarantee-container img {
+                max-height: 60vh;
+            }
+        }
+
+        /* ================================================================
+           COOKIE-POPUP (DSGVO)
+           ================================================================ */
         #cookie-popup {
             position: fixed;
             top: 0;
@@ -325,7 +391,6 @@
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s;
         }
         .btn-accept {
             background: #4CAF50;
@@ -347,7 +412,6 @@
             text-decoration: none;
             margin: 0 5px;
         }
-        /* ===== MOBILE OPTIMIERUNG FÜR COOKIE-POPUP (Smartphones) ===== */
         @media (max-width: 480px) {
             .cookie-container {
                 width: 92%;
@@ -392,6 +456,7 @@
                 font-size: 10px;
             }
         }
+
         #main-site {
             display: none;
         }
@@ -399,243 +464,288 @@
 </head>
 <body>
 
-<!-- Button-Leiste oben rechts: Cookie-Einstellungen + Partnerseite -->
-<div class="top-buttons-container">
-    <button id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</button>
-    <a href="https://baumannhonig.github.io/BaumannBIOHonig/" target="_blank" rel="noopener" class="cookie-settings-top-btn">🌐 Partnerseite</a>
-</div>
-
-<!-- Cookie-Popup (zuerst sichtbar, falls keine Einwilligung) -->
-<div id="cookie-popup">
-    <div class="cookie-container">
-        <div class="cookie-header">
-            <div class="cookie-icon">🍪</div>
-            <h2>Cookie Hinweis (DSGVO)</h2>
-        </div>
-        <div class="cookie-body">
-            <p>Diese Website verwendet notwendige Cookies für den Betrieb. Mit Ihrer Einwilligung werden zusätzlich folgende Tracking-Dienste aktiviert:</p>
-            <ul>
-                <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
-                <li><strong>Plausible Analytics</strong> – datensparsame Analyse ohne personenbezogene Daten</li>
-            </ul>
-            <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
-            <div class="cookie-buttons">
-                <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
-                <button id="decline-cookies" class="cookie-btn btn-decline">❌ Nur notwendige</button>
-            </div>
-        </div>
-        <div class="cookie-footer">
-            <a href="datenschutz.html">Mehr zum Datenschutz</a> | 
-            <a href="impressum.html">Impressum</a>
+    <!-- ================================================================
+    GEWÄHRLEISTUNGS-POPUP (BILD + OK) – immer beim Besuch
+    ================================================================ -->
+    <div id="guarantee-popup">
+        <div class="guarantee-container">
+            <img src="Gewaehrleistungs-Label-deutsch.png" alt="Gesetzliche Gewährleistung" />
+            <button class="btn-ok" id="guaranteeOkBtn">✅ OK, verstanden</button>
         </div>
     </div>
-</div>
 
-<!-- Hauptinhalt der Seite -->
-<div id="main-site">
-    <header class="top-header">
-        <div class="container header-inner">
-            <div class="logo-area">
-                <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
-                <div class="logo-text">
-                    <h1>Baumann Honig Hartkirchen – Ihr Imker im Eferdinger Hügelland</h1>
-                    <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
-                </div>
+    <!-- ================================================================
+    COOKIE-POPUP (DSGVO)
+    ================================================================ -->
+    <div id="cookie-popup">
+        <div class="cookie-container">
+            <div class="cookie-header">
+                <div class="cookie-icon">🍪</div>
+                <h2>Cookie Hinweis (DSGVO)</h2>
             </div>
-            <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
-            <nav class="main-nav" id="mainNav">
+            <div class="cookie-body">
+                <p>Diese Website verwendet notwendige Cookies für den Betrieb. Mit Ihrer Einwilligung werden zusätzlich folgende Tracking-Dienste aktiviert:</p>
                 <ul>
-                    <li><a href="https://baumannhonig.github.io/BaumannHonigSeiten/">Home</a></li>
-                    <li><a href="produkte.html">Produkte</a></li>
-                    <li><a href="ueber-uns.html">Über uns</a></li>
-                    <li><a href="preise.html">Preise</a></li>
-                    <li><a href="kontakt.html">Kontakt</a></li>
-                    <li><a href="impressum.html">Impressum</a></li>
-                    <li><a href="datenschutz.html">Datenschutz</a></li>
-                    <li><a href="bienenstock.html">Bienenstöcke Verkauf</a></li>
+                    <li><strong>Google Analytics & Google Tag Manager</strong> – zur Analyse der Seitenaufrufe</li>
+                    <li><strong>Plausible Analytics</strong> – datensparsame Analyse ohne personenbezogene Daten</li>
                 </ul>
-            </nav>
-        </div>
-    </header>
-
-    <div class="slideshow">
-        <div class="slideshow-content">
-            <h2>Qualität und Tradition aus unserer Region</h2>
-            <p>Honig aus dem Eferdinger Hügelland</p>
+                <p>Sie können Ihre Entscheidung jederzeit über den Button "Cookie-Einstellungen" oben rechts widerrufen.</p>
+                <div class="cookie-buttons">
+                    <button id="accept-cookies" class="cookie-btn btn-accept">✅ Alle akzeptieren</button>
+                    <button id="decline-cookies" class="cookie-btn btn-decline">❌ Nur notwendige</button>
+                </div>
+            </div>
+            <div class="cookie-footer">
+                <a href="datenschutz.html">Mehr zum Datenschutz</a> |
+                <a href="impressum.html">Impressum</a>
+            </div>
         </div>
     </div>
 
-    <section>
-        <div class="container">
-            <div class="section-title">Willkommen bei Baumann's Honig Seiten</div>
-            <p style="text-align: center; max-width: 800px; margin: 0 auto;">Wir sind stolz darauf, hochwertigen Honig aus Hartkirchen anzubieten. Unsere Bienen sammeln den Nektar in der malerischen Umgebung des Eferdinger Hügellands, um Ihnen ein hochwertiges Naturprodukt zu liefern.</p>
-        </div>
-    </section>
+    <!-- Button-Leiste oben rechts -->
+    <div class="top-buttons-container">
+        <button id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</button>
+        <a href="https://baumannhonig.github.io/BaumannBIOHonig/" target="_blank" rel="noopener" class="cookie-settings-top-btn">🌐 Partnerseite</a>
+    </div>
 
-    <section style="background-color: #fff8e7;">
-        <div class="container">
-            <div class="section-title">Unsere Auswahl</div>
-            <div class="three-columns">
-                <div class="card">
-                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-3-high.jpg?enable-io=true&enable=upscale&crop=1920%2C2304%2Cx0%2Cy128%2Csafe&width=600&height=720" alt="Verschiedene Honigsorten von Baumann Honig Hartkirchen">
-                    <div class="card-content">
-                        <h3>Honigsorten entdecken</h3>
-                        <p>Entdecken Sie die Vielfalt der Honigsorten, genießen Sie den natürlichen Geschmack und profitieren Sie von den gesundheitlichen Vorteilen.</p>
+    <!-- ================================================================
+    HAUPTINHALT
+    ================================================================ -->
+    <div id="main-site">
+        <header class="top-header">
+            <div class="container header-inner">
+                <div class="logo-area">
+                    <img class="logo-img" src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/logo-high.png?enable-io=true&enable=upscale&width=100" alt="Baumann Honig Logo">
+                    <div class="logo-text">
+                        <h1>Baumann Honig Hartkirchen – Ihr Imker im Eferdinger Hügelland</h1>
+                        <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
                     </div>
                 </div>
-                <div class="card">
-                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150454-2-high.jpg?enable-io=true&enable=upscale&crop=1389%2C2094%2Cx213%2Cy0%2Csafe&width=600&height=900" alt="Reine Bio Blütenpollen – Imkerei Baumann Hartkirchen">
-                    <div class="card-content">
-                        <h3>Blütenpollen</h3>
-                        <p>Reich an Mineralien, Proteinen und Vitaminen – ein wertvolles Naturprodukt.</p>
+                <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
+                <nav class="main-nav" id="mainNav">
+                    <ul>
+                        <li><a href="https://baumannhonig.github.io/BaumannHonigSeiten/">Home</a></li>
+                        <li><a href="produkte.html">Produkte</a></li>
+                        <li><a href="ueber-uns.html">Über uns</a></li>
+                        <li><a href="preise.html">Preise</a></li>
+                        <li><a href="kontakt.html">Kontakt</a></li>
+                        <li><a href="impressum.html">Impressum</a></li>
+                        <li><a href="datenschutz.html">Datenschutz</a></li>
+                        <li><a href="bienenstock.html">Bienenstöcke Verkauf</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+        <div class="slideshow">
+            <div class="slideshow-content">
+                <h2>Qualität und Tradition aus unserer Region</h2>
+                <p>Honig aus dem Eferdinger Hügelland</p>
+            </div>
+        </div>
+
+        <section>
+            <div class="container">
+                <div class="section-title">Willkommen bei Baumann's Honig Seiten</div>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto;">Wir sind stolz darauf, hochwertigen Honig aus Hartkirchen anzubieten. Unsere Bienen sammeln den Nektar in der malerischen Umgebung des Eferdinger Hügellands, um Ihnen ein hochwertiges Naturprodukt zu liefern.</p>
+            </div>
+        </section>
+
+        <section style="background-color: #fff8e7;">
+            <div class="container">
+                <div class="section-title">Unsere Auswahl</div>
+                <div class="three-columns">
+                    <div class="card">
+                        <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-3-high.jpg?enable-io=true&enable=upscale&crop=1920%2C2304%2Cx0%2Cy128%2Csafe&width=600&height=720" alt="Verschiedene Honigsorten von Baumann Honig Hartkirchen">
+                        <div class="card-content">
+                            <h3>Honigsorten entdecken</h3>
+                            <p>Entdecken Sie die Vielfalt der Honigsorten, genießen Sie den natürlichen Geschmack und profitieren Sie von den gesundheitlichen Vorteilen.</p>
+                        </div>
                     </div>
-                </div>
-                <div class="card">
-                    <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-high.jpg?enable-io=true&enable=upscale&crop=1920%2C2304%2Cx0%2Cy125%2Csafe&width=600&height=720" alt="Baumann Honig Hartkirchen (oft gesucht als Honig Baumann Hartlirchen)">
-                    <div class="card-content">
-                        <h3>Oxymel</h3>
-                        <p>Das gesunde und erfrischende Sportgetränk – rein natürlich, ohne Alkohol.</p>
+                    <div class="card">
+                        <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150454-2-high.jpg?enable-io=true&enable=upscale&crop=1389%2C2094%2Cx213%2Cy0%2Csafe&width=600&height=900" alt="Reine Bio Blütenpollen – Imkerei Baumann Hartkirchen">
+                        <div class="card-content">
+                            <h3>Blütenpollen</h3>
+                            <p>Reich an Mineralien, Proteinen und Vitaminen – ein wertvolles Naturprodukt.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-high.jpg?enable-io=true&enable=upscale&crop=1920%2C2304%2Cx0%2Cy125%2Csafe&width=600&height=720" alt="Baumann Honig Hartkirchen (oft gesucht als Honig Baumann Hartlirchen)">
+                        <div class="card-content">
+                            <h3>Oxymel</h3>
+                            <p>Das gesunde und erfrischende Sportgetränk – rein natürlich, ohne Alkohol.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <div class="container">
-        <div class="testimonial">
-            <p>„Der Honig von Baumann ist einfach köstlich und von höchster Qualität. Ich kaufe meinen Honig nur noch hier, ein wahrer Genuss!“</p>
-            <strong>– Simone Haidinger</strong>
+        <div class="container">
+            <div class="testimonial">
+                <p>„Der Honig von Baumann ist einfach köstlich und von höchster Qualität. Ich kaufe meinen Honig nur noch hier, ein wahrer Genuss!“</p>
+                <strong>– Simone Haidinger</strong>
+            </div>
         </div>
+
+        <section>
+            <div class="container" style="text-align: center;">
+                <h2 class="section-title">Über uns</h2>
+                <p style="max-width: 700px; margin: 0 auto 30px;">Baumann's Honig Seiten steht für hochwertigen Honig aus dem Eferdinger Hügelland. Mit Leidenschaft und Fachkompetenz setzen wir uns für die Qualität unserer Produkte ein.</p>
+                <a href="kontakt.html" class="btn">Hier finden Sie uns</a>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container">
+                <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von Günther Danninger</p>
+                <p>Besuchen Sie auch unsere Partnerseite: <a href="https://baumannhonig.github.io/BaumannBIOHonig/index.html" target="_blank" rel="noopener">BIO Honig Baumann</a></p>
+            </div>
+        </footer>
     </div>
 
-    <section>
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title">Über uns</h2>
-            <p style="max-width: 700px; margin: 0 auto 30px;">Baumann's Honig Seiten steht für hochwertigen Honig aus dem Eferdinger Hügelland. Mit Leidenschaft und Fachkompetenz setzen wir uns für die Qualität unserer Produkte ein.</p>
-            <a href="kontakt.html" class="btn">Hier finden Sie uns</a>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von Günther Danninger</p>
-            <p>Besuchen Sie auch unsere Partnerseite: <a href="https://baumannhonig.github.io/BaumannBIOHonig/index.html" target="_blank" rel="noopener">BIO Honig Baumann</a></p>
-        </div>
-    </footer>
-</div>
-
-<!-- Cookie-JavaScript (DSGVO-konform) -->
-<script>
-(function() {
-    // Hilfsfunktionen
-    function setCookie(name, value, days) {
-        var date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
-    }
-    function getCookie(name) {
-        var ca = document.cookie.split(';');
-        for(var i = 0; i < ca.length; i++) {
-            var c = ca[i].trim();
-            if (c.indexOf(name + "=") === 0) return c.substring(name.length + 1);
+    <!-- ================================================================
+    JAVASCRIPT
+    ================================================================ -->
+    <script>
+    (function() {
+        // ---------- Cookie-Hilfsfunktionen ----------
+        function setCookie(name, value, days) {
+            var date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            document.cookie = name + "=" + value + "; expires=" + date.toUTCString() + "; path=/; SameSite=Lax";
         }
-        return null;
-    }
-    function deleteCookie(name) {
-        document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    }
-    function logDecision(decision) {
-        try {
-            var logs = localStorage.getItem('cookie_decision_logs') || '';
-            logs += new Date().toISOString() + " | " + decision + " | UA: " + navigator.userAgent + "\n";
-            localStorage.setItem('cookie_decision_logs', logs);
-        } catch(e) {}
-    }
+        function getCookie(name) {
+            var ca = document.cookie.split(';');
+            for(var i = 0; i < ca.length; i++) {
+                var c = ca[i].trim();
+                if (c.indexOf(name + "=") === 0) return c.substring(name.length + 1);
+            }
+            return null;
+        }
+        function deleteCookie(name) {
+            document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        }
+        function logDecision(decision) {
+            try {
+                var logs = localStorage.getItem('cookie_decision_logs') || '';
+                logs += new Date().toISOString() + " | " + decision + " | UA: " + navigator.userAgent + "\n";
+                localStorage.setItem('cookie_decision_logs', logs);
+            } catch(e) {}
+        }
 
-    // Tracking laden (nur bei Zustimmung)
-    function loadGoogleTracking() {
-        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
-        var gtagScript = document.createElement('script');
-        gtagScript.async = true;
-        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B1DQK9Q2DW';
-        document.head.appendChild(gtagScript);
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(){dataLayer.push(arguments);};
-        window.gtag('js', new Date());
-        window.gtag('config', 'G-B1DQK9Q2DW');
-        var noscript = document.createElement('noscript');
-        var iframe = document.createElement('iframe');
-        iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-W9PCCBJC';
-        iframe.height = '0'; iframe.width = '0'; iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
-        noscript.appendChild(iframe);
-        document.body.insertBefore(noscript, document.body.firstChild);
-    }
-    function loadPlausible() {
-        var s = document.createElement('script');
-        s.src = 'https://plausible.io/js/script.manual.js';
-        s.setAttribute('data-domain', 'shard21.jouwweb.nl');
-        s.defer = true;
-        document.head.appendChild(s);
-        window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
-    }
+        // ---------- Tracking (nur bei Zustimmung) ----------
+        function loadGoogleTracking() {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
+            var gtagScript = document.createElement('script');
+            gtagScript.async = true;
+            gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-B1DQK9Q2DW';
+            document.head.appendChild(gtagScript);
+            window.dataLayer = window.dataLayer || [];
+            window.gtag = function(){dataLayer.push(arguments);};
+            window.gtag('js', new Date());
+            window.gtag('config', 'G-B1DQK9Q2DW');
+            var noscript = document.createElement('noscript');
+            var iframe = document.createElement('iframe');
+            iframe.src = 'https://www.googletagmanager.com/ns.html?id=GTM-W9PCCBJC';
+            iframe.height = '0'; iframe.width = '0'; iframe.style.display = 'none'; iframe.style.visibility = 'hidden';
+            noscript.appendChild(iframe);
+            document.body.insertBefore(noscript, document.body.firstChild);
+        }
+        function loadPlausible() {
+            var s = document.createElement('script');
+            s.src = 'https://plausible.io/js/script.manual.js';
+            s.setAttribute('data-domain', 'shard21.jouwweb.nl');
+            s.defer = true;
+            document.head.appendChild(s);
+            window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments); };
+        }
 
-    var popup = document.getElementById('cookie-popup');
-    var mainSite = document.getElementById('main-site');
-    var acceptBtn = document.getElementById('accept-cookies');
-    var declineBtn = document.getElementById('decline-cookies');
-    var topBtn = document.getElementById('cookie-settings-top');
+        // ---------- DOM-Referenzen ----------
+        var mainSite = document.getElementById('main-site');
+        var popupGuarantee = document.getElementById('guarantee-popup');
+        var popupCookie = document.getElementById('cookie-popup');
+        var okBtn = document.getElementById('guaranteeOkBtn');
+        var acceptBtn = document.getElementById('accept-cookies');
+        var declineBtn = document.getElementById('decline-cookies');
+        var topBtn = document.getElementById('cookie-settings-top');
 
-    function showMainSite() {
-        if(popup) popup.style.display = 'none';
-        if(mainSite) mainSite.style.display = 'block';
-    }
-    function handleAccept() {
-        setCookie('cookie_consent', 'accepted', 365);
-        deleteCookie('cookie_consent_declined');
-        logDecision('accepted');
-        showMainSite();
-        loadGoogleTracking();
-        loadPlausible();
-    }
-    function handleDecline() {
-        setCookie('cookie_consent_declined', 'true', 365);
-        deleteCookie('cookie_consent');
-        logDecision('declined');
-        showMainSite();
-    }
-    function resetAndReload() {
-        deleteCookie('cookie_consent');
-        deleteCookie('cookie_consent_declined');
-        location.reload();
-    }
+        // ---------- Gewährleistungs-Popup steuern ----------
+        function showGuarantee() {
+            popupGuarantee.classList.add('open');
+            mainSite.style.display = 'none';
+            popupCookie.style.display = 'none';
+        }
+        function hideGuarantee() {
+            popupGuarantee.classList.remove('open');
+            // Danach Cookie-Consent prüfen
+            checkCookieConsent();
+        }
 
-    // Prüfen, ob bereits eine Entscheidung vorliegt
-    var accepted = getCookie('cookie_consent');
-    var declined = getCookie('cookie_consent_declined');
-    if(accepted === 'accepted') {
-        showMainSite();
-        loadGoogleTracking();
-        loadPlausible();
-    } else if(declined === 'true') {
-        showMainSite();
-    } else {
-        if(popup) popup.style.display = 'flex';
-        if(mainSite) mainSite.style.display = 'none';
-    }
+        // ---------- Cookie-Consent prüfen ----------
+        function checkCookieConsent() {
+            var accepted = getCookie('cookie_consent');
+            var declined = getCookie('cookie_consent_declined');
+            if (accepted === 'accepted') {
+                showMainSite();
+                loadGoogleTracking();
+                loadPlausible();
+            } else if (declined === 'true') {
+                showMainSite();
+            } else {
+                // Cookie-Popup anzeigen
+                popupCookie.style.display = 'flex';
+                mainSite.style.display = 'none';
+            }
+        }
 
-    if(acceptBtn) acceptBtn.addEventListener('click', function(e) { e.preventDefault(); handleAccept(); });
-    if(declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
-    if(topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
+        function showMainSite() {
+            popupCookie.style.display = 'none';
+            mainSite.style.display = 'block';
+        }
 
-    // Mobile Menü Toggle
-    var toggleBtn = document.getElementById('mobileMenuToggle');
-    var nav = document.getElementById('mainNav');
-    if(toggleBtn && nav) {
-        toggleBtn.addEventListener('click', function() {
-            nav.classList.toggle('open');
+        // ---------- Event-Listener für Cookie-Popup ----------
+        function handleAccept() {
+            setCookie('cookie_consent', 'accepted', 365);
+            deleteCookie('cookie_consent_declined');
+            logDecision('accepted');
+            showMainSite();
+            loadGoogleTracking();
+            loadPlausible();
+        }
+        function handleDecline() {
+            setCookie('cookie_consent_declined', 'true', 365);
+            deleteCookie('cookie_consent');
+            logDecision('declined');
+            showMainSite();
+        }
+        function resetAndReload() {
+            deleteCookie('cookie_consent');
+            deleteCookie('cookie_consent_declined');
+            location.reload();
+        }
+
+        if (acceptBtn) acceptBtn.addEventListener('click', function(e) { e.preventDefault(); handleAccept(); });
+        if (declineBtn) declineBtn.addEventListener('click', function(e) { e.preventDefault(); handleDecline(); });
+        if (topBtn) topBtn.addEventListener('click', function(e) { e.preventDefault(); resetAndReload(); });
+
+        // ---------- Beim Seitenstart: Immer Gewährleistungs-Popup anzeigen ----------
+        showGuarantee();
+
+        // OK-Button für Gewährleistung: schließen und dann Cookie-Consent prüfen
+        okBtn.addEventListener('click', function() {
+            hideGuarantee();
         });
-    }
-})();
-</script>
+
+        // ---------- MOBILMENÜ ----------
+        var toggleBtn = document.getElementById('mobileMenuToggle');
+        var nav = document.getElementById('mainNav');
+        if (toggleBtn && nav) {
+            toggleBtn.addEventListener('click', function() {
+                nav.classList.toggle('open');
+            });
+        }
+
+    })();
+    </script>
 </body>
 </html>
