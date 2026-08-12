@@ -1061,6 +1061,11 @@
                     html += '</div>';
                 });
                 html += '<div class="checkout-total">Gesamt: '+formatPrice(getTotalPrice())+'</div>';
+                // NEU: Hinweis auf Versandkosten + Link zum Post-Tarifrechner
+                html += '<div style="font-size:0.9rem; color:#666; margin-top:8px; text-align:right;">';
+                html += 'zzgl. Versandkosten (trägt der Käufer) – ';
+                html += '<a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a>';
+                html += '</div>';
                 checkoutSummary.innerHTML = html;
             }
 
@@ -1107,6 +1112,11 @@
                                 Bitte überweisen Sie den Betrag von <strong>${formatPrice(total)}</strong>
                                 auf das oben angegebene Konto.<br>
                                 Verwendungszweck: <strong>${orderId}</strong>
+                            </p>
+                            <!-- NEU: Hinweis auf Versandkosten + Link im Erfolgsfall -->
+                            <p style="font-size:0.85rem; color:#888; margin-top:4px;">
+                                zzgl. Versandkosten (trägt der Käufer) – 
+                                <a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a>
                             </p>
                             <p style="font-size:0.85rem;color:#777;margin-top:8px;">
                                 Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
