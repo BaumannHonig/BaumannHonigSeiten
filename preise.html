@@ -239,7 +239,7 @@
         <div class="guarantee-container">
             <img src="Gewaehrleistungs-Label-deutsch.png" alt="Gesetzliche Gewährleistung" />
             <button class="btn-ok" id="guaranteeOkBtn">✅ OK, verstanden</button>
-            <div class="small-note">Diese Information wird nur einmal angezeigt.</div>
+            <div class="small-note">Diese Information wird bei jedem Besuch angezeigt.</div>
         </div>
     </div>
 
@@ -555,15 +555,12 @@
             if (declineBtn) declineBtn.addEventListener('click', function(e){e.preventDefault(); handleDecline();});
             if (topBtn) topBtn.addEventListener('click', function(e){e.preventDefault(); resetAndReload();});
 
-            // ---------- Beim Laden ----------
-            var guaranteeSeen = getCookie('guarantee_seen');
-            if (!guaranteeSeen) {
-                showGuarantee();
-            } else {
-                checkCookieConsent();
-            }
+            // ---------- Beim Laden – immer Gewährleistungs-Popup anzeigen ----------
+            // Entfernt: Abfrage eines Cookies -> Popup erscheint bei jedem Seitenaufruf
+            showGuarantee();
+
+            // OK-Button schließt nur das Popup, setzt kein Cookie mehr
             okBtn.addEventListener('click', function() {
-                setCookie('guarantee_seen','true',365);
                 hideGuarantee();
             });
 
@@ -1061,10 +1058,12 @@
                     html += '</div>';
                 });
                 html += '<div class="checkout-total">Gesamt: '+formatPrice(getTotalPrice())+'</div>';
-                // NEU: Hinweis auf Versandkosten + Link zum Post-Tarifrechner
+                // NEU: Hinweis auf Versandkosten + Links zu Post und DPD
                 html += '<div style="font-size:0.9rem; color:#666; margin-top:8px; text-align:right;">';
                 html += 'zzgl. Versandkosten (trägt der Käufer) – ';
                 html += '<a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a>';
+                html += ' | ';
+                html += '<a href="https://www.mydpd.at/webpaket?_gl=1*157h4ng*_ga*NTIwNTE1NzE3LjE3ODY1MzY0MDU.*_ga_Q3RB6RNZ25*czE3ODY1MzY0MDQkbzEkZzEkdDE3ODY1MzY4NTgkajI1JGwwJGgw" target="_blank" rel="noopener">DPD Tarifrechner</a>';
                 html += '</div>';
                 checkoutSummary.innerHTML = html;
             }
@@ -1113,10 +1112,11 @@
                                 auf das oben angegebene Konto.<br>
                                 Verwendungszweck: <strong>${orderId}</strong>
                             </p>
-                            <!-- NEU: Hinweis auf Versandkosten + Link im Erfolgsfall -->
+                            <!-- NEU: Hinweis auf Versandkosten + Links im Erfolgsfall -->
                             <p style="font-size:0.85rem; color:#888; margin-top:4px;">
                                 zzgl. Versandkosten (trägt der Käufer) – 
-                                <a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a>
+                                <a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a> |
+                                <a href="https://www.mydpd.at/webpaket?_gl=1*157h4ng*_ga*NTIwNTE1NzE3LjE3ODY1MzY0MDU.*_ga_Q3RB6RNZ25*czE3ODY1MzY0MDQkbzEkZzEkdDE3ODY1MzY4NTgkajI1JGwwJGgw" target="_blank" rel="noopener">DPD Tarifrechner</a>
                             </p>
                             <p style="font-size:0.85rem;color:#777;margin-top:8px;">
                                 Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
