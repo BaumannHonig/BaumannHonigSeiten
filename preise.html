@@ -397,8 +397,8 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group full-width">
-                        <label for="customerEmail">E‑Mail (für Rückfragen)</label>
-                        <input type="email" id="customerEmail" placeholder="ihre@email.at" />
+                        <label for="customerEmail">E‑Mail *</label>
+                        <input type="email" id="customerEmail" placeholder="ihre@email.at" required />
                         <div class="error-msg" id="customerEmailError"></div>
                     </div>
                 </div>
@@ -863,12 +863,13 @@
             });
 
             // ================================================================
-            // ==========  E-MAIL-VERSAND (FORMSPREE)  ========================
+            // ==========  E-MAIL-VERSAND  ====================================
             // ================================================================
-            var FORMSPREE_ID = 'xrpzkgel'; // <-- EIGENE ID EINTRAGEN!
+            var FORMSPREE_ID = 'xrpzkgel'; // <-- deine Formspree-ID für Shop
             var SHOP_EMAIL = 'baumann.bernhard@gmx.net';
 
-            function sendOrderEmail(orderId, cartItems, total, addressData) {
+            // 1) E-Mail an den Shop (über Formspree)
+            function sendShopEmail(orderId, cartItems, total, addressData) {
                 return new Promise(function(resolve, reject) {
                     var itemsText = cartItems.map(function(item) {
                         return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
@@ -880,7 +881,7 @@
                         addressData.firstName + ' ' + addressData.lastName + '\n' +
                         addressData.street + '\n' +
                         addressData.zip + ' ' + addressData.city + '\n' +
-                        (addressData.email ? 'E-Mail: ' + addressData.email + '\n' : '') +
+                        'E-Mail: ' + addressData.email + '\n' +
                         '\n— Produkte —\n' + itemsText + '\n\n' +
                         'Gesamtbetrag: ' + formatPrice(total) + '\n\n' +
                         '— Überweisung —\n' +
@@ -907,7 +908,43 @@
                 });
             }
 
-            // ---------- Stornierungs-E-Mail senden ----------
+            // 2) E-Mail an den Kunden (über Formsubmit.co – dynamischer Empfänger)
+            function sendCustomerEmail(orderId, cartItems, total, addressData) {
+                return new Promise(function(resolve, reject) {
+                    var itemsText = cartItems.map(function(item) {
+                        return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
+                    }).join('\n');
+                    var body = 'Vielen Dank für Ihre Bestellung bei Baumann Honig!\n\n' +
+                        'Ihre Bestellnummer: ' + orderId + '\n' +
+                        'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
+                        '— Ihre Bestellung —\n' + itemsText + '\n\n' +
+                        'Gesamtbetrag: ' + formatPrice(total) + '\n\n' +
+                        '— Überweisung —\n' +
+                        'Bitte überweisen Sie den Betrag auf folgendes Konto:\n' +
+                        'IBAN: AT12 3456 7890 1234 5678\n' +
+                        'BIC: BAUMATW1XXX\n' +
+                        'Verwendungszweck: ' + orderId + '\n\n' +
+                        'Wir versenden Ihre Ware nach Zahlungseingang.\n' +
+                        'Bei Fragen stehen wir Ihnen gerne zur Verfügung.';
+                    var formData = new FormData();
+                    formData.append('_subject', 'Bestellbestätigung #' + orderId);
+                    formData.append('message', body);
+                    // Formsubmit leitet an die E-Mail-Adresse in der URL weiter
+                    fetch('https://formsubmit.co/' + encodeURIComponent(addressData.email), {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    })
+                    .then(function(response) {
+                        if (response.ok) { resolve(); } else {
+                            reject(new Error('Fehler beim Senden an Kunden: ' + response.status));
+                        }
+                    })
+                    .catch(function(err) { reject(err); });
+                });
+            }
+
+            // ---------- Stornierungs-E-Mail (über Formspree) ----------
             function sendCancellationEmail(orderNumber, addressData) {
                 return new Promise(function(resolve, reject) {
                     var body = 'Stornierung einer Bestellung:\n\n' +
@@ -971,7 +1008,9 @@
                 if (!data.street) errors.street = 'Bitte Straße und Hausnummer eingeben.';
                 if (!data.zip) errors.zip = 'Bitte PLZ eingeben.';
                 if (!data.city) errors.city = 'Bitte Ort eingeben.';
-                if (data.email && !/^\S+@\S+\.\S+$/.test(data.email)) {
+                if (!data.email) {
+                    errors.customerEmail = 'Bitte E-Mail-Adresse eingeben.';
+                } else if (!/^\S+@\S+\.\S+$/.test(data.email)) {
                     errors.customerEmail = 'Bitte gültige E-Mail-Adresse eingeben.';
                 }
                 document.getElementById('firstNameError').textContent = errors.firstName || '';
@@ -1034,7 +1073,7 @@
                 }
             });
 
-            // ---------- Bestellung abschließen ----------
+            // ---------- Bestellung abschließen (inkl. zwei E-Mails) ----------
             finishOrderBtn.addEventListener('click', function() {
                 if (cart.length === 0) { showToast('Warenkorb ist leer.'); closeCheckout(); return; }
                 if (!validateAddress()) { showToast('Bitte alle Pflichtfelder ausfüllen.'); return; }
@@ -1050,85 +1089,101 @@
                 var total = getTotalPrice();
                 var cartCopy = cart.slice();
 
-                sendOrderEmail(orderId, cartCopy, total, address)
-                    .then(function() {
-                        checkoutSummary.innerHTML = `
-                            <div class="checkout-success">
-                                <div class="big-icon">✅</div>
-                                <h3>Vielen Dank für Ihre Bestellung!</h3>
-                                <p>Ihre Bestellung wurde erfolgreich erfasst.</p>
-                                <p style="font-size:0.9rem;color:#555;">Eine Bestätigung wurde an uns gesendet.</p>
-                                <div class="order-number">Bestellnummer: ${orderId}</div>
-                                <p style="margin-top:12px;font-size:0.95rem;">
-                                    Bitte überweisen Sie den Betrag von <strong>${formatPrice(total)}</strong>
-                                    auf das oben angegebene Konto.<br>
-                                    Verwendungszweck: <strong>${orderId}</strong>
-                                </p>
-                                <p style="font-size:0.85rem;color:#777;margin-top:8px;">
-                                    Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
-                                </p>
-                                <button class="btn-primary" style="margin-top:18px;padding:12px 40px;border:none;border-radius:12px;background:#f5a623;color:#fff;font-weight:bold;cursor:pointer;" id="closeSuccessBtn">
-                                    ✖ Schließen
-                                </button>
-                                <button class="btn-danger" id="withdrawSuccessBtn">⛔ Bestellung stornieren</button>
-                            </div>
-                        `;
-                        var actions = document.querySelector('.checkout-actions');
-                        if (actions) actions.style.display = 'none';
+                // Beide E-Mails parallel senden
+                Promise.all([
+                    sendShopEmail(orderId, cartCopy, total, address),
+                    sendCustomerEmail(orderId, cartCopy, total, address)
+                ])
+                .then(function() {
+                    // Erfolg – Bestätigungsseite anzeigen
+                    checkoutSummary.innerHTML = `
+                        <div class="checkout-success">
+                            <div class="big-icon">✅</div>
+                            <h3>Vielen Dank für Ihre Bestellung!</h3>
+                            <p>Ihre Bestellung wurde erfolgreich erfasst.</p>
+                            <p style="font-size:0.9rem;color:#555;">Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.</p>
+                            <div class="order-number">Bestellnummer: ${orderId}</div>
+                            <p style="margin-top:12px;font-size:0.95rem;">
+                                Bitte überweisen Sie den Betrag von <strong>${formatPrice(total)}</strong>
+                                auf das oben angegebene Konto.<br>
+                                Verwendungszweck: <strong>${orderId}</strong>
+                            </p>
+                            <p style="font-size:0.85rem;color:#777;margin-top:8px;">
+                                Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
+                            </p>
+                            <button class="btn-primary" style="margin-top:18px;padding:12px 40px;border:none;border-radius:12px;background:#f5a623;color:#fff;font-weight:bold;cursor:pointer;" id="closeSuccessBtn">
+                                ✖ Schließen
+                            </button>
+                            <button class="btn-danger" id="withdrawSuccessBtn">⛔ Bestellung stornieren</button>
+                        </div>
+                    `;
+                    var actions = document.querySelector('.checkout-actions');
+                    if (actions) actions.style.display = 'none';
 
-                        document.getElementById('closeSuccessBtn').addEventListener('click', function() {
-                            clearCart();
-                            closeCheckout();
-                            updateUI();
-                            showToast('Bestellung abgeschlossen!');
-                        });
-
-                        // Stornierungs-Button nach erfolgreicher Bestellung
-                        document.getElementById('withdrawSuccessBtn').addEventListener('click', function() {
-                            // Öffne das Stornierungs-Modal
-                            document.getElementById('cancelModal').classList.add('open');
-                            // Bestellnummer vorausfüllen (optional)
-                            document.getElementById('cancelOrderNumber').value = orderId;
-                            document.getElementById('cancelError').textContent = '';
-                        });
-
-                        finishOrderBtn.classList.remove('loading');
-                        finishOrderBtn.innerHTML = '✅ Bestellung abschließen';
-                        finishOrderBtn.disabled = false;
-                    })
-                    .catch(function(err) {
-                        console.error('E-Mail-Fehler:', err);
-                        var errorDiv = document.createElement('div');
-                        errorDiv.id = 'mailError';
-                        errorDiv.className = 'error-detail';
-                        errorDiv.innerHTML = '<strong>Fehler beim Versenden der E-Mail:</strong> ' + err.message +
-                            '<br><span style="font-size:0.8rem;">Hast du die Formspree-ID korrekt gesetzt?<br>Oder sende die Bestellung manuell.</span>';
-                        var itemsText = cartCopy.map(function(item) {
-                            return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
-                        }).join('%0A');
-                        var mailtoBody = 'Neue%20Bestellung%20von%20Ihrer%20Website%3A%0A%0A' +
-                            'Bestellnummer%3A%20' + orderId + '%0A' +
-                            'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
-                            '%E2%80%94%20Lieferadresse%20%E2%80%94%0A' +
-                            encodeURIComponent(address.firstName + ' ' + address.lastName) + '%0A' +
-                            encodeURIComponent(address.street) + '%0A' +
-                            encodeURIComponent(address.zip + ' ' + address.city) + '%0A' +
-                            (address.email ? 'E-Mail%3A%20' + encodeURIComponent(address.email) + '%0A' : '') +
-                            '%0A%E2%80%94%20Produkte%20%E2%80%94%0A' + itemsText + '%0A%0A' +
-                            'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
-                            '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
-                            'IBAN%3A%20AT12%203456%207890%201234%205678%0A' +
-                            'BIC%3A%20BAUMATW1XXX%0A' +
-                            'Verwendungszweck%3A%20' + orderId;
-                        var mailtoLink = 'mailto:' + SHOP_EMAIL + '?subject=Neue%20Bestellung%20%23' + orderId + '&body=' + mailtoBody;
-                        errorDiv.innerHTML += '<div class="mailto-fallback"><a href="' + mailtoLink + '" target="_blank">📧 Bestellung manuell per E-Mail senden</a></div>';
-                        var actionsDiv = document.querySelector('.checkout-actions');
-                        actionsDiv.parentNode.insertBefore(errorDiv, actionsDiv);
-                        finishOrderBtn.classList.remove('loading');
-                        finishOrderBtn.innerHTML = '🔄 Erneut versuchen';
-                        finishOrderBtn.disabled = false;
-                        showToast('E-Mail-Versand fehlgeschlagen – siehe Details.');
+                    document.getElementById('closeSuccessBtn').addEventListener('click', function() {
+                        clearCart();
+                        closeCheckout();
+                        updateUI();
+                        showToast('Bestellung abgeschlossen!');
                     });
+
+                    document.getElementById('withdrawSuccessBtn').addEventListener('click', function() {
+                        document.getElementById('cancelModal').classList.add('open');
+                        document.getElementById('cancelOrderNumber').value = orderId;
+                        document.getElementById('cancelError').textContent = '';
+                    });
+
+                    finishOrderBtn.classList.remove('loading');
+                    finishOrderBtn.innerHTML = '✅ Bestellung abschließen';
+                    finishOrderBtn.disabled = false;
+                })
+                .catch(function(err) {
+                    console.error('Fehler beim E-Mail-Versand:', err);
+                    var errorDiv = document.createElement('div');
+                    errorDiv.id = 'mailError';
+                    errorDiv.className = 'error-detail';
+                    errorDiv.innerHTML = '<strong>Fehler beim Versenden der E-Mail:</strong> ' + err.message +
+                        '<br><span style="font-size:0.8rem;">Die Bestellung wurde trotzdem erfasst – bitte senden Sie die Daten manuell.</span>';
+                    // Fallback: mailto für Shop und Kunde
+                    var itemsText = cartCopy.map(function(item) {
+                        return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
+                    }).join('%0A');
+                    var mailtoBodyShop = 'Neue%20Bestellung%20von%20Ihrer%20Website%3A%0A%0A' +
+                        'Bestellnummer%3A%20' + orderId + '%0A' +
+                        'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
+                        '%E2%80%94%20Lieferadresse%20%E2%80%94%0A' +
+                        encodeURIComponent(address.firstName + ' ' + address.lastName) + '%0A' +
+                        encodeURIComponent(address.street) + '%0A' +
+                        encodeURIComponent(address.zip + ' ' + address.city) + '%0A' +
+                        'E-Mail%3A%20' + encodeURIComponent(address.email) + '%0A%0A' +
+                        '%E2%80%94%20Produkte%20%E2%80%94%0A' + itemsText + '%0A%0A' +
+                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
+                        '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
+                        'IBAN%3A%20AT12%203456%207890%201234%205678%0A' +
+                        'BIC%3A%20BAUMATW1XXX%0A' +
+                        'Verwendungszweck%3A%20' + orderId;
+                    var mailtoLinkShop = 'mailto:' + SHOP_EMAIL + '?subject=Neue%20Bestellung%20%23' + orderId + '&body=' + mailtoBodyShop;
+                    var mailtoBodyCustomer = 'Vielen%20Dank%20f%C3%BCr%20Ihre%20Bestellung%20bei%20Baumann%20Honig%21%0A%0A' +
+                        'Ihre%20Bestellnummer%3A%20' + orderId + '%0A' +
+                        'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
+                        '%E2%80%94%20Ihre%20Bestellung%20%E2%80%94%0A' + itemsText + '%0A%0A' +
+                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
+                        '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
+                        'Bitte%20%C3%BCberweisen%20Sie%20den%20Betrag%20auf%20folgendes%20Konto%3A%0A' +
+                        'IBAN%3A%20AT12%203456%207890%201234%205678%0A' +
+                        'BIC%3A%20BAUMATW1XXX%0A' +
+                        'Verwendungszweck%3A%20' + orderId + '%0A%0A' +
+                        'Wir%20versenden%20Ihre%20Ware%20nach%20Zahlungseingang.';
+                    var mailtoLinkCustomer = 'mailto:' + encodeURIComponent(address.email) + '?subject=Bestellbest%C3%A4tigung%20%23' + orderId + '&body=' + mailtoBodyCustomer;
+                    errorDiv.innerHTML += '<div class="mailto-fallback"><a href="' + mailtoLinkShop + '" target="_blank">📧 Bestellung an Shop per E-Mail senden</a><br>' +
+                        '<a href="' + mailtoLinkCustomer + '" target="_blank">📧 Bestätigung an Kunden per E-Mail senden</a></div>';
+                    var actionsDiv = document.querySelector('.checkout-actions');
+                    actionsDiv.parentNode.insertBefore(errorDiv, actionsDiv);
+                    finishOrderBtn.classList.remove('loading');
+                    finishOrderBtn.innerHTML = '🔄 Erneut versuchen';
+                    finishOrderBtn.disabled = false;
+                    showToast('E-Mail-Versand fehlgeschlagen – bitte manuell senden.');
+                });
             });
 
             // ================================================================
@@ -1157,21 +1212,17 @@
                     cancelError.textContent = 'Bitte geben Sie Ihre Bestellnummer ein.';
                     return;
                 }
-                // Einfache Prüfung auf Format (optional)
                 if (!/^BH-\d{8}-\d{3}$/.test(orderNumber)) {
                     cancelError.textContent = 'Ungültiges Format. Bitte geben Sie die korrekte Bestellnummer ein.';
                     return;
                 }
-                // Adressdaten für die E-Mail (falls vorhanden, aus dem letzten Checkout)
-                var address = getAddressData(); // aktuelle Eingaben – könnten leer sein, aber wir haben keine gespeicherte Adresse
-                // Wir senden die Stornierungs-E-Mail
+                var address = getAddressData();
                 confirmCancelBtn.disabled = true;
                 confirmCancelBtn.innerHTML = '<span class="spinner"></span> Sende...';
                 sendCancellationEmail(orderNumber, address)
                     .then(function() {
                         showToast('Stornierung wurde an uns gesendet. Sie erhalten eine Bestätigung.');
                         closeCancelModal();
-                        // Seite neu laden, um den Shop zurückzusetzen
                         setTimeout(function() { location.reload(); }, 1500);
                     })
                     .catch(function(err) {
