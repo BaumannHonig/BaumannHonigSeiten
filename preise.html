@@ -408,8 +408,8 @@
             <div class="checkout-bank">
                 <p><strong>🏦 Überweisung an:</strong></p>
                 <p>Empfänger: Baumann's Honig</p>
-                <p>IBAN: <strong>AT12 3456 7890 1234 5678</strong></p>
-                <p>BIC: <strong>BAUMATW1XXX</strong></p>
+                <p>IBAN: <strong>AT11 3418 0000 0144 3597</strong></p>
+                <p>BIC: <strong>RZ00AT2L180</strong></p>
                 <p style="margin-top:8px;font-size:0.9rem;">Bitte geben Sie Ihre <strong>Bestellnummer</strong> als Verwendungszweck an.</p>
             </div>
 
@@ -918,7 +918,7 @@
                         'Gesamtbetrag: exklusive Versand ' + formatPrice(total) + '\n\n' +
                         '— Überweisung —\n' +
                         'Bitte überweisen Sie den Betrag plus Versand auf folgendes Konto:\n' +
-                        'IBAN: AT11 3418 0000 0141 3597\n' +
+                        'IBAN: AT11 3418 0000 0144 3597\n' +
                         'BIC: RZ00AT2L180\n' +
                         'Verwendungszweck: ' + orderId + '\n\n' +
                         'Wir versenden Ihre Ware nach Zahlungseingang.\n' +
@@ -1169,8 +1169,8 @@
                         '%E2%80%94%20Produkte%20%E2%80%94%0A' + itemsText + '%0A%0A' +
                         'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
                         '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
-                        'IBAN%3A%20AT12%203456%207890%201234%205678%0A' +
-                        'BIC%3A%20BAUMATW1XXX%0A' +
+                        'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
+                        'BIC%3A%20RZ00AT2L180%0A' +
                         'Verwendungszweck%3A%20' + orderId;
                     var mailtoLinkShop = 'mailto:' + SHOP_EMAIL + '?subject=Neue%20Bestellung%20%23' + orderId + '&body=' + mailtoBodyShop;
                     var mailtoBodyCustomer = 'Vielen%20Dank%20f%C3%BCr%20Ihre%20Bestellung%20bei%20Baumann%20Honig%21%0A%0A' +
@@ -1180,8 +1180,8 @@
                         'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
                         '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
                         'Bitte%20%C3%BCberweisen%20Sie%20den%20Betrag%20auf%20folgendes%20Konto%3A%0A' +
-                        'IBAN%3A%20AT12%203456%207890%201234%205678%0A' +
-                        'BIC%3A%20BAUMATW1XXX%0A' +
+                        'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
+                        'BIC%3A%20RZ00AT2L180%0A' +
                         'Verwendungszweck%3A%20' + orderId + '%0A%0A' +
                         'Wir%20versenden%20Ihre%20Ware%20nach%20Zahlungseingang.';
                     var mailtoLinkCustomer = 'mailto:' + encodeURIComponent(address.email) + '?subject=Bestellbest%C3%A4tigung%20%23' + orderId + '&body=' + mailtoBodyCustomer;
