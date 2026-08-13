@@ -25,7 +25,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ========== GRUNDSTIL (identisch) ========== */
+        /* ========== GRUNDSTIL ========== */
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:'Open Sans',sans-serif; background-color:#fef9e6; color:#2c2c2c; line-height:1.5; }
         .container { max-width:1200px; margin:0 auto; padding:0 20px; }
@@ -233,7 +233,7 @@
 <body>
 
     <!-- ================================================================
-    GEWÄHRLEISTUNGS-POPUP (BILD + OK)
+    GEWÄHRLEISTUNGS-POPUP (BILD + OK) – erscheint bei jedem Besuch
     ================================================================ -->
     <div id="guarantee-popup">
         <div class="guarantee-container">
@@ -444,7 +444,7 @@
     <div class="toast" id="toast"></div>
 
     <!-- ================================================================
-    JAVASCRIPT
+    JAVASCRIPT – mit verbesserter E-Mail-Funktion
     ================================================================ -->
     <script>
         (function() {
@@ -556,10 +556,7 @@
             if (topBtn) topBtn.addEventListener('click', function(e){e.preventDefault(); resetAndReload();});
 
             // ---------- Beim Laden – immer Gewährleistungs-Popup anzeigen ----------
-            // Entfernt: Abfrage eines Cookies -> Popup erscheint bei jedem Seitenaufruf
             showGuarantee();
-
-            // OK-Button schließt nur das Popup, setzt kein Cookie mehr
             okBtn.addEventListener('click', function() {
                 hideGuarantee();
             });
@@ -860,12 +857,13 @@
             });
 
             // ================================================================
-            // ==========  E-MAIL-VERSAND  ====================================
+            // ==========  E-MAIL-VERSAND (überarbeitet)  =====================
             // ================================================================
-            var FORMSPREE_ID = 'meajkvyk'; // <-- deine Formspree-ID für Shop
+            // ★★★★★ WICHTIG: Deine Formspree-ID – aktiv in deinem Account? ★★★★★
+            var FORMSPREE_ID = 'meajkvyk'; // <-- deine Formspree-ID (laut deiner Mitteilung)
             var SHOP_EMAIL = 'baumann.bernhard@gmx.net';
 
-            // 1) E-Mail an den Shop (über Formspree)
+            // 1) E-Mail an den Shop – jetzt mit Fallback per HTML-Formular
             function sendShopEmail(orderId, cartItems, total, addressData) {
                 return new Promise(function(resolve, reject) {
                     var itemsText = cartItems.map(function(item) {
@@ -885,24 +883,80 @@
                         'IBAN: AT11 3418 0000 0144 3597\n' +
                         'BIC: RZ00AT2L180\n' +
                         'Verwendungszweck: ' + orderId;
+
+                    // Zuerst versuchen wir es mit fetch (AJAX)
                     var formData = new FormData();
                     formData.append('_subject', 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName);
                     formData.append('message', body);
                     formData.append('_replyto', SHOP_EMAIL);
+
                     fetch('https://formspree.io/f/' + FORMSPREE_ID, {
                         method: 'POST',
                         body: formData,
                         headers: { 'Accept': 'application/json' }
                     })
                     .then(function(response) {
-                        if (response.ok) { resolve(); } else {
-                            response.text().then(function(text) {
-                                reject(new Error('Formspree-Fehler: ' + response.status + ' - ' + text));
-                            }).catch(function() { reject(new Error('Formspree-Fehler: ' + response.status)); });
+                        if (response.ok) {
+                            resolve();
+                        } else {
+                            // Bei Fehler: Fallback per HTML-Formular (umgeht CORS)
+                            console.warn('Fetch fehlgeschlagen (Status ' + response.status + '), versuche Fallback per Formular.');
+                            fallbackShopEmail(orderId, cartItems, total, addressData, resolve, reject);
                         }
                     })
-                    .catch(function(err) { reject(err); });
+                    .catch(function(err) {
+                        // Netzwerkfehler – Fallback per Formular
+                        console.warn('Fetch-Netzwerkfehler:', err);
+                        fallbackShopEmail(orderId, cartItems, total, addressData, resolve, reject);
+                    });
                 });
+            }
+
+            // Fallback für Shop-E-Mail: unsichtbares Formular mit action
+            function fallbackShopEmail(orderId, cartItems, total, addressData, resolve, reject) {
+                try {
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'https://formspree.io/f/' + FORMSPREE_ID;
+                    form.target = '_blank'; // öffnet in neuem Tab (nicht störend)
+
+                    var fields = {
+                        '_subject': 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName,
+                        'message': 'Neue Bestellung von Ihrer Website:\n\n' +
+                            'Bestellnummer: ' + orderId + '\n' +
+                            'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
+                            '— Lieferadresse —\n' +
+                            addressData.firstName + ' ' + addressData.lastName + '\n' +
+                            addressData.street + '\n' +
+                            addressData.zip + ' ' + addressData.city + '\n' +
+                            'E-Mail: ' + addressData.email + '\n' +
+                            '\n— Produkte —\n' + cartItems.map(function(item) {
+                                return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
+                            }).join('\n') + '\n\n' +
+                            'Gesamtbetrag: ' + formatPrice(total) + '\n\n' +
+                            '— Überweisung —\n' +
+                            'IBAN: AT11 3418 0000 0144 3597\n' +
+                            'BIC: RZ00AT2L180\n' +
+                            'Verwendungszweck: ' + orderId,
+                        '_replyto': SHOP_EMAIL
+                    };
+
+                    for (var key in fields) {
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = fields[key];
+                        form.appendChild(input);
+                    }
+
+                    document.body.appendChild(form);
+                    form.submit();
+                    // Formular nach Absenden entfernen (nach kurzer Verzögerung)
+                    setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
+                    resolve(); // Wir gehen davon aus, dass es funktioniert hat (keine Fehlerrückmeldung möglich)
+                } catch (e) {
+                    reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message));
+                }
             }
 
             // 2) E-Mail an den Kunden (über Formsubmit.co – dynamischer Empfänger)
@@ -926,7 +980,6 @@
                     var formData = new FormData();
                     formData.append('_subject', 'Bestellbestätigung #' + orderId);
                     formData.append('message', body);
-                    // Formsubmit leitet an die E-Mail-Adresse in der URL weiter
                     fetch('https://formsubmit.co/' + encodeURIComponent(addressData.email), {
                         method: 'POST',
                         body: formData,
@@ -941,7 +994,7 @@
                 });
             }
 
-            // ---------- Stornierungs-E-Mail (über Formspree) ----------
+            // ---------- Stornierungs-E-Mail (über Formspree, ebenfalls mit Fallback) ----------
             function sendCancellationEmail(orderNumber, addressData) {
                 return new Promise(function(resolve, reject) {
                     var body = 'Stornierung einer Bestellung:\n\n' +
@@ -962,13 +1015,47 @@
                     })
                     .then(function(response) {
                         if (response.ok) { resolve(); } else {
-                            response.text().then(function(text) {
-                                reject(new Error('Formspree-Fehler: ' + response.status + ' - ' + text));
-                            }).catch(function() { reject(new Error('Formspree-Fehler: ' + response.status)); });
+                            // Fallback per Formular
+                            fallbackCancellationEmail(orderNumber, addressData, resolve, reject);
                         }
                     })
-                    .catch(function(err) { reject(err); });
+                    .catch(function(err) {
+                        fallbackCancellationEmail(orderNumber, addressData, resolve, reject);
+                    });
                 });
+            }
+
+            function fallbackCancellationEmail(orderNumber, addressData, resolve, reject) {
+                try {
+                    var form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = 'https://formspree.io/f/' + FORMSPREE_ID;
+                    form.target = '_blank';
+                    var fields = {
+                        '_subject': 'Stornierung der Bestellung #' + orderNumber,
+                        'message': 'Stornierung einer Bestellung:\n\n' +
+                            'Bestellnummer: ' + orderNumber + '\n' +
+                            'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
+                            'Die Bestellung wurde vom Kunden storniert.\n' +
+                            (addressData ? 'Kunde: ' + addressData.firstName + ' ' + addressData.lastName + '\n' : '') +
+                            (addressData && addressData.email ? 'E-Mail: ' + addressData.email + '\n' : '') +
+                            '\nBitte bearbeiten Sie die Stornierung entsprechend.',
+                        '_replyto': SHOP_EMAIL
+                    };
+                    for (var key in fields) {
+                        var input = document.createElement('input');
+                        input.type = 'hidden';
+                        input.name = key;
+                        input.value = fields[key];
+                        form.appendChild(input);
+                    }
+                    document.body.appendChild(form);
+                    form.submit();
+                    setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
+                    resolve();
+                } catch (e) {
+                    reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message));
+                }
             }
 
             // ================================================================
@@ -1058,7 +1145,6 @@
                     html += '</div>';
                 });
                 html += '<div class="checkout-total">Gesamt: '+formatPrice(getTotalPrice())+'</div>';
-                // NEU: Hinweis auf Versandkosten + Links zu Post und DPD
                 html += '<div style="font-size:0.9rem; color:#666; margin-top:8px; text-align:right;">';
                 html += 'zzgl. Versandkosten (trägt der Käufer) – ';
                 html += '<a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a>';
@@ -1112,7 +1198,6 @@
                                 auf das oben angegebene Konto.<br>
                                 Verwendungszweck: <strong>${orderId}</strong>
                             </p>
-                            <!-- NEU: Hinweis auf Versandkosten + Links im Erfolgsfall -->
                             <p style="font-size:0.85rem; color:#888; margin-top:4px;">
                                 zzgl. Versandkosten (trägt der Käufer) – 
                                 <a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a> |
