@@ -444,7 +444,7 @@
     <div class="toast" id="toast"></div>
 
     <!-- ================================================================
-    JAVASCRIPT – mit verbesserter E-Mail-Funktion
+    JAVASCRIPT – mit Versandkostenberechnung
     ================================================================ -->
     <script>
         (function() {
@@ -571,97 +571,161 @@
             }
 
             // ================================================================
-            // ==========  PRODUKTDATEN  =======================================
+            // ==========  PRODUKTDATEN (mit Gewicht)  ==========================
             // ================================================================
             var products = [{
-                id:'p1', title:'Blütenhonig', variant:'1000g Glas', price:14.00,
+                id:'p1', title:'Blütenhonig', variant:'1000g Glas', price:14.00, weight:1.0,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-2-high-ko92j5.jpg',
                 unit:'kg', unitSize:1.0
             },{
-                id:'p2', title:'Waldhonig', variant:'1000g Glas', price:14.00,
+                id:'p2', title:'Waldhonig', variant:'1000g Glas', price:14.00, weight:1.0,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_145843-2-standard.jpg',
                 unit:'kg', unitSize:1.0
             },{
-                id:'p3', title:'Cremehonig', variant:'1000g Glas', price:14.00,
+                id:'p3', title:'Cremehonig', variant:'1000g Glas', price:14.00, weight:1.0,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/cremehonig-standard.jpg',
                 unit:'kg', unitSize:1.0
             },{
-                id:'p4', title:'Blüten-/Wald-/Cremehonig', variant:'500g Glas', price:7.50,
+                id:'p4', title:'Blüten-/Wald-/Cremehonig', variant:'500g Glas', price:7.50, weight:0.5,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-2-high-ko92j5.jpg',
                 unit:'kg', unitSize:0.5
             },{
-                id:'p5', title:'Blüten-/Wald-/Cremehonig', variant:'250g Glas', price:4.50,
+                id:'p5', title:'Blüten-/Wald-/Cremehonig', variant:'250g Glas', price:4.50, weight:0.25,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-2-high-ko92j5.jpg',
                 unit:'kg', unitSize:0.25
             },{
-                id:'p6', title:'Met - Honigwein', variant:'750ml Flasche', price:12.00,
+                id:'p6', title:'Met - Honigwein', variant:'750ml Flasche', price:12.00, weight:1.2,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150230-2-high.jpg',
                 unit:'l', unitSize:0.75
             },{
-                id:'p7', title:'Oxymel (Sauerhonig)', variant:'500ml Flasche', price:13.00,
+                id:'p7', title:'Oxymel (Sauerhonig)', variant:'500ml Flasche', price:13.00, weight:0.7,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-high-6o1nqc.jpg',
                 unit:'l', unitSize:0.5
             },{
-                id:'p8', title:'Oxymel (Sauerhonig)', variant:'250ml Flasche', price:7.50,
+                id:'p8', title:'Oxymel (Sauerhonig)', variant:'250ml Flasche', price:7.50, weight:0.4,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-high-6o1nqc.jpg',
                 unit:'l', unitSize:0.25
             },{
-                id:'p9', title:'Honig Likör', variant:'500ml', price:13.00,
+                id:'p9', title:'Honig Likör', variant:'500ml', price:13.00, weight:0.8,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150101-2-high.jpg',
                 unit:'l', unitSize:0.5
             },{
-                id:'p10', title:'Honig Likör', variant:'200ml', price:7.50,
+                id:'p10', title:'Honig Likör', variant:'200ml', price:7.50, weight:0.4,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150101-2-high.jpg',
                 unit:'l', unitSize:0.2
             },{
-                id:'p11', title:'Blütenpollen', variant:'100g Dose', price:8.00,
+                id:'p11', title:'Blütenpollen', variant:'100g Dose', price:8.00, weight:0.15,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150454-high-si55t2.jpg',
                 unit:'kg', unitSize:0.1
             },{
-                id:'p12', title:'Propolis', variant:'30ml Flasche', price:9.50,
+                id:'p12', title:'Propolis', variant:'30ml Flasche', price:9.50, weight:0.1,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150510-high.jpg',
                 unit:'l', unitSize:0.03
             },{
-                id:'p13', title:'Lippenbalsam', variant:'10ml Tiegel', price:5.00,
+                id:'p13', title:'Lippenbalsam', variant:'10ml Tiegel', price:5.00, weight:0.05,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150725-high-tev34l.jpg'
             },{
-                id:'p14', title:'Lippenpflegestift', variant:'4,8g', price:4.50,
+                id:'p14', title:'Lippenpflegestift', variant:'4,8g', price:4.50, weight:0.02,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150553-2-high.jpg'
             },{
-                id:'p15', title:'Handcreme / Pflegecreme', variant:'60ml', price:3.50,
+                id:'p15', title:'Handcreme / Pflegecreme', variant:'60ml', price:3.50, weight:0.1,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150615-2-high.jpg'
             },{
-                id:'p16', title:'Bienengift Salbe', variant:'50ml', price:38.00,
+                id:'p16', title:'Bienengift Salbe', variant:'50ml', price:38.00, weight:0.1,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/bienengiftsalbe-high-gnama5.jpg'
             },{
-                id:'p17', title:'Honig Kräuter Essig', variant:'250ml', price:5.50,
+                id:'p17', title:'Honig Kräuter Essig', variant:'250ml', price:5.50, weight:0.35,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150525-high-ovnqyu.jpg',
                 unit:'l', unitSize:0.25
             },{
-                id:'p18', title:'Propolis Shampoo', variant:'200ml', price:5.00,
+                id:'p18', title:'Propolis Shampoo', variant:'200ml', price:5.00, weight:0.25,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150604-2-high.jpg',
                 unit:'l', unitSize:0.2
             },{
-                id:'p19', title:'Propolis Duschgel', variant:'200ml', price:5.00,
+                id:'p19', title:'Propolis Duschgel', variant:'200ml', price:5.00, weight:0.25,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150654-high-b1b8y0.jpg',
                 unit:'l', unitSize:0.2
             },{
-                id:'p20', title:'Honigbärchen', variant:'100g (Fruchtgummi)', price:2.50,
+                id:'p20', title:'Honigbärchen', variant:'100g (Fruchtgummi)', price:2.50, weight:0.12,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150841-2-high.jpg',
                 unit:'kg', unitSize:0.1
             },{
-                id:'p21', title:'Honigzuckerl', variant:'90g (Hartkaramellen)', price:2.50,
+                id:'p21', title:'Honigzuckerl', variant:'90g (Hartkaramellen)', price:2.50, weight:0.11,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150628-2-high.jpg',
                 unit:'kg', unitSize:0.09
             },{
                 id:'p22', title:'Bienenwachs Kerzen', variant:'verschiedene Größen', price:3.00,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150812-high.jpg',
                 variants:[
-                    {label:'Klein (ca. 10cm)', price:3.00},
-                    {label:'Mittel (ca. 20cm)', price:10.00},
-                    {label:'Groß (ca. 30cm)', price:20.00}
+                    {label:'Klein (ca. 10cm)', price:3.00, weight:0.05},
+                    {label:'Mittel (ca. 20cm)', price:10.00, weight:0.15},
+                    {label:'Groß (ca. 30cm)', price:20.00, weight:0.3}
                 ]
             }];
+
+            // ================================================================
+            // ==========  VERSANDKOSTEN-BERECHNUNG  ==========================
+            // ================================================================
+            var SENDER = {
+                name: "Baumann's Honig",
+                street: "Staudachstrasse 1",
+                zip: "4081",
+                city: "Hartkirchen",
+                country: "Österreich"
+            };
+
+            // Tarifmatrix (Stand 2026, inkl. MwSt.) – national Österreich
+            var SHIPPING_RATES = {
+                post: [
+                    { maxWeight: 1,    price: 6.32 },
+                    { maxWeight: 2,    price: 7.65 },
+                    { maxWeight: 4,    price: 8.96 },
+                    { maxWeight: 10,   price: 12.92 },
+                    { maxWeight: 31.5, price: 20.78 }
+                ],
+                dpd: [
+                    { maxWeight: 3,    price: 4.30 },
+                    { maxWeight: 10,   price: 6.30 },
+                    { maxWeight: 20,   price: 8.30 },
+                    { maxWeight: 31.5, price: 12.30 }
+                ]
+            };
+
+            function getCartWeight() {
+                var totalWeight = 0;
+                cart.forEach(function(item) {
+                    var product = products.find(function(p) { return p.id === item.id; });
+                    var itemWeight = product ? (product.weight || 0.1) : 0.1;
+                    if (product && product.variants) {
+                        var variant = product.variants.find(function(v) { return v.label === item.variant; });
+                        if (variant && variant.weight) itemWeight = variant.weight;
+                    }
+                    totalWeight += itemWeight * item.quantity;
+                });
+                return totalWeight;
+            }
+
+            function calculateShipping(provider, weightKg) {
+                var rates = SHIPPING_RATES[provider];
+                if (!rates) return 0;
+                for (var i = 0; i < rates.length; i++) {
+                    if (weightKg <= rates[i].maxWeight) return rates[i].price;
+                }
+                return rates[rates.length - 1].price;
+            }
+
+            function getBestShipping() {
+                var weight = getCartWeight();
+                var postPrice = calculateShipping('post', weight);
+                var dpdPrice  = calculateShipping('dpd', weight);
+                return {
+                    weight: weight,
+                    post: postPrice,
+                    dpd:  dpdPrice,
+                    best: Math.min(postPrice, dpdPrice),
+                    bestProvider: postPrice <= dpdPrice ? 'Post' : 'DPD'
+                };
+            }
 
             // ================================================================
             // ==========  WARENKORB-LOGIK  ===================================
@@ -683,15 +747,16 @@
                 if (!product) return;
                 var price = product.price;
                 var variantLabel = product.variant;
+                var weight = product.weight || 0.1;
                 if (product.variants && chosenVariant) {
                     var found = product.variants.find(v => v.label === chosenVariant);
-                    if (found) { price = found.price; variantLabel = chosenVariant; }
+                    if (found) { price = found.price; variantLabel = chosenVariant; if (found.weight) weight = found.weight; }
                 }
                 var existing = cart.find(item => item.id === productId && item.variantLabel === variantLabel);
                 if (existing) {
                     existing.quantity += quantity;
                 } else {
-                    cart.push({ id: productId, title: product.title, variant: variantLabel, price: price, quantity: quantity, image: product.image });
+                    cart.push({ id: productId, title: product.title, variant: variantLabel, price: price, weight: weight, quantity: quantity, image: product.image });
                 }
                 saveCart();
                 showToast(product.title + ' wurde in den Warenkorb gelegt.');
@@ -720,7 +785,7 @@
                     var variantOptions = '';
                     if (hasVariants) {
                         p.variants.forEach(function(v) {
-                            variantOptions += '<option value="'+v.label+'" data-price="'+v.price+'">'+v.label+' ('+formatPrice(v.price)+')</option>';
+                            variantOptions += '<option value="'+v.label+'" data-price="'+v.price+'" data-weight="'+(v.weight||'')+'">'+v.label+' ('+formatPrice(v.price)+')</option>';
                         });
                     }
                     var pricePerUnit = '';
@@ -857,18 +922,17 @@
             });
 
             // ================================================================
-            // ==========  E-MAIL-VERSAND (überarbeitet)  =====================
+            // ==========  E-MAIL-VERSAND (mit Versandkosten)  ================
             // ================================================================
-            // ★★★★★ WICHTIG: Deine Formspree-ID – aktiv in deinem Account? ★★★★★
-            var FORMSPREE_ID = 'meajkvyk'; // <-- deine Formspree-ID (laut deiner Mitteilung)
+            var FORMSPREE_ID = 'meajkvyk';
             var SHOP_EMAIL = 'baumann.bernhard@gmx.net';
 
-            // 1) E-Mail an den Shop – jetzt mit Fallback per HTML-Formular
-            function sendShopEmail(orderId, cartItems, total, addressData) {
+            function sendShopEmail(orderId, cartItems, total, addressData, shipping) {
                 return new Promise(function(resolve, reject) {
                     var itemsText = cartItems.map(function(item) {
                         return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
                     }).join('\n');
+                    var totalWithShipping = total + shipping.best;
                     var body = 'Neue Bestellung von Ihrer Website:\n\n' +
                         'Bestellnummer: ' + orderId + '\n' +
                         'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
@@ -878,13 +942,15 @@
                         addressData.zip + ' ' + addressData.city + '\n' +
                         'E-Mail: ' + addressData.email + '\n' +
                         '\n— Produkte —\n' + itemsText + '\n\n' +
-                        'Gesamtbetrag: ' + formatPrice(total) + '\n\n' +
+                        'Gesamtbetrag (Produkte): ' + formatPrice(total) + '\n' +
+                        'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
+                        'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
+                        'Gesamtsumme (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                         '— Überweisung —\n' +
                         'IBAN: AT11 3418 0000 0144 3597\n' +
                         'BIC: RZ00AT2L180\n' +
                         'Verwendungszweck: ' + orderId;
 
-                    // Zuerst versuchen wir es mit fetch (AJAX)
                     var formData = new FormData();
                     formData.append('_subject', 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName);
                     formData.append('message', body);
@@ -899,27 +965,24 @@
                         if (response.ok) {
                             resolve();
                         } else {
-                            // Bei Fehler: Fallback per HTML-Formular (umgeht CORS)
                             console.warn('Fetch fehlgeschlagen (Status ' + response.status + '), versuche Fallback per Formular.');
-                            fallbackShopEmail(orderId, cartItems, total, addressData, resolve, reject);
+                            fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject);
                         }
                     })
                     .catch(function(err) {
-                        // Netzwerkfehler – Fallback per Formular
                         console.warn('Fetch-Netzwerkfehler:', err);
-                        fallbackShopEmail(orderId, cartItems, total, addressData, resolve, reject);
+                        fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject);
                     });
                 });
             }
 
-            // Fallback für Shop-E-Mail: unsichtbares Formular mit action
-            function fallbackShopEmail(orderId, cartItems, total, addressData, resolve, reject) {
+            function fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject) {
                 try {
                     var form = document.createElement('form');
                     form.method = 'POST';
                     form.action = 'https://formspree.io/f/' + FORMSPREE_ID;
-                    form.target = '_blank'; // öffnet in neuem Tab (nicht störend)
-
+                    form.target = '_blank';
+                    var totalWithShipping = total + shipping.best;
                     var fields = {
                         '_subject': 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName,
                         'message': 'Neue Bestellung von Ihrer Website:\n\n' +
@@ -933,7 +996,10 @@
                             '\n— Produkte —\n' + cartItems.map(function(item) {
                                 return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
                             }).join('\n') + '\n\n' +
-                            'Gesamtbetrag: ' + formatPrice(total) + '\n\n' +
+                            'Gesamtbetrag (Produkte): ' + formatPrice(total) + '\n' +
+                            'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
+                            'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
+                            'Gesamtsumme (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                             '— Überweisung —\n' +
                             'IBAN: AT11 3418 0000 0144 3597\n' +
                             'BIC: RZ00AT2L180\n' +
@@ -951,27 +1017,29 @@
 
                     document.body.appendChild(form);
                     form.submit();
-                    // Formular nach Absenden entfernen (nach kurzer Verzögerung)
                     setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
-                    resolve(); // Wir gehen davon aus, dass es funktioniert hat (keine Fehlerrückmeldung möglich)
+                    resolve();
                 } catch (e) {
                     reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message));
                 }
             }
 
-            // 2) E-Mail an den Kunden (über Formsubmit.co – dynamischer Empfänger)
-            function sendCustomerEmail(orderId, cartItems, total, addressData) {
+            function sendCustomerEmail(orderId, cartItems, total, addressData, shipping) {
                 return new Promise(function(resolve, reject) {
                     var itemsText = cartItems.map(function(item) {
                         return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
                     }).join('\n');
+                    var totalWithShipping = total + shipping.best;
                     var body = 'Vielen Dank für Ihre Bestellung bei Baumann Honig!\n\n' +
                         'Ihre Bestellnummer: ' + orderId + '\n' +
                         'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
                         '— Ihre Bestellung —\n' + itemsText + '\n\n' +
-                        'Gesamtbetrag: exklusive Versand ' + formatPrice(total) + '\n\n' +
+                        'Gesamtbetrag (Produkte): ' + formatPrice(total) + '\n' +
+                        'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
+                        'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
+                        'Gesamtsumme (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                         '— Überweisung —\n' +
-                        'Bitte überweisen Sie den Betrag plus Versand auf folgendes Konto:\n' +
+                        'Bitte überweisen Sie den Betrag von ' + formatPrice(totalWithShipping) + ' auf folgendes Konto:\n' +
                         'IBAN: AT11 3418 0000 0144 3597\n' +
                         'BIC: RZ00AT2L180\n' +
                         'Verwendungszweck: ' + orderId + '\n\n' +
@@ -994,7 +1062,6 @@
                 });
             }
 
-            // ---------- Stornierungs-E-Mail (über Formspree, ebenfalls mit Fallback) ----------
             function sendCancellationEmail(orderNumber, addressData) {
                 return new Promise(function(resolve, reject) {
                     var body = 'Stornierung einer Bestellung:\n\n' +
@@ -1015,7 +1082,6 @@
                     })
                     .then(function(response) {
                         if (response.ok) { resolve(); } else {
-                            // Fallback per Formular
                             fallbackCancellationEmail(orderNumber, addressData, resolve, reject);
                         }
                     })
@@ -1059,7 +1125,7 @@
             }
 
             // ================================================================
-            // ==========  CHECKOUT  ===========================================
+            // ==========  CHECKOUT  ==========================================
             // ================================================================
             var checkoutOverlay = document.getElementById('checkoutOverlay');
             var checkoutSummary = document.getElementById('checkoutSummary');
@@ -1144,13 +1210,14 @@
                     html += '<span>'+formatPrice(item.price * item.quantity)+'</span>';
                     html += '</div>';
                 });
-                html += '<div class="checkout-total">Gesamt: '+formatPrice(getTotalPrice())+'</div>';
-                html += '<div style="font-size:0.9rem; color:#666; margin-top:8px; text-align:right;">';
-                html += 'zzgl. Versandkosten (trägt der Käufer) – ';
-                html += '<a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a>';
-                html += ' | ';
-                html += '<a href="https://www.mydpd.at/webpaket?_gl=1*157h4ng*_ga*NTIwNTE1NzE3LjE3ODY1MzY0MDU.*_ga_Q3RB6RNZ25*czE3ODY1MzY0MDQkbzEkZzEkdDE3ODY1MzY4NTgkajI1JGwwJGgw" target="_blank" rel="noopener">DPD Tarifrechner</a>';
+                var shipping = getBestShipping();
+                html += '<div class="checkout-total">Zwischensumme: '+formatPrice(getTotalPrice())+'</div>';
+                html += '<div style="font-size:0.95rem; color:#333; margin-top:8px; text-align:right;">';
+                html += '<strong>Versandkosten:</strong> ' + formatPrice(shipping.best) + ' (via ' + shipping.bestProvider + ')';
+                html += '<br><span style="font-size:0.8rem; color:#666;">Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg</span>';
+                html += '<br><span style="font-size:0.8rem; color:#666;">Paketversand von ' + SENDER.zip + ' ' + SENDER.city + '</span>';
                 html += '</div>';
+                html += '<div class="checkout-total" style="margin-top:8px;">Gesamt (inkl. Versand): ' + formatPrice(getTotalPrice() + shipping.best) + '</div>';
                 checkoutSummary.innerHTML = html;
             }
 
@@ -1163,7 +1230,6 @@
                 }
             });
 
-            // ---------- Bestellung abschließen (inkl. zwei E-Mails) ----------
             finishOrderBtn.addEventListener('click', function() {
                 if (cart.length === 0) { showToast('Warenkorb ist leer.'); closeCheckout(); return; }
                 if (!validateAddress()) { showToast('Bitte alle Pflichtfelder ausfüllen.'); return; }
@@ -1177,15 +1243,15 @@
                 var address = getAddressData();
                 var orderId = 'BH-' + Date.now().toString().slice(-8) + '-' + Math.floor(Math.random() * 1000).toString().padStart(3, '0');
                 var total = getTotalPrice();
+                var shipping = getBestShipping();
+                var totalWithShipping = total + shipping.best;
                 var cartCopy = cart.slice();
 
-                // Beide E-Mails parallel senden
                 Promise.all([
-                    sendShopEmail(orderId, cartCopy, total, address),
-                    sendCustomerEmail(orderId, cartCopy, total, address)
+                    sendShopEmail(orderId, cartCopy, total, address, shipping),
+                    sendCustomerEmail(orderId, cartCopy, total, address, shipping)
                 ])
                 .then(function() {
-                    // Erfolg – Bestätigungsseite anzeigen
                     checkoutSummary.innerHTML = `
                         <div class="checkout-success">
                             <div class="big-icon">✅</div>
@@ -1194,14 +1260,13 @@
                             <p style="font-size:0.9rem;color:#555;">Eine Bestätigung wurde an Ihre E-Mail-Adresse gesendet.</p>
                             <div class="order-number">Bestellnummer: ${orderId}</div>
                             <p style="margin-top:12px;font-size:0.95rem;">
-                                Bitte überweisen Sie den Betrag von <strong>${formatPrice(total)}</strong>
+                                Bitte überweisen Sie den Betrag von <strong>${formatPrice(totalWithShipping)}</strong>
                                 auf das oben angegebene Konto.<br>
                                 Verwendungszweck: <strong>${orderId}</strong>
                             </p>
                             <p style="font-size:0.85rem; color:#888; margin-top:4px;">
-                                zzgl. Versandkosten (trägt der Käufer) – 
-                                <a href="https://www.post.at/t/tarifrechner" target="_blank" rel="noopener">Tarifrechner der Post</a> |
-                                <a href="https://www.mydpd.at/webpaket?_gl=1*157h4ng*_ga*NTIwNTE1NzE3LjE3ODY1MzY0MDU.*_ga_Q3RB6RNZ25*czE3ODY1MzY0MDQkbzEkZzEkdDE3ODY1MzY4NTgkajI1JGwwJGgw" target="_blank" rel="noopener">DPD Tarifrechner</a>
+                                Versandkosten: ${formatPrice(shipping.best)} (via ${shipping.bestProvider}), 
+                                Gesamtgewicht: ${shipping.weight.toFixed(2)} kg
                             </p>
                             <p style="font-size:0.85rem;color:#777;margin-top:8px;">
                                 Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
@@ -1239,7 +1304,6 @@
                     errorDiv.className = 'error-detail';
                     errorDiv.innerHTML = '<strong>Fehler beim Versenden der E-Mail:</strong> ' + err.message +
                         '<br><span style="font-size:0.8rem;">Die Bestellung wurde trotzdem erfasst – bitte senden Sie die Daten manuell.</span>';
-                    // Fallback: mailto für Shop und Kunde
                     var itemsText = cartCopy.map(function(item) {
                         return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
                     }).join('%0A');
@@ -1252,7 +1316,7 @@
                         encodeURIComponent(address.zip + ' ' + address.city) + '%0A' +
                         'E-Mail%3A%20' + encodeURIComponent(address.email) + '%0A%0A' +
                         '%E2%80%94%20Produkte%20%E2%80%94%0A' + itemsText + '%0A%0A' +
-                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
+                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%0A%0A' +
                         '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
                         'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
                         'BIC%3A%20RZ00AT2L180%0A' +
@@ -1262,9 +1326,9 @@
                         'Ihre%20Bestellnummer%3A%20' + orderId + '%0A' +
                         'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
                         '%E2%80%94%20Ihre%20Bestellung%20%E2%80%94%0A' + itemsText + '%0A%0A' +
-                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(total)) + '%0A%0A' +
+                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%0A%0A' +
                         '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
-                        'Bitte%20%C3%BCberweisen%20Sie%20den%20Betrag%20auf%20folgendes%20Konto%3A%0A' +
+                        'Bitte%20%C3%BCberweisen%20Sie%20den%20Betrag%20von%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%20auf%20folgendes%20Konto%3A%0A' +
                         'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
                         'BIC%3A%20RZ00AT2L180%0A' +
                         'Verwendungszweck%3A%20' + orderId + '%0A%0A' +
@@ -1329,7 +1393,7 @@
             });
 
             // ================================================================
-            // ==========  TOAST  ==============================================
+            // ==========  TOAST  =============================================
             // ================================================================
             var toastEl = document.getElementById('toast');
             var toastTimer;
@@ -1341,7 +1405,7 @@
             }
 
             // ================================================================
-            // ==========  INIT  ===============================================
+            // ==========  INIT  ==============================================
             // ================================================================
             loadCart();
             renderProducts();
