@@ -4,39 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Preise | Baumann's Honig Seiten</title>
-    <meta name="description" content="Unsere Honigprodukte und Bienenkosmetik – alle Preise im Überblick. Blütenhonig, Waldhonig, Propolis, Met, Cremes und vieles mehr." />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/honigglas2-high.jpg" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-0r4n33.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-9nsmtu.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-bfcjoj.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-96urqv.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-jh8wak.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-vyjvhb.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-hnrv0p.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-obl9rm.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-h0gkep.png" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/propolisshampoo-high-oz8v5u.jpg" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/dushgel-high.jpg" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/gummibaer-high.jpg" />
-    <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/honigb-ren-high.jpg" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta property="twitter:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/honigglas2-high.jpg" />
+    <meta name="description" content="Unsere Honigprodukte und Bienenkosmetik – alle Preise im Überblick." />
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        /* ========== GRUNDSTIL ========== */
         * { margin:0; padding:0; box-sizing:border-box; }
         body { font-family:'Open Sans',sans-serif; background-color:#fef9e6; color:#2c2c2c; line-height:1.5; }
         .container { max-width:1200px; margin:0 auto; padding:0 20px; }
-
-        /* Header */
         .top-header { background-color:#fff8e7; border-bottom:2px solid #f5a623; padding:15px 0; }
         .header-inner { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px; }
         .logo-area { display:flex; align-items:center; gap:15px; }
         .logo-img { width:80px; height:auto; }
         .logo-text h1 { font-size:1.6rem; color:#d48f1b; margin-bottom:5px; }
         .logo-text p { font-size:0.85rem; color:#6b4c1a; }
-
         .main-nav ul { display:flex; list-style:none; gap:25px; flex-wrap:wrap; }
         .main-nav a { text-decoration:none; color:#5a3e0e; font-weight:600; transition:color 0.2s; }
         .main-nav a:hover, .main-nav .active { color:#f5a623; }
@@ -47,28 +27,23 @@
             .main-nav.open { display:block; }
             .main-nav ul { flex-direction:column; gap:12px; text-align:center; }
         }
-
         main { padding:50px 0; }
         .info-box { background:white; border-radius:20px; padding:30px; text-align:center; margin-bottom:40px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
         .info-box h2 { color:#d48f1b; margin-bottom:15px; }
-
         .price-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:30px; margin:40px 0; }
         .product-card { background:white; border-radius:20px; overflow:hidden; box-shadow:0 5px 15px rgba(0,0,0,0.08); transition:transform 0.2s, box-shadow 0.2s; display:flex; flex-direction:column; position:relative; }
         .product-card:hover { transform:translateY(-5px); box-shadow:0 10px 25px rgba(0,0,0,0.12); }
-
         .product-image-wrapper { position:relative; overflow:hidden; height:220px; background-color:#f9e5c1; }
         .product-image-wrapper img { width:100%; height:100%; object-fit:cover; transition:filter 0.3s ease; }
         .product-card:hover .product-image-wrapper img { filter:brightness(0.7) blur(1px); }
         .guarantee-overlay { position:absolute; top:0; left:0; width:100%; height:100%; display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity 0.4s ease, transform 0.3s ease; transform:scale(0.9); pointer-events:none; background:rgba(0,0,0,0.15); padding:12px; }
         .product-card:hover .guarantee-overlay { opacity:1; transform:scale(1); }
         .guarantee-overlay img { width:100%; height:100%; object-fit:contain; max-width:100%; max-height:100%; border-radius:8px; box-shadow:0 8px 30px rgba(0,0,0,0.4); background:white; padding:8px; filter:none !important; }
-
         .product-info { padding:20px; flex:1; display:flex; flex-direction:column; }
         .product-title { font-size:1.3rem; font-weight:bold; color:#d48f1b; margin-bottom:4px; }
         .product-variants { font-size:0.9rem; color:#555; margin-bottom:8px; line-height:1.4; }
         .product-price { font-weight:bold; font-size:1.2rem; color:#2c2c2c; margin-top:8px; border-top:1px solid #eee; padding-top:10px; }
         .product-price-per-unit { font-size:0.85rem; color:#666; margin-top:2px; }
-
         .cart-controls { display:flex; align-items:center; gap:10px; margin-top:12px; flex-wrap:wrap; }
         .cart-controls label { font-size:0.9rem; font-weight:600; color:#555; }
         .qty-input { width:60px; padding:6px 4px; border:1px solid #ddd; border-radius:8px; text-align:center; font-size:1rem; }
@@ -78,12 +53,10 @@
         .add-to-cart-btn:active { transform:scale(0.96); }
         .variant-select { width:100%; padding:6px 8px; border:1px solid #ddd; border-radius:8px; font-size:0.9rem; background:#fff; margin-top:4px; }
         .variant-select:focus { outline:2px solid #f5a623; border-color:transparent; }
-
         .cart-icon-wrapper { position:relative; cursor:pointer; font-size:1.6rem; color:#d48f1b; transition:transform 0.2s; display:flex; align-items:center; gap:6px; }
         .cart-icon-wrapper:hover { transform:scale(1.05); }
         .cart-badge { position:absolute; top:-10px; right:-14px; background:#e74c3c; color:#fff; border-radius:50%; padding:2px 8px; font-size:0.7rem; font-weight:bold; min-width:22px; text-align:center; pointer-events:none; border:2px solid #fff8e7; }
         .cart-total-label { font-size:0.9rem; font-weight:600; color:#5a3e0e; margin-right:4px; }
-
         .cart-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999998; display:none; justify-content:flex-end; animation:fadeIn 0.2s ease; }
         .cart-overlay.open { display:flex; }
         @keyframes fadeIn { from{opacity:0;} to{opacity:1;} }
@@ -93,7 +66,6 @@
         .cart-sidebar .cart-header h2 { font-size:1.5rem; color:#d48f1b; }
         .cart-close-btn { background:none; border:none; font-size:28px; color:#888; cursor:pointer; transition:color 0.2s; }
         .cart-close-btn:hover { color:#d48f1b; }
-
         .cart-items-list { flex:1; list-style:none; margin-bottom:20px; }
         .cart-item { display:flex; align-items:center; gap:14px; padding:12px 0; border-bottom:1px solid #f0f0f0; }
         .cart-item-img { width:60px; height:60px; object-fit:cover; border-radius:10px; background:#f9e5c1; flex-shrink:0; }
@@ -107,7 +79,6 @@
         .cart-item-qty .qty-num { min-width:24px; text-align:center; font-weight:600; }
         .cart-item-remove { background:none; border:none; color:#e74c3c; font-size:1.1rem; cursor:pointer; padding:0 4px; transition:transform 0.2s; }
         .cart-item-remove:hover { transform:scale(1.2); }
-
         .cart-total { border-top:2px solid #f5a623; padding-top:18px; margin-top:6px; font-size:1.3rem; font-weight:bold; display:flex; justify-content:space-between; color:#2c2c2c; }
         .cart-subtotal { font-size:0.95rem; display:flex; justify-content:space-between; color:#555; margin-top:12px; padding-top:6px; }
         .cart-shipping-info { font-size:0.9rem; color:#444; padding:6px 0; line-height:1.5; background:#f9f5ec; border-radius:8px; padding:10px 12px; margin-top:8px; }
@@ -121,8 +92,6 @@
         .cart-actions .btn-danger { background:#e74c3c; color:#fff; border:none; padding:14px 24px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; flex:0.5; transition:background 0.2s; text-align:center; }
         .cart-actions .btn-danger:hover { background:#c0392b; }
         .empty-cart-msg { text-align:center; color:#999; padding:40px 0; font-size:1.1rem; }
-
-        /* Checkout Modal */
         .checkout-overlay { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:999999; display:none; justify-content:center; align-items:center; padding:20px; animation:fadeIn 0.25s ease; }
         .checkout-overlay.open { display:flex; }
         .checkout-modal { background:#fff; max-width:700px; width:100%; border-radius:24px; padding:30px 35px; max-height:90vh; overflow-y:auto; box-shadow:0 20px 60px rgba(0,0,0,0.3); animation:slideUp 0.3s ease; }
@@ -131,13 +100,10 @@
         .checkout-summary-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #f0f0f0; font-size:0.95rem; }
         .checkout-summary-item .item-left { display:flex; gap:12px; flex-wrap:wrap; }
         .checkout-total { font-size:1.4rem; font-weight:bold; text-align:right; margin:20px 0 12px; padding-top:12px; border-top:2px solid #f5a623; }
-
-        /* Neue Versand-Box im Checkout */
         .shipping-box { background:#f9f5ec; border-left:5px solid #f5a623; border-radius:10px; padding:14px 18px; margin:18px 0; font-size:0.95rem; }
         .shipping-box h4 { color:#d48f1b; margin-bottom:8px; font-size:1.05rem; }
         .shipping-box .row { display:flex; justify-content:space-between; padding:3px 0; }
         .shipping-box .row.total { border-top:1px dashed #d4b483; margin-top:6px; padding-top:8px; font-weight:bold; color:#2c2c2c; }
-
         .address-form { background:#f9f9f9; border-radius:16px; padding:20px 20px 10px 20px; margin:18px 0; }
         .address-form .form-row { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:12px; }
         .address-form .form-group { flex:1 1 160px; display:flex; flex-direction:column; }
@@ -147,11 +113,9 @@
         .address-form .form-group input.invalid { border-color:#e74c3c; background:#fde8e8; }
         .address-form .form-group .error-msg { color:#e74c3c; font-size:0.75rem; margin-top:2px; min-height:18px; }
         .address-form .form-group.full-width { flex:1 1 100%; }
-
         .checkout-bank { background:#f9f5ec; border-radius:16px; padding:18px 20px; margin:18px 0; border-left:5px solid #f5a623; }
         .checkout-bank p { margin:4px 0; font-size:0.95rem; }
         .checkout-bank strong { color:#d48f1b; }
-
         .checkout-actions { display:flex; gap:14px; margin-top:20px; flex-wrap:wrap; }
         .checkout-actions .btn-finish { background:#27ae60; color:#fff; border:none; padding:14px 30px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; flex:1; transition:background 0.2s; }
         .checkout-actions .btn-finish:hover { background:#1e8449; }
@@ -159,20 +123,16 @@
         .checkout-actions .btn-close-checkout:hover { background:#ddd; }
         .checkout-actions .btn-withdraw { background:#e67e22; color:#fff; border:none; padding:14px 30px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; flex:0.5; transition:background 0.2s; }
         .checkout-actions .btn-withdraw:hover { background:#d35400; }
-
         .checkout-success { text-align:center; padding:20px 0; }
         .checkout-success .big-icon { font-size:4rem; color:#27ae60; margin-bottom:10px; }
         .checkout-success h3 { color:#27ae60; margin-bottom:8px; }
         .checkout-success .order-number { background:#f5f5f5; padding:6px 16px; border-radius:30px; display:inline-block; font-weight:bold; margin:8px 0; }
         .checkout-success .btn-danger { background:#e74c3c; color:#fff; border:none; padding:12px 30px; border-radius:30px; font-weight:bold; cursor:pointer; margin-top:15px; transition:background 0.2s; }
         .checkout-success .btn-danger:hover { background:#c0392b; }
-
         .error-detail { color:#c0392b; font-size:0.85rem; background:#fde8e8; padding:8px 12px; border-radius:8px; margin-top:10px; }
         .mailto-fallback { margin-top:15px; }
         .mailto-fallback a { display:inline-block; background:#3498db; color:#fff; padding:10px 20px; border-radius:30px; text-decoration:none; font-weight:bold; }
         .mailto-fallback a:hover { background:#2980b9; }
-
-        /* Stornierungs-Modal */
         #cancelModal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999999; display:none; justify-content:center; align-items:center; padding:20px; }
         #cancelModal.open { display:flex; }
         .cancel-modal-content { background:#fff; max-width:500px; width:100%; border-radius:24px; padding:30px 35px; box-shadow:0 20px 60px rgba(0,0,0,0.4); animation:slideUp 0.3s ease; }
@@ -187,11 +147,8 @@
         .cancel-modal-content .btn-row .btn-confirm:hover { background:#c0392b; }
         .cancel-modal-content .btn-row .btn-cancel { background:#eee; color:#333; border:none; padding:12px 24px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; flex:0.5; transition:background 0.2s; }
         .cancel-modal-content .btn-row .btn-cancel:hover { background:#ddd; }
-
         footer { background-color:#2c2c2c; color:#ddd; text-align:center; padding:30px 0; font-size:0.9rem; }
         footer a { color:#f5a623; text-decoration:none; }
-
-        /* Cookie-Popup */
         #cookie-popup { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:999999; display:flex; justify-content:center; align-items:center; font-family:'Segoe UI',Arial,sans-serif; }
         .cookie-container { background:white; max-width:500px; width:90%; border-radius:16px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.3); animation:slideIn 0.3s ease-out; }
         @keyframes slideIn { from{transform:translateY(-30px); opacity:0;} to{transform:translateY(0); opacity:1;} }
@@ -205,8 +162,6 @@
         .btn-decline { background:#888; color:white; }
         .cookie-footer { background:#f9f9f9; padding:15px; text-align:center; font-size:12px; border-top:1px solid #eee; }
         .cookie-footer a { color:#f5a623; text-decoration:none; margin:0 5px; }
-
-        /* Gewährleistungs-Popup (Bild) */
         #guarantee-popup { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000000; display:none; justify-content:center; align-items:center; padding:20px; }
         #guarantee-popup.open { display:flex; }
         .guarantee-container { background:white; max-width:800px; width:100%; border-radius:20px; padding:30px; box-shadow:0 20px 60px rgba(0,0,0,0.4); animation:slideUp 0.4s ease; text-align:center; }
@@ -215,16 +170,13 @@
         .guarantee-container .btn-ok:hover { background:#d48f1b; }
         .guarantee-container .btn-ok:active { transform:scale(0.96); }
         .guarantee-container .small-note { font-size:0.85rem; color:#888; text-align:center; margin-top:8px; }
-
         #main-site { display:none; }
         .cookie-settings-top-btn { position:fixed; top:15px; right:20px; z-index:10000; background-color:rgba(0,0,0,0.6); backdrop-filter:blur(4px); color:#f5a623; border:1px solid rgba(255,255,255,0.3); border-radius:40px; padding:5px 12px; font-size:12px; cursor:pointer; font-family:'Segoe UI',Arial,sans-serif; display:inline-flex; align-items:center; gap:6px; }
-
         .toast { position:fixed; bottom:30px; left:50%; transform:translateX(-50%); background:#2c2c2c; color:#fff; padding:12px 28px; border-radius:40px; font-weight:600; z-index:9999999; box-shadow:0 6px 20px rgba(0,0,0,0.2); opacity:0; transition:opacity 0.3s, transform 0.3s; pointer-events:none; font-size:0.95rem; }
         .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
         .spinner { display:inline-block; width:20px; height:20px; border:3px solid rgba(255,255,255,0.3); border-radius:50%; border-top-color:#fff; animation:spin 0.8s linear infinite; margin-right:10px; }
         @keyframes spin { to{transform:rotate(360deg);} }
         .btn-finish.loading { opacity:0.7; pointer-events:none; }
-
         @media (max-width:768px) {
             .cookie-settings-top-btn { top:8px; right:10px; padding:3px 8px; font-size:10px; }
             .cart-sidebar { width:100vw; max-width:100vw; }
@@ -239,7 +191,6 @@
 </head>
 <body>
 
-    <!-- GEWÄHRLEISTUNGS-POPUP -->
     <div id="guarantee-popup">
         <div class="guarantee-container">
             <img src="Gewaehrleistungs-Label-deutsch.png" alt="Gesetzliche Gewährleistung" />
@@ -248,7 +199,6 @@
         </div>
     </div>
 
-    <!-- COOKIE-POPUP -->
     <div id="cookie-popup">
         <div class="cookie-container">
             <div class="cookie-header">
@@ -276,7 +226,6 @@
 
     <div id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</div>
 
-    <!-- HAUPTSEITE -->
     <div id="main-site">
         <header class="top-header">
             <div class="container header-inner">
@@ -287,13 +236,11 @@
                         <p>Natürlicher Honig aus dem Eferdinger Hügelland</p>
                     </div>
                 </div>
-
                 <div class="cart-icon-wrapper" id="cartIconWrapper" title="Warenkorb öffnen">
                     <span class="cart-total-label">Warenkorb</span>
                     <i class="fas fa-shopping-cart"></i>
                     <span class="cart-badge" id="cartBadge">0</span>
                 </div>
-
                 <button class="mobile-menu-btn" id="mobileMenuToggle"><i class="fas fa-bars"></i></button>
                 <nav class="main-nav" id="mainNav">
                     <ul>
@@ -309,20 +256,17 @@
                 </nav>
             </div>
         </header>
-
         <main>
             <div class="container">
                 <div class="info-box">
                     <h2>Information</h2>
                     <p>Wir sind stolz auf unsere Anpassungsfähigkeit und unser Engagement für Spitzenleistungen in jedem Aspekt unseres Services. Erkunden Sie, was wir zu bieten haben, und finden Sie heraus, wie wir zu Ihrem Erfolg beitragen können.</p>
                 </div>
-
                 <h2 style="text-align:center; color:#d48f1b; margin-bottom:20px;">Unsere Preise (Stand 2026)</h2>
                 <div class="price-grid" id="productGrid"></div>
                 <p style="text-align:center; font-size:0.9rem; margin-top:20px;">Alle Preise inkl. gesetzl. MwSt. zzgl. Versandkosten. Änderungen vorbehalten.</p>
             </div>
         </main>
-
         <footer>
             <div class="container">
                 <p>&copy; 2025 Baumann's Honig Seiten | Mit Unterstützung von <a href="mailto:gguentherdd@gmx.at">Günther Danninger</a></p>
@@ -331,7 +275,6 @@
         </footer>
     </div>
 
-    <!-- WARENKORB SIDEBAR -->
     <div class="cart-overlay" id="cartOverlay">
         <div class="cart-sidebar">
             <div class="cart-header">
@@ -341,22 +284,15 @@
             <ul class="cart-items-list" id="cartItemsList">
                 <li class="empty-cart-msg">Ihr Warenkorb ist leer.</li>
             </ul>
-
-            <!-- Zwischensumme -->
             <div class="cart-subtotal">
                 <span>Zwischensumme:</span>
                 <span id="cartTotalPrice">€ 0,00</span>
             </div>
-
-            <!-- NEU: Versandkosten-Info im Warenkorb -->
             <div class="cart-shipping-info" id="cartShippingInfo" style="display:none;"></div>
-
-            <!-- Gesamtsumme inkl. Versand -->
             <div class="cart-total cart-grand-total">
                 <span>Gesamt:</span>
                 <span id="cartGrandTotal">€ 0,00</span>
             </div>
-
             <div class="cart-actions">
                 <button class="btn-primary" id="checkoutBtn">📦 Zur Kasse</button>
                 <button class="btn-secondary" id="cartClearBtn">🗑 Leeren</button>
@@ -365,12 +301,10 @@
         </div>
     </div>
 
-    <!-- BESTELLÜBERSICHT (CHECKOUT MODAL) -->
     <div class="checkout-overlay" id="checkoutOverlay">
         <div class="checkout-modal">
             <h2>📋 Bestellübersicht</h2>
             <div id="checkoutSummary"></div>
-
             <div class="address-form" id="addressForm">
                 <div class="form-row">
                     <div class="form-group">
@@ -412,7 +346,6 @@
                 </div>
                 <div style="font-size:0.75rem; color:#888; margin-top:4px;">* Pflichtfelder</div>
             </div>
-
             <div class="checkout-bank">
                 <p><strong>🏦 Überweisung an:</strong></p>
                 <p>Empfänger: Baumann's Honig</p>
@@ -420,7 +353,6 @@
                 <p>BIC: <strong>RZ00AT2L180</strong></p>
                 <p style="margin-top:8px;font-size:0.9rem;">Bitte geben Sie Ihre <strong>Bestellnummer</strong> als Verwendungszweck an.</p>
             </div>
-
             <div class="checkout-actions">
                 <button class="btn-finish" id="finishOrderBtn">✅ Bestellung abschließen</button>
                 <button class="btn-close-checkout" id="closeCheckoutBtn">✖ Schließen</button>
@@ -429,7 +361,6 @@
         </div>
     </div>
 
-    <!-- STORNIERUNGS-MODAL -->
     <div id="cancelModal">
         <div class="cancel-modal-content">
             <h2>⛔ Bestellung stornieren</h2>
@@ -450,7 +381,6 @@
 
     <script>
         (function() {
-            // ---------- Cookie-Hilfsfunktionen ----------
             function setCookie(name, value, days) {
                 var date = new Date();
                 date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
@@ -467,13 +397,10 @@
             function deleteCookie(name) {
                 document.cookie = name + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
             }
-
-            // ---------- DOM-Referenzen ----------
             var mainSite = document.getElementById('main-site');
             var popupGuarantee = document.getElementById('guarantee-popup');
             var popupCookie = document.getElementById('cookie-popup');
             var okBtn = document.getElementById('guaranteeOkBtn');
-
             function showGuarantee() {
                 popupGuarantee.classList.add('open');
                 mainSite.style.display = 'none';
@@ -483,26 +410,17 @@
                 popupGuarantee.classList.remove('open');
                 checkCookieConsent();
             }
-
             function checkCookieConsent() {
                 var accepted = getCookie('cookie_consent');
                 var declined = getCookie('cookie_consent_declined');
-                if (accepted === 'accepted') {
-                    showMainSite();
-                    loadGoogleTracking();
-                    loadPlausible();
-                } else if (declined === 'true') {
-                    showMainSite();
-                } else {
-                    popupCookie.style.display = 'flex';
-                    mainSite.style.display = 'none';
-                }
+                if (accepted === 'accepted') { showMainSite(); loadGoogleTracking(); loadPlausible(); }
+                else if (declined === 'true') { showMainSite(); }
+                else { popupCookie.style.display = 'flex'; mainSite.style.display = 'none'; }
             }
             function showMainSite() {
                 popupCookie.style.display = 'none';
                 mainSite.style.display = 'block';
             }
-
             function loadGoogleTracking() {
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
                 var gtagScript=document.createElement('script');
@@ -528,16 +446,13 @@
                 document.head.appendChild(s);
                 window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments);};
             }
-
             var acceptBtn = document.getElementById('accept-cookies');
             var declineBtn = document.getElementById('decline-cookies');
             var topBtn = document.getElementById('cookie-settings-top');
             function handleAccept() {
                 setCookie('cookie_consent','accepted',365);
                 deleteCookie('cookie_consent_declined');
-                showMainSite();
-                loadGoogleTracking();
-                loadPlausible();
+                showMainSite(); loadGoogleTracking(); loadPlausible();
             }
             function handleDecline() {
                 setCookie('cookie_consent_declined','true',365);
@@ -552,10 +467,8 @@
             if (acceptBtn) acceptBtn.addEventListener('click', function(e){e.preventDefault(); handleAccept();});
             if (declineBtn) declineBtn.addEventListener('click', function(e){e.preventDefault(); handleDecline();});
             if (topBtn) topBtn.addEventListener('click', function(e){e.preventDefault(); resetAndReload();});
-
             showGuarantee();
             okBtn.addEventListener('click', function() { hideGuarantee(); });
-
             var toggleBtn = document.getElementById('mobileMenuToggle');
             var nav = document.getElementById('mainNav');
             if (toggleBtn && nav) {
@@ -563,95 +476,117 @@
             }
 
             // ================================================================
-            // ==========  PRODUKTDATEN (mit Gewicht)  =========================
+            // ==========  PRODUKTDATEN  =======================================
+            // dims = Verpackungsmaße in cm {l, w, h}
             // ================================================================
             var products = [{
                 id:'p1', title:'Blütenhonig', variant:'1000g Glas', price:14.00, weight:1.0,
+                dims:{l:11, w:11, h:17},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-2-high-ko92j5.jpg',
                 unit:'kg', unitSize:1.0
             },{
                 id:'p2', title:'Waldhonig', variant:'1000g Glas', price:14.00, weight:1.0,
+                dims:{l:11, w:11, h:17},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_145843-2-standard.jpg',
                 unit:'kg', unitSize:1.0
             },{
                 id:'p3', title:'Cremehonig', variant:'1000g Glas', price:14.00, weight:1.0,
+                dims:{l:11, w:11, h:17},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/cremehonig-standard.jpg',
                 unit:'kg', unitSize:1.0
             },{
                 id:'p4', title:'Blüten-/Wald-/Cremehonig', variant:'500g Glas', price:7.50, weight:0.5,
+                dims:{l:9, w:9, h:14},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-2-high-ko92j5.jpg',
                 unit:'kg', unitSize:0.5
             },{
                 id:'p5', title:'Blüten-/Wald-/Cremehonig', variant:'250g Glas', price:4.50, weight:0.25,
+                dims:{l:8, w:8, h:11},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150405-2-high-ko92j5.jpg',
                 unit:'kg', unitSize:0.25
             },{
                 id:'p6', title:'Met - Honigwein', variant:'750ml Flasche', price:12.00, weight:1.2,
+                dims:{l:10, w:10, h:32},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150230-2-high.jpg',
                 unit:'l', unitSize:0.75
             },{
                 id:'p7', title:'Oxymel (Sauerhonig)', variant:'500ml Flasche', price:13.00, weight:0.7,
+                dims:{l:9, w:9, h:27},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-high-6o1nqc.jpg',
                 unit:'l', unitSize:0.5
             },{
                 id:'p8', title:'Oxymel (Sauerhonig)', variant:'250ml Flasche', price:7.50, weight:0.4,
+                dims:{l:8, w:8, h:22},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150023-2-high-6o1nqc.jpg',
                 unit:'l', unitSize:0.25
             },{
                 id:'p9', title:'Honig Likör', variant:'500ml', price:13.00, weight:0.8,
+                dims:{l:9, w:9, h:27},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150101-2-high.jpg',
                 unit:'l', unitSize:0.5
             },{
                 id:'p10', title:'Honig Likör', variant:'200ml', price:7.50, weight:0.4,
+                dims:{l:7, w:7, h:17},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150101-2-high.jpg',
                 unit:'l', unitSize:0.2
             },{
                 id:'p11', title:'Blütenpollen', variant:'100g Dose', price:8.00, weight:0.15,
+                dims:{l:9, w:9, h:9},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150454-high-si55t2.jpg',
                 unit:'kg', unitSize:0.1
             },{
                 id:'p12', title:'Propolis', variant:'30ml Flasche', price:9.50, weight:0.1,
+                dims:{l:4, w:4, h:11},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150510-high.jpg',
                 unit:'l', unitSize:0.03
             },{
                 id:'p13', title:'Lippenbalsam', variant:'10ml Tiegel', price:5.00, weight:0.05,
+                dims:{l:5, w:5, h:3},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150725-high-tev34l.jpg'
             },{
                 id:'p14', title:'Lippenpflegestift', variant:'4,8g', price:4.50, weight:0.02,
+                dims:{l:2, w:2, h:9},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150553-2-high.jpg'
             },{
                 id:'p15', title:'Handcreme / Pflegecreme', variant:'60ml', price:3.50, weight:0.1,
+                dims:{l:6, w:6, h:13},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150615-2-high.jpg'
             },{
                 id:'p16', title:'Bienengift Salbe', variant:'50ml', price:38.00, weight:0.1,
+                dims:{l:5, w:5, h:11},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/bienengiftsalbe-high-gnama5.jpg'
             },{
                 id:'p17', title:'Honig Kräuter Essig', variant:'250ml', price:5.50, weight:0.35,
+                dims:{l:7, w:7, h:22},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150525-high-ovnqyu.jpg',
                 unit:'l', unitSize:0.25
             },{
                 id:'p18', title:'Propolis Shampoo', variant:'200ml', price:5.00, weight:0.25,
+                dims:{l:7, w:7, h:20},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150604-2-high.jpg',
                 unit:'l', unitSize:0.2
             },{
                 id:'p19', title:'Propolis Duschgel', variant:'200ml', price:5.00, weight:0.25,
+                dims:{l:7, w:7, h:20},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150654-high-b1b8y0.jpg',
                 unit:'l', unitSize:0.2
             },{
                 id:'p20', title:'Honigbärchen', variant:'100g (Fruchtgummi)', price:2.50, weight:0.12,
+                dims:{l:11, w:9, h:3},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150841-2-high.jpg',
                 unit:'kg', unitSize:0.1
             },{
                 id:'p21', title:'Honigzuckerl', variant:'90g (Hartkaramellen)', price:2.50, weight:0.11,
+                dims:{l:9, w:7, h:3},
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150628-2-high.jpg',
                 unit:'kg', unitSize:0.09
             },{
                 id:'p22', title:'Bienenwachs Kerzen', variant:'verschiedene Größen', price:3.00,
                 image:'https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/20250830_150812-high.jpg',
                 variants:[
-                    {label:'Klein (ca. 10cm)', price:3.00, weight:0.05},
-                    {label:'Mittel (ca. 20cm)', price:10.00, weight:0.15},
-                    {label:'Groß (ca. 30cm)', price:20.00, weight:0.3}
+                    {label:'Klein (ca. 10cm)', price:3.00, weight:0.05, dims:{l:3, w:3, h:12}},
+                    {label:'Mittel (ca. 20cm)', price:10.00, weight:0.15, dims:{l:4, w:4, h:22}},
+                    {label:'Groß (ca. 30cm)', price:20.00, weight:0.3, dims:{l:5, w:5, h:32}}
                 ]
             }];
 
@@ -666,21 +601,41 @@
                 country: "Österreich"
             };
 
-            var SHIPPING_RATES = {
-                post: [
-                    { maxWeight: 1,    price: 6.32 },
-                    { maxWeight: 2,    price: 7.65 },
-                    { maxWeight: 4,    price: 8.96 },
-                    { maxWeight: 10,   price: 12.92 },
-                    { maxWeight: 31.5, price: 20.78 }
-                ],
-                dpd: [
-                    { maxWeight: 3,    price: 4.30 },
-                    { maxWeight: 10,   price: 6.30 },
-                    { maxWeight: 20,   price: 8.30 },
-                    { maxWeight: 31.5, price: 12.30 }
-                ]
-            };
+            // POST AT: Tarif nach GEWICHT (bitte an Ihre Vertragstarife anpassen!)
+            var POST_RATES = [
+                { maxWeight: 1,    price: 6.32 },
+                { maxWeight: 2,    price: 7.65 },
+                { maxWeight: 4,    price: 8.96 },
+                { maxWeight: 10,   price: 12.92 },
+                { maxWeight: 31.5, price: 20.78 }
+            ];
+
+            // DPD: Tarif nach GRÖSSE (kürzeste + längste Seite)
+            // S: bis 50 cm → 4,70 €
+            // M: bis 70 cm → 6,70 €
+            // L: bis 90 cm → 8,70 €
+            // XL: ab 90 cm → 12,70 €
+            var DPD_RATES = [
+                { maxSum: 50, price: 4.70, label: 'S' },
+                { maxSum: 70, price: 6.70, label: 'M' },
+                { maxSum: 90, price: 8.70, label: 'L' },
+                { maxSum: Infinity, price: 12.70, label: 'XL' }
+            ];
+
+            // Packzuschlag: 4 cm Polster pro Seite (2 cm links + 2 cm rechts)
+            var PACKING_PADDING = 4;
+            // Volumen-Zuschlag für Luft zwischen Produkten (40 %)
+            var VOLUME_OVERHEAD = 1.4;
+
+            function getProductDims(product, variantLabel) {
+                if (!product) return {l:10, w:10, h:10};
+                var dims = product.dims;
+                if (product.variants && variantLabel) {
+                    var v = product.variants.find(function(x){ return x.label === variantLabel; });
+                    if (v && v.dims) dims = v.dims;
+                }
+                return dims || {l:10, w:10, h:10};
+            }
 
             function getCartWeight() {
                 var totalWeight = 0;
@@ -696,23 +651,81 @@
                 return totalWeight;
             }
 
-            function calculateShipping(provider, weightKg) {
-                var rates = SHIPPING_RATES[provider];
-                if (!rates) return 0;
-                for (var i = 0; i < rates.length; i++) {
-                    if (weightKg <= rates[i].maxWeight) return rates[i].price;
+            // Schätzt die Paket-Außenmaße aus dem Warenkorb
+            function getCartDimensions() {
+                if (cart.length === 0) return {l:0, w:0, h:0, shortest:0, longest:0, sumShortLong:0};
+
+                var totalVolume = 0;
+                var maxL = 0, maxW = 0, maxH = 0;
+
+                cart.forEach(function(item) {
+                    var product = products.find(function(p) { return p.id === item.id; });
+                    var dims = getProductDims(product, item.variant);
+                    // Sortiere: l ≥ w ≥ h
+                    var sides = [dims.l, dims.w, dims.h].sort(function(a,b){return b-a;});
+                    var l = sides[0], w = sides[1], h = sides[2];
+
+                    // Volumen zählen
+                    totalVolume += (l * w * h) * item.quantity * VOLUME_OVERHEAD;
+
+                    // Größter Einzelartikel als Mindestbox
+                    maxL = Math.max(maxL, l);
+                    maxW = Math.max(maxW, w);
+                    maxH = Math.max(maxH, h);
+                });
+
+                // Mindestbox = größter Einzelartikel + Polster
+                var minL = maxL + PACKING_PADDING;
+                var minW = maxW + PACKING_PADDING;
+                var minH = maxH + PACKING_PADDING;
+
+                // Box aus Volumen hochrechnen, Form 1,4 : 1 : 0,7
+                // V = 1,4a · a · 0,7a = 0,98 · a³
+                var a = Math.pow(totalVolume / 0.98, 1/3);
+                var boxL = Math.max(minL, 1.4 * a);
+                var boxW = Math.max(minW, 1.0 * a);
+                var boxH = Math.max(minH, 0.7 * a);
+
+                var sides2 = [boxL, boxW, boxH];
+                var shortest = Math.min.apply(null, sides2);
+                var longest  = Math.max.apply(null, sides2);
+
+                return {
+                    l: boxL, w: boxW, h: boxH,
+                    shortest: shortest,
+                    longest: longest,
+                    sumShortLong: shortest + longest
+                };
+            }
+
+            function calculatePost(weightKg) {
+                for (var i = 0; i < POST_RATES.length; i++) {
+                    if (weightKg <= POST_RATES[i].maxWeight) return POST_RATES[i].price;
                 }
-                return rates[rates.length - 1].price;
+                return POST_RATES[POST_RATES.length - 1].price;
+            }
+
+            function calculateDPD(cartDims) {
+                var s = cartDims.sumShortLong;
+                for (var i = 0; i < DPD_RATES.length; i++) {
+                    if (s <= DPD_RATES[i].maxSum) return DPD_RATES[i];
+                }
+                return DPD_RATES[DPD_RATES.length - 1];
             }
 
             function getBestShipping() {
                 var weight = getCartWeight();
-                var postPrice = calculateShipping('post', weight);
-                var dpdPrice  = calculateShipping('dpd', weight);
+                var dims = getCartDimensions();
+                var postPrice = calculatePost(weight);
+                var dpdResult = calculateDPD(dims);
+                var dpdPrice = dpdResult.price;
+
                 return {
                     weight: weight,
+                    dims: dims,
                     post: postPrice,
-                    dpd:  dpdPrice,
+                    dpd: dpdPrice,
+                    dpdClass: dpdResult.label,
                     best: Math.min(postPrice, dpdPrice),
                     bestProvider: postPrice <= dpdPrice ? 'Post' : 'DPD'
                 };
@@ -734,21 +747,25 @@
             }
             function addToCart(productId, quantity, chosenVariant) {
                 if (quantity < 1) return;
-                var product = products.find(p => p.id === productId);
+                var product = products.find(function(p){ return p.id === productId; });
                 if (!product) return;
                 var price = product.price;
                 var variantLabel = product.variant;
                 var weight = product.weight || 0.1;
+                var dims = product.dims;
                 if (product.variants && chosenVariant) {
-                    var found = product.variants.find(v => v.label === chosenVariant);
-                    if (found) { price = found.price; variantLabel = chosenVariant; if (found.weight) weight = found.weight; }
+                    var found = product.variants.find(function(v){ return v.label === chosenVariant; });
+                    if (found) {
+                        price = found.price; variantLabel = chosenVariant;
+                        if (found.weight) weight = found.weight;
+                        if (found.dims) dims = found.dims;
+                    }
                 }
-                // FIX: Vergleich auf item.variant (nicht item.variantLabel)
-                var existing = cart.find(item => item.id === productId && item.variant === variantLabel);
+                var existing = cart.find(function(item){ return item.id === productId && item.variant === variantLabel; });
                 if (existing) {
                     existing.quantity += quantity;
                 } else {
-                    cart.push({ id: productId, title: product.title, variant: variantLabel, price: price, weight: weight, quantity: quantity, image: product.image });
+                    cart.push({ id: productId, title: product.title, variant: variantLabel, price: price, weight: weight, dims: dims, quantity: quantity, image: product.image });
                 }
                 saveCart();
                 showToast(product.title + ' wurde in den Warenkorb gelegt.');
@@ -762,8 +779,8 @@
                 if (newQty < 1) { removeFromCart(index); } else { cart[index].quantity = newQty; saveCart(); }
             }
             function clearCart() { cart = []; saveCart(); }
-            function getTotalItems() { return cart.reduce((sum,item) => sum + item.quantity, 0); }
-            function getTotalPrice() { return cart.reduce((sum,item) => sum + (item.price * item.quantity), 0); }
+            function getTotalItems() { return cart.reduce(function(sum,item){ return sum + item.quantity; }, 0); }
+            function getTotalPrice() { return cart.reduce(function(sum,item){ return sum + (item.price * item.quantity); }, 0); }
             function formatPrice(val) { return '€ ' + val.toFixed(2).replace('.',','); }
 
             // ================================================================
@@ -777,7 +794,7 @@
                     var variantOptions = '';
                     if (hasVariants) {
                         p.variants.forEach(function(v) {
-                            variantOptions += '<option value="'+v.label+'" data-price="'+v.price+'" data-weight="'+(v.weight||'')+'">'+v.label+' ('+formatPrice(v.price)+')</option>';
+                            variantOptions += '<option value="'+v.label+'" data-price="'+v.price+'">'+v.label+' ('+formatPrice(v.price)+')</option>';
                         });
                     }
                     var pricePerUnit = '';
@@ -806,7 +823,7 @@
                 grid.innerHTML = html;
 
                 document.querySelectorAll('.add-to-cart-btn').forEach(function(btn) {
-                    btn.addEventListener('click', function(e) {
+                    btn.addEventListener('click', function() {
                         var card = this.closest('.product-card');
                         var id = card.dataset.id;
                         var qtyInput = card.querySelector('.qty-input');
@@ -828,13 +845,11 @@
                             priceDisplay.textContent = formatPrice(price);
                             priceDisplay.dataset.basePrice = price;
                             var productId = card.dataset.id;
-                            var product = products.find(p => p.id === productId);
+                            var product = products.find(function(p){ return p.id === productId; });
                             if (product && product.unit && product.unitSize > 0) {
                                 var perUnit = price / product.unitSize;
                                 var perUnitDisplay = card.querySelector('.product-price-per-unit');
-                                if (perUnitDisplay) {
-                                    perUnitDisplay.textContent = 'Preis pro '+product.unit+': '+formatPrice(perUnit);
-                                }
+                                if (perUnitDisplay) perUnitDisplay.textContent = 'Preis pro '+product.unit+': '+formatPrice(perUnit);
                             }
                         }
                     });
@@ -842,7 +857,7 @@
             }
 
             // ================================================================
-            // ==========  UI – WARENKORB SIDEBAR  ============================
+            // ==========  UI – WARENKORB  ====================================
             // ================================================================
             var overlay = document.getElementById('cartOverlay');
             var closeBtn = document.getElementById('cartCloseBtn');
@@ -888,12 +903,9 @@
                 cartList.querySelectorAll('.cart-item-remove').forEach(function(btn) {
                     btn.addEventListener('click', function() { var idx = parseInt(this.dataset.index); removeFromCart(idx); });
                 });
-
-                // Zwischensumme
                 cartTotal.textContent = formatPrice(getTotalPrice());
                 badge.textContent = getTotalItems();
 
-                // Versandkosten-Info im Warenkorb
                 if (cart.length > 0) {
                     var shipping = getBestShipping();
                     cartShippingInfo.style.display = 'block';
@@ -902,7 +914,10 @@
                             '<span>📦 Versand (' + shipping.bestProvider + '):</span>' +
                             '<strong>' + formatPrice(shipping.best) + '</strong>' +
                         '</div>' +
-                        '<div style="font-size:0.75rem; color:#888; margin-top:2px;">Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg</div>';
+                        '<div style="font-size:0.75rem; color:#888; margin-top:2px;">' +
+                            'Paket: ' + shipping.dims.longest.toFixed(0) + '×' + shipping.dims.w.toFixed(0) + '×' + shipping.dims.h.toFixed(0) + ' cm ' +
+                            '(kürz.+längste = ' + shipping.dims.sumShortLong.toFixed(0) + ' cm) · ' + shipping.weight.toFixed(2) + ' kg' +
+                        '</div>';
                     cartGrandTotal.textContent = formatPrice(getTotalPrice() + shipping.best);
                 } else {
                     cartShippingInfo.style.display = 'none';
@@ -934,7 +949,7 @@
             });
 
             // ================================================================
-            // ==========  E-MAIL-VERSAND  ====================================
+            // ==========  E-MAIL  ============================================
             // ================================================================
             var FORMSPREE_ID = 'meajkvyk';
             var SHOP_EMAIL = 'baumann.bernhard@gmx.net';
@@ -955,8 +970,9 @@
                         'E-Mail: ' + addressData.email + '\n' +
                         '\n— Produkte —\n' + itemsText + '\n\n' +
                         'Zwischensumme (Produkte): ' + formatPrice(total) + '\n' +
-                        'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
+                        'Paketmaß (geschätzt): ' + shipping.dims.longest.toFixed(0) + '×' + shipping.dims.w.toFixed(0) + '×' + shipping.dims.h.toFixed(0) + ' cm (kürz.+längste = ' + shipping.dims.sumShortLong.toFixed(0) + ' cm)\n' +
                         'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
+                        'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
                         'GESAMTSUMME (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                         '— Überweisung —\n' +
                         'IBAN: AT11 3418 0000 0144 3597\n' +
@@ -968,14 +984,12 @@
                     formData.append('message', body);
                     formData.append('_replyto', SHOP_EMAIL);
 
-                    fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-                        method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
+                    fetch('https://formspree.io/f/' + FORMSPREE_ID, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+                    .then(function(r) {
+                        if (r.ok) resolve();
+                        else fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject);
                     })
-                    .then(function(response) {
-                        if (response.ok) { resolve(); }
-                        else { fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject); }
-                    })
-                    .catch(function(err) { fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject); });
+                    .catch(function() { fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject); });
                 });
             }
 
@@ -987,18 +1001,13 @@
                     form.target = '_blank';
                     var totalWithShipping = total + shipping.best;
                     var fields = {
-                        '_subject': 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName,
-                        'message': 'Neue Bestellung von Ihrer Website:\n\n' +
-                            'Bestellnummer: ' + orderId + '\nDatum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
-                            '— Lieferadresse —\n' + addressData.firstName + ' ' + addressData.lastName + '\n' + addressData.street + '\n' + addressData.zip + ' ' + addressData.city + '\nE-Mail: ' + addressData.email + '\n\n' +
-                            '— Produkte —\n' + cartItems.map(function(item) {
-                                return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
-                            }).join('\n') + '\n\n' +
-                            'Zwischensumme (Produkte): ' + formatPrice(total) + '\n' +
-                            'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
-                            'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
-                            'GESAMTSUMME (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
-                            '— Überweisung —\nIBAN: AT11 3418 0000 0144 3597\nBIC: RZ00AT2L180\nVerwendungszweck: ' + orderId,
+                        '_subject': 'Neue Bestellung #' + orderId,
+                        'message': 'Neue Bestellung:\n\nBestellnummer: ' + orderId +
+                            '\n\nLieferadresse:\n' + addressData.firstName + ' ' + addressData.lastName + '\n' + addressData.street + '\n' + addressData.zip + ' ' + addressData.city + '\nE-Mail: ' + addressData.email +
+                            '\n\nProdukte:\n' + cartItems.map(function(item) { return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity); }).join('\n') +
+                            '\n\nZwischensumme: ' + formatPrice(total) +
+                            '\nVersand (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) +
+                            '\nGesamt: ' + formatPrice(totalWithShipping),
                         '_replyto': SHOP_EMAIL
                     };
                     for (var key in fields) {
@@ -1010,7 +1019,7 @@
                     form.submit();
                     setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
                     resolve();
-                } catch (e) { reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message)); }
+                } catch (e) { reject(new Error('Fallback fehlgeschlagen: ' + e.message)); }
             }
 
             function sendCustomerEmail(orderId, cartItems, total, addressData, shipping) {
@@ -1025,7 +1034,6 @@
                         '— Ihre Bestellung —\n' + itemsText + '\n\n' +
                         'Zwischensumme (Produkte): ' + formatPrice(total) + '\n' +
                         'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
-                        'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
                         'GESAMTSUMME (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                         '— Überweisung —\n' +
                         'Bitte überweisen Sie den Betrag von ' + formatPrice(totalWithShipping) + ' auf folgendes Konto:\n' +
@@ -1040,9 +1048,7 @@
                     fetch('https://formsubmit.co/' + encodeURIComponent(addressData.email), {
                         method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
                     })
-                    .then(function(response) {
-                        if (response.ok) { resolve(); } else { reject(new Error('Fehler beim Senden an Kunden: ' + response.status)); }
-                    })
+                    .then(function(r) { if (r.ok) resolve(); else reject(new Error('Fehler Kundenmail: ' + r.status)); })
                     .catch(function(err) { reject(err); });
                 });
             }
@@ -1054,20 +1060,17 @@
                         'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
                         'Die Bestellung wurde vom Kunden storniert.\n' +
                         (addressData ? 'Kunde: ' + addressData.firstName + ' ' + addressData.lastName + '\n' : '') +
-                        (addressData && addressData.email ? 'E-Mail: ' + addressData.email + '\n' : '') +
-                        '\nBitte bearbeiten Sie die Stornierung entsprechend.';
+                        (addressData && addressData.email ? 'E-Mail: ' + addressData.email + '\n' : '');
                     var formData = new FormData();
                     formData.append('_subject', 'Stornierung der Bestellung #' + orderNumber);
                     formData.append('message', body);
                     formData.append('_replyto', SHOP_EMAIL);
-                    fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-                        method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
+                    fetch('https://formspree.io/f/' + FORMSPREE_ID, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } })
+                    .then(function(r) {
+                        if (r.ok) resolve();
+                        else fallbackCancellationEmail(orderNumber, addressData, resolve, reject);
                     })
-                    .then(function(response) {
-                        if (response.ok) { resolve(); }
-                        else { fallbackCancellationEmail(orderNumber, addressData, resolve, reject); }
-                    })
-                    .catch(function(err) { fallbackCancellationEmail(orderNumber, addressData, resolve, reject); });
+                    .catch(function() { fallbackCancellationEmail(orderNumber, addressData, resolve, reject); });
                 });
             }
 
@@ -1079,12 +1082,7 @@
                     form.target = '_blank';
                     var fields = {
                         '_subject': 'Stornierung der Bestellung #' + orderNumber,
-                        'message': 'Stornierung einer Bestellung:\n\n' +
-                            'Bestellnummer: ' + orderNumber + '\nDatum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
-                            'Die Bestellung wurde vom Kunden storniert.\n' +
-                            (addressData ? 'Kunde: ' + addressData.firstName + ' ' + addressData.lastName + '\n' : '') +
-                            (addressData && addressData.email ? 'E-Mail: ' + addressData.email + '\n' : '') +
-                            '\nBitte bearbeiten Sie die Stornierung entsprechend.',
+                        'message': 'Stornierung: ' + orderNumber + '\n' + new Date().toLocaleString('de-AT'),
                         '_replyto': SHOP_EMAIL
                     };
                     for (var key in fields) {
@@ -1096,7 +1094,7 @@
                     form.submit();
                     setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
                     resolve();
-                } catch (e) { reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message)); }
+                } catch (e) { reject(new Error('Fallback fehlgeschlagen: ' + e.message)); }
             }
 
             // ================================================================
@@ -1107,7 +1105,6 @@
             var closeCheckoutBtn = document.getElementById('closeCheckoutBtn');
             var finishOrderBtn = document.getElementById('finishOrderBtn');
             var withdrawCheckoutBtn = document.getElementById('withdrawCheckoutBtn');
-
             var firstName = document.getElementById('firstName');
             var lastName = document.getElementById('lastName');
             var street = document.getElementById('street');
@@ -1130,11 +1127,11 @@
                 var errors = {};
                 if (!data.firstName) errors.firstName = 'Bitte Vorname eingeben.';
                 if (!data.lastName) errors.lastName = 'Bitte Nachname eingeben.';
-                if (!data.street) errors.street = 'Bitte Straße und Hausnummer eingeben.';
+                if (!data.street) errors.street = 'Bitte Straße eingeben.';
                 if (!data.zip) errors.zip = 'Bitte PLZ eingeben.';
                 if (!data.city) errors.city = 'Bitte Ort eingeben.';
-                if (!data.email) { errors.customerEmail = 'Bitte E-Mail-Adresse eingeben.'; }
-                else if (!/^\S+@\S+\.\S+$/.test(data.email)) { errors.customerEmail = 'Bitte gültige E-Mail-Adresse eingeben.'; }
+                if (!data.email) errors.customerEmail = 'Bitte E-Mail eingeben.';
+                else if (!/^\S+@\S+\.\S+$/.test(data.email)) errors.customerEmail = 'Ungültige E-Mail.';
                 document.getElementById('firstNameError').textContent = errors.firstName || '';
                 document.getElementById('lastNameError').textContent = errors.lastName || '';
                 document.getElementById('streetError').textContent = errors.street || '';
@@ -1186,20 +1183,20 @@
                 var sub = getTotalPrice();
                 var totalWithShipping = sub + shipping.best;
 
-                // Versand-Box hervorgehoben
                 html += '<div class="shipping-box">';
                 html += '<h4>📦 Versandkosten-Berechnung</h4>';
                 html += '<div class="row"><span>Versand von:</span><span>' + SENDER.zip + ' ' + SENDER.city + '</span></div>';
+                html += '<div class="row"><span>Paketmaß (geschätzt):</span><span>' + shipping.dims.longest.toFixed(0) + '×' + shipping.dims.w.toFixed(0) + '×' + shipping.dims.h.toFixed(0) + ' cm</span></div>';
+                html += '<div class="row"><span>kürzeste + längste Seite:</span><span>' + shipping.dims.sumShortLong.toFixed(0) + ' cm → DPD-Klasse ' + shipping.dpdClass + '</span></div>';
                 html += '<div class="row"><span>Gesamtgewicht:</span><span>' + shipping.weight.toFixed(2) + ' kg</span></div>';
-                html += '<div class="row"><span>Tarif Post:</span><span>' + formatPrice(shipping.post) + '</span></div>';
-                html += '<div class="row"><span>Tarif DPD:</span><span>' + formatPrice(shipping.dpd) + '</span></div>';
-                html += '<div class="row total"><span>Gewählter Versand (' + shipping.bestProvider + '):</span><span>' + formatPrice(shipping.best) + '</span></div>';
+                html += '<div class="row"><span>Tarif Post (nach Gewicht):</span><span>' + formatPrice(shipping.post) + '</span></div>';
+                html += '<div class="row"><span>Tarif DPD (' + shipping.dpdClass + '):</span><span>' + formatPrice(shipping.dpd) + '</span></div>';
+                html += '<div class="row total"><span>Günstigster Versand (' + shipping.bestProvider + '):</span><span>' + formatPrice(shipping.best) + '</span></div>';
                 html += '</div>';
 
                 html += '<div style="font-size:1rem; display:flex; justify-content:space-between; padding:6px 0;"><span>Zwischensumme:</span><span>' + formatPrice(sub) + '</span></div>';
                 html += '<div style="font-size:1rem; display:flex; justify-content:space-between; padding:6px 0;"><span>Versand:</span><span>' + formatPrice(shipping.best) + '</span></div>';
                 html += '<div class="checkout-total" style="margin-top:8px;">GESAMT: ' + formatPrice(totalWithShipping) + '</div>';
-
                 checkoutSummary.innerHTML = html;
             }
 
@@ -1247,11 +1244,12 @@
                                 Verwendungszweck: <strong>${orderId}</strong>
                             </p>
                             <p style="font-size:0.85rem; color:#888; margin-top:4px;">
-                                Versandkosten: ${formatPrice(shipping.best)} (via ${shipping.bestProvider}),
-                                Gesamtgewicht: ${shipping.weight.toFixed(2)} kg
+                                Versand: ${formatPrice(shipping.best)} (via ${shipping.bestProvider}),
+                                Paket: ${shipping.dims.longest.toFixed(0)}×${shipping.dims.w.toFixed(0)}×${shipping.dims.h.toFixed(0)} cm,
+                                Gewicht: ${shipping.weight.toFixed(2)} kg
                             </p>
                             <p style="font-size:0.85rem;color:#777;margin-top:8px;">
-                                Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
+                                Wir versenden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse.
                             </p>
                             <button class="btn-primary" style="margin-top:18px;padding:12px 40px;border:none;border-radius:12px;background:#f5a623;color:#fff;font-weight:bold;cursor:pointer;" id="closeSuccessBtn">✖ Schließen</button>
                             <button class="btn-danger" id="withdrawSuccessBtn">⛔ Bestellung stornieren</button>
@@ -1261,10 +1259,7 @@
                     if (actions) actions.style.display = 'none';
 
                     document.getElementById('closeSuccessBtn').addEventListener('click', function() {
-                        clearCart();
-                        closeCheckout();
-                        updateUI();
-                        showToast('Bestellung abgeschlossen!');
+                        clearCart(); closeCheckout(); updateUI(); showToast('Bestellung abgeschlossen!');
                     });
                     document.getElementById('withdrawSuccessBtn').addEventListener('click', function() {
                         document.getElementById('cancelModal').classList.add('open');
@@ -1276,31 +1271,12 @@
                     finishOrderBtn.disabled = false;
                 })
                 .catch(function(err) {
-                    console.error('Fehler beim E-Mail-Versand:', err);
+                    console.error('E-Mail-Fehler:', err);
                     var errorDiv = document.createElement('div');
                     errorDiv.id = 'mailError';
                     errorDiv.className = 'error-detail';
-                    errorDiv.innerHTML = '<strong>Fehler beim Versenden der E-Mail:</strong> ' + err.message +
-                        '<br><span style="font-size:0.8rem;">Die Bestellung wurde trotzdem erfasst – bitte senden Sie die Daten manuell.</span>';
-                    var itemsText = cartCopy.map(function(item) {
-                        return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
-                    }).join('%0A');
-                    var mailtoBodyShop = 'Neue%20Bestellung%3A%0A%0A' +
-                        'Bestellnummer%3A%20' + orderId + '%0A' +
-                        'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
-                        'Lieferadresse%3A%0A' +
-                        encodeURIComponent(address.firstName + ' ' + address.lastName) + '%0A' +
-                        encodeURIComponent(address.street) + '%0A' +
-                        encodeURIComponent(address.zip + ' ' + address.city) + '%0A' +
-                        'E-Mail%3A%20' + encodeURIComponent(address.email) + '%0A%0A' +
-                        'Produkte%3A%0A' + itemsText + '%0A%0A' +
-                        'Versandkosten%3A%20' + encodeURIComponent(formatPrice(shipping.best)) + '%0A' +
-                        'Gesamt%3A%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%0A%0A' +
-                        'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
-                        'BIC%3A%20RZ00AT2L180%0A' +
-                        'Verwendungszweck%3A%20' + orderId;
-                    var mailtoLinkShop = 'mailto:' + SHOP_EMAIL + '?subject=Neue%20Bestellung%20%23' + orderId + '&body=' + mailtoBodyShop;
-                    errorDiv.innerHTML += '<div class="mailto-fallback"><a href="' + mailtoLinkShop + '" target="_blank">📧 Bestellung an Shop per E-Mail senden</a></div>';
+                    errorDiv.innerHTML = '<strong>Fehler beim E-Mail-Versand:</strong> ' + err.message +
+                        '<br><span style="font-size:0.8rem;">Bitte senden Sie die Daten manuell.</span>';
                     var actionsDiv = document.querySelector('.checkout-actions');
                     actionsDiv.parentNode.insertBefore(errorDiv, actionsDiv);
                     finishOrderBtn.classList.remove('loading');
@@ -1329,20 +1305,19 @@
 
             confirmCancelBtn.addEventListener('click', function() {
                 var orderNumber = cancelInput.value.trim();
-                if (!orderNumber) { cancelError.textContent = 'Bitte geben Sie Ihre Bestellnummer ein.'; return; }
-                if (!/^BH-\d{8}-\d{3}$/.test(orderNumber)) { cancelError.textContent = 'Ungültiges Format. Bitte geben Sie die korrekte Bestellnummer ein.'; return; }
+                if (!orderNumber) { cancelError.textContent = 'Bitte Bestellnummer eingeben.'; return; }
+                if (!/^BH-\d{8}-\d{3}$/.test(orderNumber)) { cancelError.textContent = 'Ungültiges Format.'; return; }
                 var address = getAddressData();
                 confirmCancelBtn.disabled = true;
                 confirmCancelBtn.innerHTML = '<span class="spinner"></span> Sende...';
                 sendCancellationEmail(orderNumber, address)
                     .then(function() {
-                        showToast('Stornierung wurde an uns gesendet. Sie erhalten eine Bestätigung.');
+                        showToast('Stornierung wurde gesendet.');
                         closeCancelModal();
                         setTimeout(function() { location.reload(); }, 1500);
                     })
                     .catch(function(err) {
-                        console.error('Stornierungs-E-Mail-Fehler:', err);
-                        cancelError.textContent = 'Fehler beim Senden der Stornierung. Bitte versuchen Sie es später erneut oder kontaktieren Sie uns direkt.';
+                        cancelError.textContent = 'Fehler beim Senden. Bitte später erneut versuchen.';
                         confirmCancelBtn.disabled = false;
                         confirmCancelBtn.innerHTML = '✅ Stornierung bestätigen';
                     });
@@ -1369,6 +1344,5 @@
 
         })();
     </script>
-
 </body>
 </html>
