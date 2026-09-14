@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Preise | Baumann's Honig Seiten</title>
     <meta name="description" content="Unsere Honigprodukte und Bienenkosmetik – alle Preise im Überblick. Blütenhonig, Waldhonig, Propolis, Met, Cremes und vieles mehr." />
-    <!-- OG Images (wie im Original) -->
     <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/honigglas2-high.jpg" />
     <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-0r4n33.png" />
     <meta property="og:image" content="https://primary.jwwb.nl/public/w/r/d/temp-zbnyykwlnmlsiblneqde/image-high-9nsmtu.png" />
@@ -110,6 +109,10 @@
         .cart-item-remove:hover { transform:scale(1.2); }
 
         .cart-total { border-top:2px solid #f5a623; padding-top:18px; margin-top:6px; font-size:1.3rem; font-weight:bold; display:flex; justify-content:space-between; color:#2c2c2c; }
+        .cart-subtotal { font-size:0.95rem; display:flex; justify-content:space-between; color:#555; margin-top:12px; padding-top:6px; }
+        .cart-shipping-info { font-size:0.9rem; color:#444; padding:6px 0; line-height:1.5; background:#f9f5ec; border-radius:8px; padding:10px 12px; margin-top:8px; }
+        .cart-shipping-info strong { color:#d48f1b; }
+        .cart-grand-total { font-size:1.25rem; border-top:2px solid #f5a623; padding-top:12px; margin-top:10px; }
         .cart-actions { display:flex; gap:12px; margin-top:16px; flex-wrap:wrap; }
         .cart-actions .btn-primary { background:#f5a623; color:#fff; border:none; padding:14px 24px; border-radius:12px; font-weight:bold; font-size:1rem; cursor:pointer; flex:1; transition:background 0.2s; text-align:center; }
         .cart-actions .btn-primary:hover { background:#d48f1b; }
@@ -128,6 +131,12 @@
         .checkout-summary-item { display:flex; justify-content:space-between; padding:8px 0; border-bottom:1px solid #f0f0f0; font-size:0.95rem; }
         .checkout-summary-item .item-left { display:flex; gap:12px; flex-wrap:wrap; }
         .checkout-total { font-size:1.4rem; font-weight:bold; text-align:right; margin:20px 0 12px; padding-top:12px; border-top:2px solid #f5a623; }
+
+        /* Neue Versand-Box im Checkout */
+        .shipping-box { background:#f9f5ec; border-left:5px solid #f5a623; border-radius:10px; padding:14px 18px; margin:18px 0; font-size:0.95rem; }
+        .shipping-box h4 { color:#d48f1b; margin-bottom:8px; font-size:1.05rem; }
+        .shipping-box .row { display:flex; justify-content:space-between; padding:3px 0; }
+        .shipping-box .row.total { border-top:1px dashed #d4b483; margin-top:6px; padding-top:8px; font-weight:bold; color:#2c2c2c; }
 
         .address-form { background:#f9f9f9; border-radius:16px; padding:20px 20px 10px 20px; margin:18px 0; }
         .address-form .form-row { display:flex; gap:14px; flex-wrap:wrap; margin-bottom:12px; }
@@ -164,9 +173,7 @@
         .mailto-fallback a:hover { background:#2980b9; }
 
         /* Stornierungs-Modal */
-        #cancelModal {
-            position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999999; display:none; justify-content:center; align-items:center; padding:20px;
-        }
+        #cancelModal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:9999999; display:none; justify-content:center; align-items:center; padding:20px; }
         #cancelModal.open { display:flex; }
         .cancel-modal-content { background:#fff; max-width:500px; width:100%; border-radius:24px; padding:30px 35px; box-shadow:0 20px 60px rgba(0,0,0,0.4); animation:slideUp 0.3s ease; }
         .cancel-modal-content h2 { color:#d48f1b; border-bottom:2px solid #f5a623; padding-bottom:14px; margin-bottom:20px; font-size:1.6rem; }
@@ -232,9 +239,7 @@
 </head>
 <body>
 
-    <!-- ================================================================
-    GEWÄHRLEISTUNGS-POPUP (BILD + OK) – erscheint bei jedem Besuch
-    ================================================================ -->
+    <!-- GEWÄHRLEISTUNGS-POPUP -->
     <div id="guarantee-popup">
         <div class="guarantee-container">
             <img src="Gewaehrleistungs-Label-deutsch.png" alt="Gesetzliche Gewährleistung" />
@@ -243,9 +248,7 @@
         </div>
     </div>
 
-    <!-- ================================================================
-    COOKIE-POPUP (DSGVO)
-    ================================================================ -->
+    <!-- COOKIE-POPUP -->
     <div id="cookie-popup">
         <div class="cookie-container">
             <div class="cookie-header">
@@ -271,12 +274,9 @@
         </div>
     </div>
 
-    <!-- Button zum Ändern der Cookie-Einstellungen -->
     <div id="cookie-settings-top" class="cookie-settings-top-btn">🍪 Cookie-Einstellungen</div>
 
-    <!-- ================================================================
-    HAUPTSEITE
-    ================================================================ -->
+    <!-- HAUPTSEITE -->
     <div id="main-site">
         <header class="top-header">
             <div class="container header-inner">
@@ -331,9 +331,7 @@
         </footer>
     </div>
 
-    <!-- ================================================================
-    WARENKORB SIDEBAR
-    ================================================================ -->
+    <!-- WARENKORB SIDEBAR -->
     <div class="cart-overlay" id="cartOverlay">
         <div class="cart-sidebar">
             <div class="cart-header">
@@ -343,10 +341,22 @@
             <ul class="cart-items-list" id="cartItemsList">
                 <li class="empty-cart-msg">Ihr Warenkorb ist leer.</li>
             </ul>
-            <div class="cart-total">
-                <span>Gesamt</span>
+
+            <!-- Zwischensumme -->
+            <div class="cart-subtotal">
+                <span>Zwischensumme:</span>
                 <span id="cartTotalPrice">€ 0,00</span>
             </div>
+
+            <!-- NEU: Versandkosten-Info im Warenkorb -->
+            <div class="cart-shipping-info" id="cartShippingInfo" style="display:none;"></div>
+
+            <!-- Gesamtsumme inkl. Versand -->
+            <div class="cart-total cart-grand-total">
+                <span>Gesamt:</span>
+                <span id="cartGrandTotal">€ 0,00</span>
+            </div>
+
             <div class="cart-actions">
                 <button class="btn-primary" id="checkoutBtn">📦 Zur Kasse</button>
                 <button class="btn-secondary" id="cartClearBtn">🗑 Leeren</button>
@@ -355,9 +365,7 @@
         </div>
     </div>
 
-    <!-- ================================================================
-    BESTELLÜBERSICHT (CHECKOUT MODAL)
-    ================================================================ -->
+    <!-- BESTELLÜBERSICHT (CHECKOUT MODAL) -->
     <div class="checkout-overlay" id="checkoutOverlay">
         <div class="checkout-modal">
             <h2>📋 Bestellübersicht</h2>
@@ -421,9 +429,7 @@
         </div>
     </div>
 
-    <!-- ================================================================
-    STORNIERUNGS-MODAL
-    ================================================================ -->
+    <!-- STORNIERUNGS-MODAL -->
     <div id="cancelModal">
         <div class="cancel-modal-content">
             <h2>⛔ Bestellung stornieren</h2>
@@ -440,12 +446,8 @@
         </div>
     </div>
 
-    <!-- Toast -->
     <div class="toast" id="toast"></div>
 
-    <!-- ================================================================
-    JAVASCRIPT – mit Versandkostenberechnung
-    ================================================================ -->
     <script>
         (function() {
             // ---------- Cookie-Hilfsfunktionen ----------
@@ -472,7 +474,6 @@
             var popupCookie = document.getElementById('cookie-popup');
             var okBtn = document.getElementById('guaranteeOkBtn');
 
-            // ---------- Gewährleistungs-Popup ----------
             function showGuarantee() {
                 popupGuarantee.classList.add('open');
                 mainSite.style.display = 'none';
@@ -483,7 +484,6 @@
                 checkCookieConsent();
             }
 
-            // ---------- Cookie-Consent ----------
             function checkCookieConsent() {
                 var accepted = getCookie('cookie_consent');
                 var declined = getCookie('cookie_consent_declined');
@@ -503,7 +503,6 @@
                 mainSite.style.display = 'block';
             }
 
-            // ---------- Tracking ----------
             function loadGoogleTracking() {
                 (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-W9PCCBJC');
                 var gtagScript=document.createElement('script');
@@ -530,7 +529,6 @@
                 window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments);};
             }
 
-            // ---------- Event-Listener für Cookie-Popup ----------
             var acceptBtn = document.getElementById('accept-cookies');
             var declineBtn = document.getElementById('decline-cookies');
             var topBtn = document.getElementById('cookie-settings-top');
@@ -555,23 +553,17 @@
             if (declineBtn) declineBtn.addEventListener('click', function(e){e.preventDefault(); handleDecline();});
             if (topBtn) topBtn.addEventListener('click', function(e){e.preventDefault(); resetAndReload();});
 
-            // ---------- Beim Laden – immer Gewährleistungs-Popup anzeigen ----------
             showGuarantee();
-            okBtn.addEventListener('click', function() {
-                hideGuarantee();
-            });
+            okBtn.addEventListener('click', function() { hideGuarantee(); });
 
-            // ---------- MOBILMENÜ ----------
             var toggleBtn = document.getElementById('mobileMenuToggle');
             var nav = document.getElementById('mainNav');
             if (toggleBtn && nav) {
-                toggleBtn.addEventListener('click', function() {
-                    nav.classList.toggle('open');
-                });
+                toggleBtn.addEventListener('click', function() { nav.classList.toggle('open'); });
             }
 
             // ================================================================
-            // ==========  PRODUKTDATEN (mit Gewicht)  ==========================
+            // ==========  PRODUKTDATEN (mit Gewicht)  =========================
             // ================================================================
             var products = [{
                 id:'p1', title:'Blütenhonig', variant:'1000g Glas', price:14.00, weight:1.0,
@@ -674,7 +666,6 @@
                 country: "Österreich"
             };
 
-            // Tarifmatrix (Stand 2026, inkl. MwSt.) – national Österreich
             var SHIPPING_RATES = {
                 post: [
                     { maxWeight: 1,    price: 6.32 },
@@ -752,7 +743,8 @@
                     var found = product.variants.find(v => v.label === chosenVariant);
                     if (found) { price = found.price; variantLabel = chosenVariant; if (found.weight) weight = found.weight; }
                 }
-                var existing = cart.find(item => item.id === productId && item.variantLabel === variantLabel);
+                // FIX: Vergleich auf item.variant (nicht item.variantLabel)
+                var existing = cart.find(item => item.id === productId && item.variant === variantLabel);
                 if (existing) {
                     existing.quantity += quantity;
                 } else {
@@ -775,7 +767,7 @@
             function formatPrice(val) { return '€ ' + val.toFixed(2).replace('.',','); }
 
             // ================================================================
-            // ==========  UI – PRODUKTE RENDERN  ==============================
+            // ==========  UI – PRODUKTE RENDERN  =============================
             // ================================================================
             var grid = document.getElementById('productGrid');
             function renderProducts() {
@@ -856,6 +848,8 @@
             var closeBtn = document.getElementById('cartCloseBtn');
             var cartList = document.getElementById('cartItemsList');
             var cartTotal = document.getElementById('cartTotalPrice');
+            var cartGrandTotal = document.getElementById('cartGrandTotal');
+            var cartShippingInfo = document.getElementById('cartShippingInfo');
             var badge = document.getElementById('cartBadge');
             var cartIcon = document.getElementById('cartIconWrapper');
             var clearBtn = document.getElementById('cartClearBtn');
@@ -894,8 +888,26 @@
                 cartList.querySelectorAll('.cart-item-remove').forEach(function(btn) {
                     btn.addEventListener('click', function() { var idx = parseInt(this.dataset.index); removeFromCart(idx); });
                 });
+
+                // Zwischensumme
                 cartTotal.textContent = formatPrice(getTotalPrice());
                 badge.textContent = getTotalItems();
+
+                // Versandkosten-Info im Warenkorb
+                if (cart.length > 0) {
+                    var shipping = getBestShipping();
+                    cartShippingInfo.style.display = 'block';
+                    cartShippingInfo.innerHTML =
+                        '<div style="display:flex; justify-content:space-between;">' +
+                            '<span>📦 Versand (' + shipping.bestProvider + '):</span>' +
+                            '<strong>' + formatPrice(shipping.best) + '</strong>' +
+                        '</div>' +
+                        '<div style="font-size:0.75rem; color:#888; margin-top:2px;">Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg</div>';
+                    cartGrandTotal.textContent = formatPrice(getTotalPrice() + shipping.best);
+                } else {
+                    cartShippingInfo.style.display = 'none';
+                    cartGrandTotal.textContent = formatPrice(0);
+                }
             }
 
             function updateUI() {
@@ -922,7 +934,7 @@
             });
 
             // ================================================================
-            // ==========  E-MAIL-VERSAND (mit Versandkosten)  ================
+            // ==========  E-MAIL-VERSAND  ====================================
             // ================================================================
             var FORMSPREE_ID = 'meajkvyk';
             var SHOP_EMAIL = 'baumann.bernhard@gmx.net';
@@ -942,10 +954,10 @@
                         addressData.zip + ' ' + addressData.city + '\n' +
                         'E-Mail: ' + addressData.email + '\n' +
                         '\n— Produkte —\n' + itemsText + '\n\n' +
-                        'Gesamtbetrag (Produkte): ' + formatPrice(total) + '\n' +
+                        'Zwischensumme (Produkte): ' + formatPrice(total) + '\n' +
                         'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
                         'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
-                        'Gesamtsumme (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
+                        'GESAMTSUMME (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                         '— Überweisung —\n' +
                         'IBAN: AT11 3418 0000 0144 3597\n' +
                         'BIC: RZ00AT2L180\n' +
@@ -957,22 +969,13 @@
                     formData.append('_replyto', SHOP_EMAIL);
 
                     fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
+                        method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
                     })
                     .then(function(response) {
-                        if (response.ok) {
-                            resolve();
-                        } else {
-                            console.warn('Fetch fehlgeschlagen (Status ' + response.status + '), versuche Fallback per Formular.');
-                            fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject);
-                        }
+                        if (response.ok) { resolve(); }
+                        else { fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject); }
                     })
-                    .catch(function(err) {
-                        console.warn('Fetch-Netzwerkfehler:', err);
-                        fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject);
-                    });
+                    .catch(function(err) { fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject); });
                 });
             }
 
@@ -986,42 +989,28 @@
                     var fields = {
                         '_subject': 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName,
                         'message': 'Neue Bestellung von Ihrer Website:\n\n' +
-                            'Bestellnummer: ' + orderId + '\n' +
-                            'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
-                            '— Lieferadresse —\n' +
-                            addressData.firstName + ' ' + addressData.lastName + '\n' +
-                            addressData.street + '\n' +
-                            addressData.zip + ' ' + addressData.city + '\n' +
-                            'E-Mail: ' + addressData.email + '\n' +
-                            '\n— Produkte —\n' + cartItems.map(function(item) {
+                            'Bestellnummer: ' + orderId + '\nDatum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
+                            '— Lieferadresse —\n' + addressData.firstName + ' ' + addressData.lastName + '\n' + addressData.street + '\n' + addressData.zip + ' ' + addressData.city + '\nE-Mail: ' + addressData.email + '\n\n' +
+                            '— Produkte —\n' + cartItems.map(function(item) {
                                 return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
                             }).join('\n') + '\n\n' +
-                            'Gesamtbetrag (Produkte): ' + formatPrice(total) + '\n' +
+                            'Zwischensumme (Produkte): ' + formatPrice(total) + '\n' +
                             'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
                             'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
-                            'Gesamtsumme (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
-                            '— Überweisung —\n' +
-                            'IBAN: AT11 3418 0000 0144 3597\n' +
-                            'BIC: RZ00AT2L180\n' +
-                            'Verwendungszweck: ' + orderId,
+                            'GESAMTSUMME (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
+                            '— Überweisung —\nIBAN: AT11 3418 0000 0144 3597\nBIC: RZ00AT2L180\nVerwendungszweck: ' + orderId,
                         '_replyto': SHOP_EMAIL
                     };
-
                     for (var key in fields) {
                         var input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = key;
-                        input.value = fields[key];
+                        input.type = 'hidden'; input.name = key; input.value = fields[key];
                         form.appendChild(input);
                     }
-
                     document.body.appendChild(form);
                     form.submit();
                     setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
                     resolve();
-                } catch (e) {
-                    reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message));
-                }
+                } catch (e) { reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message)); }
             }
 
             function sendCustomerEmail(orderId, cartItems, total, addressData, shipping) {
@@ -1034,10 +1023,10 @@
                         'Ihre Bestellnummer: ' + orderId + '\n' +
                         'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
                         '— Ihre Bestellung —\n' + itemsText + '\n\n' +
-                        'Gesamtbetrag (Produkte): ' + formatPrice(total) + '\n' +
+                        'Zwischensumme (Produkte): ' + formatPrice(total) + '\n' +
                         'Versandkosten (' + shipping.bestProvider + '): ' + formatPrice(shipping.best) + '\n' +
                         'Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg\n' +
-                        'Gesamtsumme (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
+                        'GESAMTSUMME (inkl. Versand): ' + formatPrice(totalWithShipping) + '\n\n' +
                         '— Überweisung —\n' +
                         'Bitte überweisen Sie den Betrag von ' + formatPrice(totalWithShipping) + ' auf folgendes Konto:\n' +
                         'IBAN: AT11 3418 0000 0144 3597\n' +
@@ -1049,14 +1038,10 @@
                     formData.append('_subject', 'Bestellbestätigung #' + orderId);
                     formData.append('message', body);
                     fetch('https://formsubmit.co/' + encodeURIComponent(addressData.email), {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
+                        method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
                     })
                     .then(function(response) {
-                        if (response.ok) { resolve(); } else {
-                            reject(new Error('Fehler beim Senden an Kunden: ' + response.status));
-                        }
+                        if (response.ok) { resolve(); } else { reject(new Error('Fehler beim Senden an Kunden: ' + response.status)); }
                     })
                     .catch(function(err) { reject(err); });
                 });
@@ -1076,18 +1061,13 @@
                     formData.append('message', body);
                     formData.append('_replyto', SHOP_EMAIL);
                     fetch('https://formspree.io/f/' + FORMSPREE_ID, {
-                        method: 'POST',
-                        body: formData,
-                        headers: { 'Accept': 'application/json' }
+                        method: 'POST', body: formData, headers: { 'Accept': 'application/json' }
                     })
                     .then(function(response) {
-                        if (response.ok) { resolve(); } else {
-                            fallbackCancellationEmail(orderNumber, addressData, resolve, reject);
-                        }
+                        if (response.ok) { resolve(); }
+                        else { fallbackCancellationEmail(orderNumber, addressData, resolve, reject); }
                     })
-                    .catch(function(err) {
-                        fallbackCancellationEmail(orderNumber, addressData, resolve, reject);
-                    });
+                    .catch(function(err) { fallbackCancellationEmail(orderNumber, addressData, resolve, reject); });
                 });
             }
 
@@ -1100,8 +1080,7 @@
                     var fields = {
                         '_subject': 'Stornierung der Bestellung #' + orderNumber,
                         'message': 'Stornierung einer Bestellung:\n\n' +
-                            'Bestellnummer: ' + orderNumber + '\n' +
-                            'Datum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
+                            'Bestellnummer: ' + orderNumber + '\nDatum: ' + new Date().toLocaleString('de-AT') + '\n\n' +
                             'Die Bestellung wurde vom Kunden storniert.\n' +
                             (addressData ? 'Kunde: ' + addressData.firstName + ' ' + addressData.lastName + '\n' : '') +
                             (addressData && addressData.email ? 'E-Mail: ' + addressData.email + '\n' : '') +
@@ -1110,18 +1089,14 @@
                     };
                     for (var key in fields) {
                         var input = document.createElement('input');
-                        input.type = 'hidden';
-                        input.name = key;
-                        input.value = fields[key];
+                        input.type = 'hidden'; input.name = key; input.value = fields[key];
                         form.appendChild(input);
                     }
                     document.body.appendChild(form);
                     form.submit();
                     setTimeout(function() { if (form.parentNode) form.parentNode.removeChild(form); }, 2000);
                     resolve();
-                } catch (e) {
-                    reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message));
-                }
+                } catch (e) { reject(new Error('Fallback-Formular fehlgeschlagen: ' + e.message)); }
             }
 
             // ================================================================
@@ -1158,11 +1133,8 @@
                 if (!data.street) errors.street = 'Bitte Straße und Hausnummer eingeben.';
                 if (!data.zip) errors.zip = 'Bitte PLZ eingeben.';
                 if (!data.city) errors.city = 'Bitte Ort eingeben.';
-                if (!data.email) {
-                    errors.customerEmail = 'Bitte E-Mail-Adresse eingeben.';
-                } else if (!/^\S+@\S+\.\S+$/.test(data.email)) {
-                    errors.customerEmail = 'Bitte gültige E-Mail-Adresse eingeben.';
-                }
+                if (!data.email) { errors.customerEmail = 'Bitte E-Mail-Adresse eingeben.'; }
+                else if (!/^\S+@\S+\.\S+$/.test(data.email)) { errors.customerEmail = 'Bitte gültige E-Mail-Adresse eingeben.'; }
                 document.getElementById('firstNameError').textContent = errors.firstName || '';
                 document.getElementById('lastNameError').textContent = errors.lastName || '';
                 document.getElementById('streetError').textContent = errors.street || '';
@@ -1211,13 +1183,23 @@
                     html += '</div>';
                 });
                 var shipping = getBestShipping();
-                html += '<div class="checkout-total">Zwischensumme: '+formatPrice(getTotalPrice())+'</div>';
-                html += '<div style="font-size:0.95rem; color:#333; margin-top:8px; text-align:right;">';
-                html += '<strong>Versandkosten:</strong> ' + formatPrice(shipping.best) + ' (via ' + shipping.bestProvider + ')';
-                html += '<br><span style="font-size:0.8rem; color:#666;">Gesamtgewicht: ' + shipping.weight.toFixed(2) + ' kg</span>';
-                html += '<br><span style="font-size:0.8rem; color:#666;">Paketversand von ' + SENDER.zip + ' ' + SENDER.city + '</span>';
+                var sub = getTotalPrice();
+                var totalWithShipping = sub + shipping.best;
+
+                // Versand-Box hervorgehoben
+                html += '<div class="shipping-box">';
+                html += '<h4>📦 Versandkosten-Berechnung</h4>';
+                html += '<div class="row"><span>Versand von:</span><span>' + SENDER.zip + ' ' + SENDER.city + '</span></div>';
+                html += '<div class="row"><span>Gesamtgewicht:</span><span>' + shipping.weight.toFixed(2) + ' kg</span></div>';
+                html += '<div class="row"><span>Tarif Post:</span><span>' + formatPrice(shipping.post) + '</span></div>';
+                html += '<div class="row"><span>Tarif DPD:</span><span>' + formatPrice(shipping.dpd) + '</span></div>';
+                html += '<div class="row total"><span>Gewählter Versand (' + shipping.bestProvider + '):</span><span>' + formatPrice(shipping.best) + '</span></div>';
                 html += '</div>';
-                html += '<div class="checkout-total" style="margin-top:8px;">Gesamt (inkl. Versand): ' + formatPrice(getTotalPrice() + shipping.best) + '</div>';
+
+                html += '<div style="font-size:1rem; display:flex; justify-content:space-between; padding:6px 0;"><span>Zwischensumme:</span><span>' + formatPrice(sub) + '</span></div>';
+                html += '<div style="font-size:1rem; display:flex; justify-content:space-between; padding:6px 0;"><span>Versand:</span><span>' + formatPrice(shipping.best) + '</span></div>';
+                html += '<div class="checkout-total" style="margin-top:8px;">GESAMT: ' + formatPrice(totalWithShipping) + '</div>';
+
                 checkoutSummary.innerHTML = html;
             }
 
@@ -1265,15 +1247,13 @@
                                 Verwendungszweck: <strong>${orderId}</strong>
                             </p>
                             <p style="font-size:0.85rem; color:#888; margin-top:4px;">
-                                Versandkosten: ${formatPrice(shipping.best)} (via ${shipping.bestProvider}), 
+                                Versandkosten: ${formatPrice(shipping.best)} (via ${shipping.bestProvider}),
                                 Gesamtgewicht: ${shipping.weight.toFixed(2)} kg
                             </p>
                             <p style="font-size:0.85rem;color:#777;margin-top:8px;">
                                 Wir werden Ihre Bestellung nach Zahlungseingang an die angegebene Adresse versenden.
                             </p>
-                            <button class="btn-primary" style="margin-top:18px;padding:12px 40px;border:none;border-radius:12px;background:#f5a623;color:#fff;font-weight:bold;cursor:pointer;" id="closeSuccessBtn">
-                                ✖ Schließen
-                            </button>
+                            <button class="btn-primary" style="margin-top:18px;padding:12px 40px;border:none;border-radius:12px;background:#f5a623;color:#fff;font-weight:bold;cursor:pointer;" id="closeSuccessBtn">✖ Schließen</button>
                             <button class="btn-danger" id="withdrawSuccessBtn">⛔ Bestellung stornieren</button>
                         </div>
                     `;
@@ -1286,13 +1266,11 @@
                         updateUI();
                         showToast('Bestellung abgeschlossen!');
                     });
-
                     document.getElementById('withdrawSuccessBtn').addEventListener('click', function() {
                         document.getElementById('cancelModal').classList.add('open');
                         document.getElementById('cancelOrderNumber').value = orderId;
                         document.getElementById('cancelError').textContent = '';
                     });
-
                     finishOrderBtn.classList.remove('loading');
                     finishOrderBtn.innerHTML = '✅ Bestellung abschließen';
                     finishOrderBtn.disabled = false;
@@ -1307,35 +1285,22 @@
                     var itemsText = cartCopy.map(function(item) {
                         return item.quantity + '× ' + item.title + ' (' + item.variant + ') - ' + formatPrice(item.price * item.quantity);
                     }).join('%0A');
-                    var mailtoBodyShop = 'Neue%20Bestellung%20von%20Ihrer%20Website%3A%0A%0A' +
+                    var mailtoBodyShop = 'Neue%20Bestellung%3A%0A%0A' +
                         'Bestellnummer%3A%20' + orderId + '%0A' +
                         'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
-                        '%E2%80%94%20Lieferadresse%20%E2%80%94%0A' +
+                        'Lieferadresse%3A%0A' +
                         encodeURIComponent(address.firstName + ' ' + address.lastName) + '%0A' +
                         encodeURIComponent(address.street) + '%0A' +
                         encodeURIComponent(address.zip + ' ' + address.city) + '%0A' +
                         'E-Mail%3A%20' + encodeURIComponent(address.email) + '%0A%0A' +
-                        '%E2%80%94%20Produkte%20%E2%80%94%0A' + itemsText + '%0A%0A' +
-                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%0A%0A' +
-                        '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
+                        'Produkte%3A%0A' + itemsText + '%0A%0A' +
+                        'Versandkosten%3A%20' + encodeURIComponent(formatPrice(shipping.best)) + '%0A' +
+                        'Gesamt%3A%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%0A%0A' +
                         'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
                         'BIC%3A%20RZ00AT2L180%0A' +
                         'Verwendungszweck%3A%20' + orderId;
                     var mailtoLinkShop = 'mailto:' + SHOP_EMAIL + '?subject=Neue%20Bestellung%20%23' + orderId + '&body=' + mailtoBodyShop;
-                    var mailtoBodyCustomer = 'Vielen%20Dank%20f%C3%BCr%20Ihre%20Bestellung%20bei%20Baumann%20Honig%21%0A%0A' +
-                        'Ihre%20Bestellnummer%3A%20' + orderId + '%0A' +
-                        'Datum%3A%20' + encodeURIComponent(new Date().toLocaleString('de-AT')) + '%0A%0A' +
-                        '%E2%80%94%20Ihre%20Bestellung%20%E2%80%94%0A' + itemsText + '%0A%0A' +
-                        'Gesamtbetrag%3A%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%0A%0A' +
-                        '%E2%80%94%20%C3%9Cberweisung%20%E2%80%94%0A' +
-                        'Bitte%20%C3%BCberweisen%20Sie%20den%20Betrag%20von%20' + encodeURIComponent(formatPrice(totalWithShipping)) + '%20auf%20folgendes%20Konto%3A%0A' +
-                        'IBAN%3A%20AT11%203418%200000%200144%203597%0A' +
-                        'BIC%3A%20RZ00AT2L180%0A' +
-                        'Verwendungszweck%3A%20' + orderId + '%0A%0A' +
-                        'Wir%20versenden%20Ihre%20Ware%20nach%20Zahlungseingang.';
-                    var mailtoLinkCustomer = 'mailto:' + encodeURIComponent(address.email) + '?subject=Bestellbest%C3%A4tigung%20%23' + orderId + '&body=' + mailtoBodyCustomer;
-                    errorDiv.innerHTML += '<div class="mailto-fallback"><a href="' + mailtoLinkShop + '" target="_blank">📧 Bestellung an Shop per E-Mail senden</a><br>' +
-                        '<a href="' + mailtoLinkCustomer + '" target="_blank">📧 Bestätigung an Kunden per E-Mail senden</a></div>';
+                    errorDiv.innerHTML += '<div class="mailto-fallback"><a href="' + mailtoLinkShop + '" target="_blank">📧 Bestellung an Shop per E-Mail senden</a></div>';
                     var actionsDiv = document.querySelector('.checkout-actions');
                     actionsDiv.parentNode.insertBefore(errorDiv, actionsDiv);
                     finishOrderBtn.classList.remove('loading');
@@ -1359,22 +1324,13 @@
                 cancelInput.value = '';
                 cancelError.textContent = '';
             }
-
             closeCancelBtn.addEventListener('click', closeCancelModal);
-            cancelModal.addEventListener('click', function(e) {
-                if (e.target === cancelModal) closeCancelModal();
-            });
+            cancelModal.addEventListener('click', function(e) { if (e.target === cancelModal) closeCancelModal(); });
 
             confirmCancelBtn.addEventListener('click', function() {
                 var orderNumber = cancelInput.value.trim();
-                if (!orderNumber) {
-                    cancelError.textContent = 'Bitte geben Sie Ihre Bestellnummer ein.';
-                    return;
-                }
-                if (!/^BH-\d{8}-\d{3}$/.test(orderNumber)) {
-                    cancelError.textContent = 'Ungültiges Format. Bitte geben Sie die korrekte Bestellnummer ein.';
-                    return;
-                }
+                if (!orderNumber) { cancelError.textContent = 'Bitte geben Sie Ihre Bestellnummer ein.'; return; }
+                if (!/^BH-\d{8}-\d{3}$/.test(orderNumber)) { cancelError.textContent = 'Ungültiges Format. Bitte geben Sie die korrekte Bestellnummer ein.'; return; }
                 var address = getAddressData();
                 confirmCancelBtn.disabled = true;
                 confirmCancelBtn.innerHTML = '<span class="spinner"></span> Sende...';
