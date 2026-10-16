@@ -952,6 +952,7 @@
             // ==========  E-MAIL  ============================================
             // ================================================================
             var FORMSPREE_ID = 'meajkvyk';
+            var WEB3FORMS_KEY = '727c6d73-a2dc-40be-a7d5-175ffcc16965';
             var SHOP_EMAIL = 'baumann.bernhard@gmx.net';
 
             function sendShopEmail(orderId, cartItems, total, addressData, shipping) {
@@ -979,6 +980,7 @@
                         'BIC: RZ00AT2L180\n' +
                         'Verwendungszweck: ' + orderId;
 
+                    // --- Hauptversand über Formspree ---
                     var formData = new FormData();
                     formData.append('_subject', 'Neue Bestellung #' + orderId + ' von ' + addressData.firstName + ' ' + addressData.lastName);
                     formData.append('message', body);
@@ -990,6 +992,30 @@
                         else fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject);
                     })
                     .catch(function() { fallbackShopEmail(orderId, cartItems, total, addressData, shipping, resolve, reject); });
+
+                    // --- Web3Forms als Backup-Versand (parallel, unabhängig) ---
+                    try {
+                        var web3formData = new FormData();
+                        web3formData.append('access_key', WEB3FORMS_KEY);
+                        web3formData.append('subject', 'Neue Bestellung #' + orderId + ' (Backup)');
+                        web3formData.append('from_name', 'Baumann Honig Shop');
+                        web3formData.append('message', body);
+                        web3formData.append('email', addressData.email);
+
+                        fetch('https://api.web3forms.com/submit', {
+                            method: 'POST',
+                            body: web3formData
+                        })
+                        .then(function(r) {
+                            if (r.ok) console.log('Web3Forms-Backup erfolgreich gesendet für Bestellung ' + orderId);
+                            else console.warn('Web3Forms-Backup fehlgeschlagen mit Status ' + r.status);
+                        })
+                        .catch(function() {
+                            console.warn('Web3Forms-Backup fehlgeschlagen – Formspree ist der Hauptweg');
+                        });
+                    } catch(e) {
+                        console.warn('Web3Forms-Backup konnte nicht initialisiert werden:', e);
+                    }
                 });
             }
 
