@@ -1041,7 +1041,12 @@
                         'BIC: RZ00AT2L180\n' +
                         'Verwendungszweck: ' + orderId + '\n\n' +
                         'Wir versenden Ihre Ware nach Zahlungseingang.\n' +
-                        'Bei Fragen stehen wir Ihnen gerne zur Verfügung.';
+                        'Bei Fragen stehen wir Ihnen gerne zur Verfügung.\n\n' +
+                        '— Wichtiger Hinweis —\n' +
+                        'Sollten Sie innerhalb von 14 Tagen nach Ihrer Bestellung keine Versandbestätigung von uns erhalten haben, ' +
+                        'senden Sie Ihre Bestellung bitte erneut per E-Mail an: baumann.bernhard@gmx.net\n' +
+                        'Geben Sie dabei bitte Ihre Bestellnummer an: ' + orderId + '\n' +
+                        'So stellen Sie sicher, dass Ihre Bestellung auf jeden Fall bei uns ankommt.\n';
                     var formData = new FormData();
                     formData.append('_subject', 'Bestellbestätigung #' + orderId);
                     formData.append('message', body);
@@ -1243,6 +1248,10 @@
                                 auf das oben angegebene Konto.<br>
                                 Verwendungszweck: <strong>${orderId}</strong>
                             </p>
+                            <p style="font-size:0.85rem; color:#e67e22; background:#fef9e6; padding:10px 12px; border-radius:8px; margin-top:12px; border-left:4px solid #f5a623; text-align:left;">
+                                <strong>📌 Wichtiger Hinweis:</strong><br>
+                                Sollten Sie innerhalb von 14 Tagen nach Ihrer Bestellung keine Versandbestätigung von uns erhalten haben, senden Sie Ihre Bestellung bitte erneut per E-Mail an <strong>baumann.bernhard@gmx.net</strong> unter Angabe Ihrer Bestellnummer <strong>${orderId}</strong>.
+                            </p>
                             <p style="font-size:0.85rem; color:#888; margin-top:4px;">
                                 Versand: ${formatPrice(shipping.best)} (via ${shipping.bestProvider}),
                                 Paket: ${shipping.dims.longest.toFixed(0)}×${shipping.dims.w.toFixed(0)}×${shipping.dims.h.toFixed(0)} cm,
@@ -1276,7 +1285,7 @@
                     errorDiv.id = 'mailError';
                     errorDiv.className = 'error-detail';
                     errorDiv.innerHTML = '<strong>Fehler beim E-Mail-Versand:</strong> ' + err.message +
-                        '<br><span style="font-size:0.8rem;">Bitte senden Sie die Daten manuell.</span>';
+                        '<br><span style="font-size:0.8rem;">Bitte senden Sie die Daten manuell an baumann.bernhard@gmx.net.</span>';
                     var actionsDiv = document.querySelector('.checkout-actions');
                     actionsDiv.parentNode.insertBefore(errorDiv, actionsDiv);
                     finishOrderBtn.classList.remove('loading');
