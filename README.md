@@ -1,2 +1,0 @@
-# BaumannHonigSeiten
-Imkerei Baumann Hartkirchen 
